@@ -26,15 +26,69 @@ import growthIcon from '../../assets/growth-icon.png';
       </div>
     </div>
 
-    <!-- RIGHT: Growth Graphic (Static) -->
+    <!-- RIGHT: Growth Graphic (Animated Raster) -->
     <div class="w-full max-w-[28rem] mx-auto lg:max-w-none lg:ml-auto flex justify-center lg:justify-end">
-      <Image 
-        src={growthIcon} 
-        alt="SKYON Business Growth Graphic" 
-        class="w-full h-auto object-contain drop-shadow-sm"
-        loading="eager"
-      />
+      <div class="hero-graphic-container">
+        <Image 
+          src={growthIcon} 
+          alt="SKYON Business Growth Graphic" 
+          class="hero-graphic-float w-full h-auto object-contain drop-shadow-sm"
+          loading="eager"
+        />
+      </div>
     </div>
 
   </div>
 </section>
+
+<style is:global>
+  /* Base state hides the image for the wipe */
+  .hero-graphic-container {
+    clip-path: polygon(0 100%, 0 100%, 0 100%);
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-graphic-container {
+      animation: growth-wipe 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: 0.2s;
+    }
+    
+    .hero-graphic-float {
+      /* Slow, subtle continuous floating loop */
+      animation: slow-float 6s ease-in-out infinite;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-graphic-container {
+      clip-path: polygon(0 100%, 0 -100%, 200% 100%);
+      opacity: 1;
+    }
+  }
+
+  @keyframes growth-wipe {
+    0% {
+      opacity: 0;
+      clip-path: polygon(0 100%, 0 100%, 0 100%);
+      transform: translateY(10px);
+    }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+      clip-path: polygon(0 100%, 0 -100%, 200% 100%);
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slow-float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+</style>

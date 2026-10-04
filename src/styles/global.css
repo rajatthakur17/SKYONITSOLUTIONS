@@ -64,9 +64,9 @@
     pointer-events: none;
     z-index: 0; /* Keeps it behind text and foreground elements */
     background: radial-gradient(
-      600px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh),
-      rgba(22, 135, 255, 0.08),
-      transparent 80%
+      300px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh),
+      rgba(22, 135, 255, 0.12) 0%,
+      transparent 100%
     );
     opacity: 0;
     transition: opacity 0.5s ease;

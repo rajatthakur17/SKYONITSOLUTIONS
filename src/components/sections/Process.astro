@@ -1,0 +1,29 @@
+---
+const steps = [
+  { num: '01', title: 'Understand', desc: 'We start by learning about your business, your target audience, and your specific goals.' },
+  { num: '02', title: 'Strategize', desc: 'We map out a clear, actionable plan covering architecture, design, and marketing channels.' },
+  { num: '03', title: 'Build', desc: 'We execute the plan, building accessible and maintainable web experiences and structuring campaigns.' },
+  { num: '04', title: 'Launch', desc: 'We deploy your project to production with strict quality assurance and SEO checks.' },
+  { num: '05', title: 'Grow', desc: 'We monitor performance, manage your social presence, and prepare the foundation for ongoing marketing and optimization.' }
+];
+---
+<section id="process" class="py-24 px-4 md:px-8 border-b border-hairline">
+  <div class="max-w-[72rem] mx-auto">
+    <div class="mb-16">
+      <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-4 tracking-tight">Our Process</h2>
+      <p class="text-lg text-text-body max-w-[42rem]">
+        A structured, transparent approach to delivering digital solutions that work.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+      {steps.map((step) => (
+        <div class="relative">
+          <div class="text-4xl font-extrabold text-hairline mb-4">{step.num}</div>
+          <h3 class="text-xl font-bold text-text-primary mb-3">{step.title}</h3>
+          <p class="text-text-body text-sm leading-relaxed">{step.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,163 @@
+---
+import Logo from '../ui/Logo.astro';
+---
+
+<div 
+  id="mobile-drawer" 
+  class="fixed inset-0 z-50 invisible opacity-0 transition-opacity duration-200"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Mobile Navigation"
+>
+  <!-- Backdrop -->
+  <div 
+    id="drawer-backdrop" 
+    class="absolute inset-0 bg-canvas/60 backdrop-blur-sm"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Drawer content -->
+  <div 
+    id="drawer-panel" 
+    class="absolute right-0 top-0 bottom-0 w-[85vw] max-w-[24rem] bg-surface-1 border-l border-hairline shadow-2xl translate-x-full transition-transform duration-300 ease-out flex flex-col"
+  >
+    <div class="flex items-center justify-between h-16 px-6 border-b border-hairline">
+      <Logo />
+      <button 
+        id="drawer-close" 
+        class="text-text-body hover:text-brand-hover p-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary transition-colors"
+        aria-label="Close navigation menu"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="flex-1 overflow-y-auto px-6 py-8 flex flex-col gap-6">
+      <a href="/#services" class="text-2xl font-semibold text-text-primary hover:text-brand-hover transition-colors drawer-link">Services</a>
+      <a href="/#work" class="text-2xl font-semibold text-text-primary hover:text-brand-hover transition-colors drawer-link">Work</a>
+      <a href="/#process" class="text-2xl font-semibold text-text-primary hover:text-brand-hover transition-colors drawer-link">Process</a>
+      
+      <div class="mt-8 pt-8 border-t border-hairline">
+        <a href="/contact" class="inline-block w-full text-center text-lg font-semibold bg-button-fill text-text-primary px-6 py-3 rounded-full hover:bg-brand-hover transition-colors drawer-link">
+          Start a Project
+        </a>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<script>
+  const trigger = document.getElementById('mobile-menu-trigger') as HTMLButtonElement | null;
+  const drawer = document.getElementById('mobile-drawer') as HTMLDivElement | null;
+  const panel = document.getElementById('drawer-panel') as HTMLDivElement | null;
+  const closeBtn = document.getElementById('drawer-close') as HTMLButtonElement | null;
+  const backdrop = document.getElementById('drawer-backdrop') as HTMLDivElement | null;
+  const links = document.querySelectorAll('.drawer-link');
+  
+  let isOpen = false;
+  let previousFocus: HTMLElement | null = null;
+
+  function openDrawer() {
+    if (isOpen || !drawer || !panel || !trigger || !closeBtn) return;
+    
+    // Save previous focus
+    previousFocus = document.activeElement as HTMLElement | null;
+    
+    isOpen = true;
+    
+    // Disable body scroll
+    document.body.style.overflow = 'hidden';
+    
+    // Update ARIA
+    trigger.setAttribute('aria-expanded', 'true');
+    drawer.setAttribute('aria-hidden', 'false');
+    
+    // Make visible and animate
+    drawer.classList.remove('invisible');
+    drawer.classList.remove('opacity-0');
+    drawer.classList.add('opacity-100');
+    
+    setTimeout(() => {
+      panel.classList.remove('translate-x-full');
+      panel.classList.add('translate-x-0');
+      // Set focus to the first focusable element inside drawer
+      closeBtn.focus();
+    }, 10);
+  }
+
+  function closeDrawer() {
+    if (!isOpen || !drawer || !panel || !trigger) return;
+    isOpen = false;
+    
+    // Restore body scroll
+    document.body.style.overflow = '';
+    
+    // Update ARIA
+    trigger.setAttribute('aria-expanded', 'false');
+    drawer.setAttribute('aria-hidden', 'true');
+    
+    // Animate out
+    panel.classList.remove('translate-x-0');
+    panel.classList.add('translate-x-full');
+    
+    setTimeout(() => {
+      drawer.classList.remove('opacity-100');
+      drawer.classList.add('opacity-0');
+      
+      setTimeout(() => {
+        drawer.classList.add('invisible');
+        // Restore focus
+        if (previousFocus) {
+          previousFocus.focus();
+        }
+      }, 200);
+    }, 100);
+  }
+
+  // Event Listeners
+  if (trigger) trigger.addEventListener('click', openDrawer);
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  if (backdrop) backdrop.addEventListener('click', closeDrawer);
+  
+  // Close on link click
+  links.forEach(link => {
+    link.addEventListener('click', closeDrawer);
+  });
+
+  // Keyboard navigation / Focus Trap / Esc to close
+  document.addEventListener('keydown', (e) => {
+    if (!isOpen || !drawer) return;
+    
+    if (e.key === 'Escape') {
+      closeDrawer();
+      return;
+    }
+
+    if (e.key === 'Tab') {
+      // Find all focusable elements inside drawer
+      const focusableElements = drawer.querySelectorAll<HTMLElement>('a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])');
+      if (focusableElements.length === 0) return;
+      
+      const firstFocusable = focusableElements[0];
+      const lastFocusable = focusableElements[focusableElements.length - 1];
+
+      if (e.shiftKey) {
+        // Shift + Tab
+        if (document.activeElement === firstFocusable) {
+          e.preventDefault();
+          lastFocusable.focus();
+        }
+      } else {
+        // Tab
+        if (document.activeElement === lastFocusable) {
+          e.preventDefault();
+          firstFocusable.focus();
+        }
+      }
+    }
+  });
+</script>

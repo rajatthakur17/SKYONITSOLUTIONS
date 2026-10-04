@@ -20,3 +20,9 @@ Consult these guides before working on related tasks:
 - [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+
+## Tailwind v4 Layout Constraints
+
+- **DO NOT** use semantic `max-w-xs` through `max-w-6xl` utilities for structural layout unless verified safe.
+- **PREFER** explicit arbitrary widths such as `max-w-[48rem]` or `max-w-[72rem]`.
+- **DO NOT** modify the Tailwind configuration to work around this unless explicitly approved by the founder.

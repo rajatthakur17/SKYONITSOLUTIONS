@@ -1,0 +1,38 @@
+---
+import Logo from '../ui/Logo.astro';
+---
+
+<header class="fixed top-0 w-full z-40 bg-canvas/80 backdrop-blur-md border-b border-hairline h-16">
+  <div class="max-w-[72rem] mx-auto px-4 md:px-8 h-full flex items-center justify-between">
+    
+    <div class="flex-shrink-0">
+      <Logo />
+    </div>
+
+    <nav class="hidden md:flex items-center gap-8" aria-label="Desktop Navigation">
+      <a href="/#services" class="text-sm font-medium text-text-body hover:text-brand-hover transition-colors">Services</a>
+      <a href="/#work" class="text-sm font-medium text-text-body hover:text-brand-hover transition-colors">Work</a>
+      <a href="/#process" class="text-sm font-medium text-text-body hover:text-brand-hover transition-colors">Process</a>
+      <a href="/contact" class="text-sm font-semibold bg-button-fill text-text-primary px-4 py-2 rounded-full hover:bg-brand-hover transition-colors shadow-sm">
+        Start a Project
+      </a>
+    </nav>
+
+    <div class="md:hidden flex items-center">
+      <button 
+        id="mobile-menu-trigger" 
+        class="text-text-primary p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded"
+        aria-expanded="false" 
+        aria-controls="mobile-drawer"
+        aria-label="Open navigation menu"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    
+  </div>
+</header>

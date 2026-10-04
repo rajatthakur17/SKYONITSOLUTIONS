@@ -1,74 +1,32 @@
 ---
-// Zero-dependency motion system for cursor tracking and click animations
+// Zero-dependency motion system — contextual click ripple only.
+// No global cursor glow. No ambient decoration.
 ---
-<div id="global-cursor" class="global-cursor-glow"></div>
-
 <script>
-  // 1. Global Cursor Hover Tracking
-  const cursorGlow = document.getElementById('global-cursor');
-
-  if (cursorGlow) {
-    let ticking = false;
-
-    // Track mouse movement across the entire viewport
-    document.addEventListener('mousemove', (e) => {
-      // Avoid layout thrashing, use requestAnimationFrame
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          cursorGlow.style.setProperty('--mouse-x', `${e.clientX}px`);
-          cursorGlow.style.setProperty('--mouse-y', `${e.clientY}px`);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
-
-    // Fade in when cursor enters viewport
-    document.addEventListener('mouseenter', () => {
-      cursorGlow.classList.add('is-active');
-    });
-
-    // Fade out when cursor leaves viewport
-    document.addEventListener('mouseleave', () => {
-      cursorGlow.classList.remove('is-active');
-    });
-
-    // Initial activation if cursor is already inside
-    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      cursorGlow.classList.add('is-active');
-    }
-  }
-
-  // 2. Click Interaction Animation
+  // Click ripple: inject a small ring that expands and fades on .motion-click elements.
   document.addEventListener('click', (e) => {
-    const target = (e.target as HTMLElement).closest('.motion-click') as HTMLElement;
+    const target = (e.target as HTMLElement).closest('.motion-click') as HTMLElement | null;
     if (!target) return;
 
     const rect = target.getBoundingClientRect();
-    let x = e.clientX;
-    let y = e.clientY;
+    let x = e.clientX - rect.left;
+    let y = e.clientY - rect.top;
 
-    // Keyboard accessibility fallback (if activated via Enter/Space, clientX is often 0)
-    if (x === 0 && y === 0) {
-      x = rect.left + rect.width / 2;
-      y = rect.top + rect.height / 2;
+    // Keyboard-activation fallback (Enter/Space gives clientX === 0)
+    if (e.clientX === 0 && e.clientY === 0) {
+      x = rect.width / 2;
+      y = rect.height / 2;
     }
 
-    // Inject temporary visual element
-    const icon = document.createElement('span');
-    icon.className = 'motion-click-icon text-brand-primary';
-    icon.setAttribute('aria-hidden', 'true');
-    // Minimal SVG spark/accent
-    icon.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L14 10L24 12L14 14L12 24L10 14L0 12L10 10Z"/></svg>`;
-    
-    icon.style.left = `${x - rect.left}px`;
-    icon.style.top = `${y - rect.top}px`;
-    
-    target.appendChild(icon);
+    const ripple = document.createElement('span');
+    ripple.className = 'motion-click-ripple';
+    ripple.setAttribute('aria-hidden', 'true');
+    ripple.style.left = `${x}px`;
+    ripple.style.top  = `${y}px`;
 
-    // Clean up memory immediately when animation finishes
-    icon.addEventListener('animationend', () => {
-      icon.remove();
-    }, { once: true });
+    target.appendChild(ripple);
+
+    // Remove from DOM as soon as the animation ends — no lingering elements.
+    ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
   });
 </script>

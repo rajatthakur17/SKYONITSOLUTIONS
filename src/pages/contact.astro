@@ -16,12 +16,12 @@ const isConnected = endpoint.trim() !== '';
 
     <div class="bg-surface-1 border border-hairline rounded-lg p-6 md:p-10 mb-12 shadow-sm">
       {!isConnected && import.meta.env.DEV && (
-        <div class="mb-8 p-4 bg-[#FF4444]/10 border border-[#FF4444] text-[#FF4444] rounded-md font-medium">
+        <div class="mb-8 p-4 bg-error/10 border border-error text-error rounded-md font-medium">
           Form not connected yet. Add FORMSPREE_ENDPOINT to site config.
         </div>
       )}
       {!isConnected && !import.meta.env.DEV && (
-        <div class="mb-8 p-4 bg-[#FF4444]/10 border border-[#FF4444] text-[#FF4444] rounded-md font-medium">
+        <div class="mb-8 p-4 bg-error/10 border border-error text-error rounded-md font-medium">
           The form is temporarily unavailable. Please <a href={`mailto:${SITE.email}`} class="underline hover:text-brand-hover">email</a> or <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer" class="underline hover:text-brand-hover">WhatsApp</a> us.
         </div>
       )}
@@ -31,7 +31,7 @@ const isConnected = endpoint.trim() !== '';
         <p>Thank you for reaching out. {SITE.responseTime}</p>
       </div>
 
-      <div id="form-error" class="hidden mb-8 p-6 bg-[#FF4444]/10 border border-[#FF4444] text-[#FF4444] rounded-md">
+      <div id="form-error" class="hidden mb-8 p-6 bg-error/10 border border-error text-error rounded-md">
         <h3 class="font-bold text-lg mb-2">Something went wrong.</h3>
         <p>Please try again or use the direct contact methods below.</p>
       </div>
@@ -45,11 +45,11 @@ const isConnected = endpoint.trim() !== '';
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="space-y-2">
-            <label for="name" class="block font-medium text-text-primary">Name <span class="text-[#FF4444]">*</span></label>
+            <label for="name" class="block font-medium text-text-primary">Name <span class="text-error">*</span></label>
             <input type="text" id="name" name="name" required class="w-full bg-canvas border border-hairline rounded-md px-4 py-3 min-h-[44px] text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary" />
           </div>
           <div class="space-y-2">
-            <label for="email" class="block font-medium text-text-primary">Email <span class="text-[#FF4444]">*</span></label>
+            <label for="email" class="block font-medium text-text-primary">Email <span class="text-error">*</span></label>
             <input type="email" id="email" name="email" required class="w-full bg-canvas border border-hairline rounded-md px-4 py-3 min-h-[44px] text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary" />
           </div>
         </div>
@@ -66,7 +66,7 @@ const isConnected = endpoint.trim() !== '';
         </div>
 
         <div class="space-y-2">
-          <label for="service" class="block font-medium text-text-primary">What do you need? <span class="text-[#FF4444]">*</span></label>
+          <label for="service" class="block font-medium text-text-primary">What do you need? <span class="text-error">*</span></label>
           <select id="service" name="service" required class="w-full bg-canvas border border-hairline rounded-md px-4 py-3 min-h-[44px] text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary appearance-none">
             <option value="" disabled selected>Select a service...</option>
             <option value="Website Development">Website Development</option>
@@ -102,14 +102,14 @@ const isConnected = endpoint.trim() !== '';
         </div>
 
         <div class="space-y-2">
-          <label for="details" class="block font-medium text-text-primary">Project Details <span class="text-[#FF4444]">*</span></label>
+          <label for="details" class="block font-medium text-text-primary">Project Details <span class="text-error">*</span></label>
           <textarea id="details" name="details" required rows="5" class="w-full bg-canvas border border-hairline rounded-md px-4 py-3 min-h-[44px] text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary"></textarea>
         </div>
 
         <button 
           type="submit" 
           disabled={!isConnected}
-          class="w-full md:w-auto bg-button-fill text-text-primary px-8 py-4 min-h-[44px] rounded-md font-bold hover:bg-brand-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          class="w-full md:w-auto bg-button-fill text-[#0A1A05] px-8 py-4 min-h-[44px] rounded-md font-bold hover:bg-button-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Send Inquiry
         </button>

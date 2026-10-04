@@ -1,22 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  --color-canvas: #050505;
-  --color-surface-1: #0D1117;
-  --color-surface-2: #121820;
-  
+  --color-canvas: #07141F;
+  --color-surface-1: #0D1D2D;
+  --color-surface-2: #122739;
+
   --color-text-primary: #FFFFFF;
-  --color-text-body: #A7B0BE;
-  --color-text-disabled: #6B6B6B;
-  
-  --color-brand-primary: #1687FF;
-  --color-brand-hover: #5CA9FF;
-  --color-brand-accent: #00CFFF;
-  --color-button-fill: #006BFF;
-  --color-error: #FF4444;
-  
-  --color-hairline: rgba(255, 255, 255, 0.1);
-  
+  --color-text-body: #A9B8CC;
+  --color-text-muted: #8497B0;
+  --color-text-disabled: #6F819B;
+
+  --color-brand-primary: #5CC2FF;
+  --color-brand-hover: #8AD6FF;
+  --color-button-fill: #B8F04D;
+  --color-button-text: #0A1A05;
+  --color-button-hover: #CBF76F;
+  --color-error: #FF7A7A;
+
+  --color-hairline: rgba(255, 255, 255, 0.12);
+
   --font-sans: 'Manrope Variable', system-ui, sans-serif;
 }
 
@@ -54,65 +56,37 @@
   }
 }
 
-/* --- Phase 5 Motion Enhancements --- */
+/* --- Contextual Motion --- */
 
-/* 1. Global Cursor Glow Effect */
-@media (hover: hover) and (pointer: fine) {
-  .global-cursor-glow {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0; /* Keeps it behind text and foreground elements */
-    background: radial-gradient(
-      300px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh),
-      rgba(22, 135, 255, 0.12) 0%,
-      transparent 100%
-    );
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    will-change: background;
-  }
-  
-  .global-cursor-glow.is-active {
-    opacity: 1;
-    animation: shift-cyan 6s infinite alternate ease-in-out;
-  }
+/* Click Ripple: small, fast, tactile ring pulse on .motion-click elements */
+.motion-click {
+  position: relative;
+  overflow: hidden;
 }
 
-/* Subtle, restricted cyan/blue movement instead of full 360 rainbow */
-@keyframes shift-cyan {
-  0% { filter: hue-rotate(-15deg) brightness(1); }
-  100% { filter: hue-rotate(15deg) brightness(1.2); }
-}
-
-/* 2. Click Interaction Effect */
-.motion-click-icon {
+.motion-click-ripple {
   position: absolute;
-  width: 24px;
-  height: 24px;
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
   pointer-events: none;
   z-index: 10;
-  transform: translate(-50%, -50%) scale(0);
-  opacity: 1;
-  animation: pop-emerge 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  background: transparent;
+  border: 1.5px solid rgba(92, 194, 255, 0.7);
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0.8;
+  animation: click-ripple 0.45s cubic-bezier(0.2, 0, 0.4, 1) forwards;
 }
 
-@keyframes pop-emerge {
-  0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-  50% { transform: translate(-50%, -150%) scale(1.5); opacity: 0.8; }
-  100% { transform: translate(-50%, -250%) scale(2); opacity: 0; }
+@keyframes click-ripple {
+  0%   { transform: translate(-50%, -50%) scale(1);  opacity: 0.7; }
+  100% { transform: translate(-50%, -50%) scale(9);  opacity: 0;   }
 }
 
-/* 3. Accessibility / Reduced Motion Fallbacks */
+/* Reduced motion: skip the ripple entirely */
 @media (prefers-reduced-motion: reduce) {
-  .global-cursor-glow.is-active {
+  .motion-click-ripple {
     animation: none;
-  }
-  .motion-click-icon {
-    animation: fade-out-only 0.3s forwards; /* No transform scaling/moving */
-  }
-  @keyframes fade-out-only {
-    0% { opacity: 1; transform: translate(-50%, -50%); }
-    100% { opacity: 0; transform: translate(-50%, -50%); }
+    opacity: 0;
   }
 }

@@ -1,43 +1,61 @@
 ---
-import { Image } from 'astro:assets';
-import growthIcon from '../../assets/growth-icon.png';
+import { Image } from "astro:assets";
+import growthIcon from "../../assets/growth-icon.png";
 ---
-<section class="pt-32 pb-16 md:pt-48 md:pb-32 px-4 md:px-8 border-b border-hairline overflow-hidden">
-  <div class="max-w-[72rem] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-    
+
+<section
+  class="pt-12 pb-8 md:pt-16 md:pb-16 px-2 md:px-4 border-b border-hairline overflow-hidden"
+>
+  <div
+    class="max-w-[72rem] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center"
+  >
     <!-- LEFT: Text & CTA -->
-    <div class="flex flex-col items-center lg:items-start text-center lg:text-left">
-      <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-text-primary tracking-tight leading-tight mb-8">
-        Build your digital presence. <br/>
+    <div
+      class="flex flex-col items-center lg:items-start text-center lg:text-left"
+    >
+      <h1
+        class="text-4xl md:text-4xl lg:text-5xl font-extrabold text-text-primary tracking-tight leading-tight mb-8"
+      >
+        Build your digital presence. <br />
         <span class="text-brand-primary">Grow online.</span>
       </h1>
-      
+
       <p class="text-lg md:text-xl text-text-body max-w-[42rem] mb-12">
-        Websites, SEO, digital marketing and social media to help your business build a stronger online presence.
+        Websites, SEO, digital marketing and social media to help your business
+        build a stronger online presence.
       </p>
 
-      <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-        <a href="/contact" class="motion-click w-full sm:w-auto bg-button-fill text-[#0A1A05] px-8 py-3 rounded-full font-semibold hover:bg-button-hover transition-colors shadow-sm text-center">
+      <div
+        class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
+      >
+        <a
+          href="/contact"
+          class="motion-click w-full sm:w-auto bg-button-fill text-[#0A1A05] px-8 py-3 rounded-full font-semibold hover:bg-button-hover transition-colors shadow-sm text-center"
+        >
           Start a Project
         </a>
-        <a href="#services" class="w-full sm:w-auto bg-surface-1 border border-hairline text-text-primary px-8 py-3 rounded-full font-semibold hover:border-text-body transition-colors text-center">
+        <a
+          href="#services"
+          class="w-full sm:w-auto bg-surface-1 border border-hairline text-text-primary px-8 py-3 rounded-full font-semibold hover:border-text-body transition-colors text-center"
+        >
           View Services
         </a>
       </div>
     </div>
 
     <!-- RIGHT: Growth Graphic (Animated Raster) -->
-    <div class="w-full max-w-[20rem] mx-auto lg:max-w-[26rem] flex justify-center">
+    <div
+      class="w-full max-w-[16rem] mx-auto lg:max-w-[21rem] flex justify-center"
+    >
       <div class="hero-graphic-container w-full">
-        <Image 
-          src={growthIcon} 
-          alt="SKYON Business Growth Graphic" 
+        <Image
+          src={growthIcon}
+          alt="SKYON Business Growth Graphic"
           class="hero-graphic-float w-full h-auto object-contain drop-shadow-sm"
           loading="eager"
         />
       </div>
     </div>
-
   </div>
 </section>
 
@@ -53,7 +71,7 @@ import growthIcon from '../../assets/growth-icon.png';
       animation: growth-wipe 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
       animation-delay: 0.2s;
     }
-    
+
     .hero-graphic-float {
       /* Slow, subtle continuous floating loop */
       animation: slow-float 6s ease-in-out infinite;
@@ -82,9 +100,10 @@ import growthIcon from '../../assets/growth-icon.png';
       transform: translateY(0);
     }
   }
-  
+
   @keyframes slow-float {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0px);
     }
     50% {

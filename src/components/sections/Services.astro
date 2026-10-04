@@ -47,7 +47,7 @@ const services = [
       {services.map((service) => (
         <a href={service.href} class="motion-click group block bg-surface-1 border border-hairline rounded-lg p-8 hover:border-brand-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary">
           <div class="flex items-center justify-between mb-6">
-            <span class="text-xs font-bold text-brand-accent tracking-widest uppercase">{service.category}</span>
+            <span class="px-3 py-1 bg-brand-primary/10 text-brand-primary text-xs font-bold tracking-widest uppercase rounded">{service.category}</span>
             <div class="w-10 h-10 rounded-full bg-canvas border border-hairline flex items-center justify-center text-text-primary group-hover:text-brand-primary transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d={service.icon} />

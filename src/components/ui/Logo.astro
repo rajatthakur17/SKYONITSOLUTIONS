@@ -1,12 +1,17 @@
 ---
-import { Image } from 'astro:assets';
-import symbolLogo from '../../assets/SYMBOL.png';
+import { Image } from "astro:assets";
+import symbolLogo from "../../assets/SYMBOL.png";
 ---
-<a href="/" class="flex items-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded-sm" aria-label="SKYON IT Solutions Home">
-  <Image 
-    src={symbolLogo} 
-    alt="SKYON IT Solutions" 
-    class="h-8 md:h-9 w-auto object-contain"
+
+<a
+  href="/"
+  class="flex items-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded-sm"
+  aria-label="SKYON IT Solutions Home"
+>
+  <Image
+    src={symbolLogo}
+    alt="SKYON IT Solutions"
+    class="h-11 md:h-14 w-auto object-contain"
     loading="eager"
   />
 </a>

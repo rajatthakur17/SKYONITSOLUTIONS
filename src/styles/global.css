@@ -53,3 +53,66 @@
     }
   }
 }
+
+/* --- Phase 5 Motion Enhancements --- */
+
+/* 1. Global Cursor Glow Effect */
+@media (hover: hover) and (pointer: fine) {
+  .global-cursor-glow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0; /* Keeps it behind text and foreground elements */
+    background: radial-gradient(
+      600px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh),
+      rgba(22, 135, 255, 0.08),
+      transparent 80%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    will-change: background;
+  }
+  
+  .global-cursor-glow.is-active {
+    opacity: 1;
+    animation: shift-cyan 6s infinite alternate ease-in-out;
+  }
+}
+
+/* Subtle, restricted cyan/blue movement instead of full 360 rainbow */
+@keyframes shift-cyan {
+  0% { filter: hue-rotate(-15deg) brightness(1); }
+  100% { filter: hue-rotate(15deg) brightness(1.2); }
+}
+
+/* 2. Click Interaction Effect */
+.motion-click-icon {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  z-index: 10;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 1;
+  animation: pop-emerge 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pop-emerge {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+  50% { transform: translate(-50%, -150%) scale(1.5); opacity: 0.8; }
+  100% { transform: translate(-50%, -250%) scale(2); opacity: 0; }
+}
+
+/* 3. Accessibility / Reduced Motion Fallbacks */
+@media (prefers-reduced-motion: reduce) {
+  .global-cursor-glow.is-active {
+    animation: none;
+  }
+  .motion-click-icon {
+    animation: fade-out-only 0.3s forwards; /* No transform scaling/moving */
+  }
+  @keyframes fade-out-only {
+    0% { opacity: 1; transform: translate(-50%, -50%); }
+    100% { opacity: 0; transform: translate(-50%, -50%); }
+  }
+}

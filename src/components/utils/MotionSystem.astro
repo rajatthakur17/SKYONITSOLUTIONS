@@ -1,0 +1,74 @@
+---
+// Zero-dependency motion system for cursor tracking and click animations
+---
+<div id="global-cursor" class="global-cursor-glow"></div>
+
+<script>
+  // 1. Global Cursor Hover Tracking
+  const cursorGlow = document.getElementById('global-cursor');
+
+  if (cursorGlow) {
+    let ticking = false;
+
+    // Track mouse movement across the entire viewport
+    document.addEventListener('mousemove', (e) => {
+      // Avoid layout thrashing, use requestAnimationFrame
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          cursorGlow.style.setProperty('--mouse-x', `${e.clientX}px`);
+          cursorGlow.style.setProperty('--mouse-y', `${e.clientY}px`);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Fade in when cursor enters viewport
+    document.addEventListener('mouseenter', () => {
+      cursorGlow.classList.add('is-active');
+    });
+
+    // Fade out when cursor leaves viewport
+    document.addEventListener('mouseleave', () => {
+      cursorGlow.classList.remove('is-active');
+    });
+
+    // Initial activation if cursor is already inside
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      cursorGlow.classList.add('is-active');
+    }
+  }
+
+  // 2. Click Interaction Animation
+  document.addEventListener('click', (e) => {
+    const target = (e.target as HTMLElement).closest('.motion-click') as HTMLElement;
+    if (!target) return;
+
+    const rect = target.getBoundingClientRect();
+    let x = e.clientX;
+    let y = e.clientY;
+
+    // Keyboard accessibility fallback (if activated via Enter/Space, clientX is often 0)
+    if (x === 0 && y === 0) {
+      x = rect.left + rect.width / 2;
+      y = rect.top + rect.height / 2;
+    }
+
+    // Inject temporary visual element
+    const icon = document.createElement('span');
+    icon.className = 'motion-click-icon text-brand-primary';
+    icon.setAttribute('aria-hidden', 'true');
+    // Minimal SVG spark/accent
+    icon.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L14 10L24 12L14 14L12 24L10 14L0 12L10 10Z"/></svg>`;
+    
+    icon.style.left = `${x - rect.left}px`;
+    icon.style.top = `${y - rect.top}px`;
+    
+    target.appendChild(icon);
+
+    // Clean up memory immediately when animation finishes
+    icon.addEventListener('animationend', () => {
+      icon.remove();
+    }, { once: true });
+  });
+</script>

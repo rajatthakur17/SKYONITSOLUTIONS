@@ -1,0 +1,128 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { SITE } from '../../config/site';
+
+const title = "Website Development Services | SKYON IT SOLUTIONS";
+const description = "We build custom websites, landing pages, and redesigns using Astro, React, Tailwind CSS, and TypeScript for a performance-focused digital presence.";
+const currentUrl = `${SITE.url}/services/website-development`;
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE.url },
+    { "@type": "ListItem", "position": 2, "name": "Services", "item": `${SITE.url}/#services` },
+    { "@type": "ListItem", "position": 3, "name": "Website Development", "item": currentUrl }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Website Development",
+  "provider": { "@type": "Organization", "name": "SKYON IT SOLUTIONS", "url": SITE.url },
+  "url": currentUrl,
+  "description": description
+};
+---
+
+<Layout title={title} description={description}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  </Fragment>
+  
+  <article class="pt-32 pb-24 px-4 md:px-8 max-w-[48rem] mx-auto">
+    <nav aria-label="Breadcrumb" class="mb-8 text-sm text-text-disabled">
+      <ol class="flex items-center gap-2">
+        <li><a href="/" class="hover:text-brand-hover transition-colors">Home</a></li>
+        <li><span aria-hidden="true">/</span></li>
+        <li><a href="/#services" class="hover:text-brand-hover transition-colors">Services</a></li>
+        <li><span aria-hidden="true">/</span></li>
+        <li class="text-text-primary" aria-current="page">Website Development</li>
+      </ol>
+    </nav>
+
+    <h1 class="text-4xl md:text-5xl font-extrabold text-text-primary tracking-tight mb-8">Website Development</h1>
+    
+    <div class="text-text-body space-y-6 text-lg leading-relaxed">
+      <p>
+        Your digital presence often starts with your website. We build custom websites, landing pages, and handle redesigns. Our approach keeps usability and your specific business goals in mind. We aim to deliver a performance and conversion-focused digital presence.
+      </p>
+
+      <h2 class="text-2xl font-bold text-text-primary mt-12 mb-4">Understanding Web Architecture</h2>
+      <p>
+        A website serves as the central hub of a digital presence. While template-based platforms offer pre-configured and standardized layouts, custom websites are built from the ground up to address specific structural, design, and functional requirements. A custom approach allows developers to write precise code, optimize loading behavior at the server level, and structure the underlying data layer exactly as needed for a given technical use case. 
+      </p>
+      <p>
+        Modern web architecture typically divides a project into frontend and backend layers. The frontend is what a visitor interacts with in their browser, encompassing layout, typography, and interactive elements. The backend is the underlying server infrastructure that processes data and delivers the site files. Custom development allows for tight integration between these layers.
+      </p>
+      
+      <p>
+        Web development often extends beyond a primary site build. A landing page is a focused, standalone web page designed specifically for a single marketing or advertising objective, typically aimed at capturing a designated user interaction. Alternatively, a website redesign involves overhauling an existing digital property to modernize its underlying codebase, improve its layout, or adjust its user experience to match evolving web standards.
+      </p>
+      
+      <h2 class="text-2xl font-bold text-text-primary mt-12 mb-4">Performance and Conversion</h2>
+      <p>
+        In modern web development, a performance-focused digital presence means prioritizing technical efficiency. This involves minimizing file sizes, optimizing image delivery formats, reducing render-blocking scripts, and structuring code so the browser can paint pages quickly. Technical performance is a measurable aspect of web development that affects how browsers evaluate and serve web pages. 
+      </p>
+      <p>
+        An increasingly important aspect of modern development is web accessibility. This refers to the practice of designing and coding websites so that people with disabilities can use them effectively. Implementing semantic HTML, appropriate contrast ratios, and keyboard navigation support are fundamental technical requirements that fall under the scope of professional web development.
+      </p>
+      <p>
+        Similarly, a conversion-focused presence means designing the visual layout, navigation menus, and content hierarchy in a way that provides clear pathways. It organizes information logically so that visitors can easily find what they are looking for and take a designated action, such as submitting a contact form or completing a transaction.
+      </p>
+
+      <h2 class="text-2xl font-bold text-text-primary mt-12 mb-4">Our Technology Stack</h2>
+      <p>
+        We build using modern web technologies to establish a strong technical foundation. As demonstrated by our internal product, MyMarriageBiodata, our primary stack includes:
+      </p>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Astro:</strong> A web framework used for building content-driven, static or server-rendered websites.</li>
+        <li><strong>React:</strong> A JavaScript library for adding interactive UI components where needed in the browser.</li>
+        <li><strong>Tailwind CSS:</strong> A utility-first CSS framework for styling and enforcing responsive design constraints.</li>
+        <li><strong>TypeScript:</strong> A typed superset of JavaScript used for maintaining a type-safe codebase structure.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-text-primary mt-12 mb-4">Our Process</h2>
+      <p>
+        We follow a clear, five-step process for website development projects:
+      </p>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Understand:</strong> We learn about the business and goals.</li>
+        <li><strong>Strategize:</strong> We plan the approach.</li>
+        <li><strong>Build:</strong> We do the work.</li>
+        <li><strong>Launch:</strong> We launch the website.</li>
+        <li><strong>Grow:</strong> We review and improve.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-text-primary mt-12 mb-4">Frequently Asked Questions</h2>
+      <details class="group border-b border-hairline py-4">
+        <summary class="font-bold cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary text-text-primary">What is the technical difference between a website and a landing page?</summary>
+        <p class="mt-4 text-base">A website is a collection of interconnected pages that share a common domain and navigation structure. A landing page is typically built without global site navigation to remove distractions and focus entirely on a single objective.</p>
+      </details>
+      <details class="group border-b border-hairline py-4">
+        <summary class="font-bold cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary text-text-primary">Why does web performance matter technically?</summary>
+        <p class="mt-4 text-base">Website performance, particularly loading speed and interactivity metrics, impacts user experience. Search engines also evaluate page speed as a technical factor when analyzing how pages are delivered to users on mobile and desktop networks.</p>
+      </details>
+      <details class="group border-b border-hairline py-4">
+        <summary class="font-bold cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary text-text-primary">What is a web framework?</summary>
+        <p class="mt-4 text-base">A web framework provides a standardized technical architecture to build and deploy web applications. Frameworks supply the core routing and rendering infrastructure, allowing developers to focus on building specific site features rather than writing foundational server code from scratch.</p>
+      </details>
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-hairline">
+      <h3 class="text-xl font-bold text-text-primary mb-4">Ready to discuss your project?</h3>
+      <a href="/contact" class="inline-block bg-button-fill text-text-primary px-8 py-3 rounded-full font-semibold hover:bg-brand-hover transition-colors shadow-sm">
+        Contact Us
+      </a>
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-hairline flex flex-wrap gap-4 text-sm font-medium">
+      <span class="text-text-disabled">Other Services:</span>
+      <a href="/services/seo" class="text-brand-primary hover:text-brand-hover">Search Engine Optimization</a>
+      <a href="/services/digital-marketing" class="text-brand-primary hover:text-brand-hover">Digital Marketing</a>
+      <a href="/services/social-media" class="text-brand-primary hover:text-brand-hover">Social Media Management</a>
+    </div>
+  </article>
+</Layout>

@@ -65,6 +65,7 @@ const websiteSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
     
     <meta name="generator" content={Astro.generator} />
+    <slot name="head" />
   </head>
   <body class="antialiased min-h-screen flex flex-col">
     <!-- Accessible Skip to Content -->

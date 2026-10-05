@@ -10,10 +10,83 @@ import Logo from '../ui/Logo.astro';
     </div>
 
     <nav class="hidden md:flex items-center gap-8" aria-label="Desktop Navigation">
-      <a href="/#services" class="text-sm font-medium text-text-body hover:text-brand-hover transition-colors">Services</a>
-      <a href="/#work" class="text-sm font-medium text-text-body hover:text-brand-hover transition-colors">Work</a>
-      <a href="/#process" class="text-sm font-medium text-text-body hover:text-brand-hover transition-colors">Process</a>
-      <a href="/contact" class="text-sm font-semibold bg-button-fill text-[#0A1A05] px-4 py-2 rounded-full hover:bg-button-hover transition-colors shadow-sm">
+      <!-- Services Dropdown -->
+      <div class="relative">
+        <button 
+          id="desktop-services-trigger"
+          class="text-sm font-medium text-text-body hover:text-brand-hover transition-colors flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded"
+          aria-expanded="false"
+          aria-controls="desktop-services-dropdown"
+        >
+          Services
+          <svg id="desktop-services-icon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <div 
+          id="desktop-services-dropdown"
+          class="absolute top-full left-1/2 -translate-x-1/2 mt-6 w-[560px] bg-surface-1 border border-hairline rounded-lg shadow-2xl opacity-0 invisible transform -translate-y-2 transition-all duration-200 z-50 cursor-default"
+          role="region"
+          aria-label="Services Menu"
+        >
+          <div class="p-8 grid grid-cols-2 gap-12">
+            
+            <!-- Column 1: Website Development -->
+            <div>
+              <h3 class="text-xs font-bold text-brand-primary tracking-widest uppercase mb-4">Website Development</h3>
+              <ul class="space-y-4">
+                <li><a href="/services/website-development" class="text-sm font-medium text-text-primary hover:text-brand-hover transition-colors block desktop-dropdown-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Business Websites</a></li>
+                <li><a href="/services/website-development" class="text-sm font-medium text-text-primary hover:text-brand-hover transition-colors block desktop-dropdown-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Custom Web Applications</a></li>
+                <li><a href="/services/website-development" class="text-sm font-medium text-text-primary hover:text-brand-hover transition-colors block desktop-dropdown-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Website Modernization</a></li>
+                <li><a href="/services/website-development" class="text-sm font-medium text-text-primary hover:text-brand-hover transition-colors block desktop-dropdown-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Maintenance &amp; Scaling</a></li>
+              </ul>
+            </div>
+
+            <!-- Column 2: Other Services -->
+            <div class="space-y-6">
+              
+              <!-- SEO -->
+              <div>
+                <h3 class="text-xs font-bold text-brand-primary tracking-widest uppercase mb-2">SEO</h3>
+                <div class="space-y-1">
+                  <span class="block text-sm font-medium text-text-primary">Search Engine Optimization</span>
+                  <a href="/services/seo" class="text-sm text-text-body hover:text-brand-hover transition-colors inline-flex items-center gap-1 desktop-dropdown-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
+                    View SEO Services <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Digital Marketing -->
+              <div>
+                <h3 class="text-xs font-bold text-brand-primary tracking-widest uppercase mb-2">Digital Marketing</h3>
+                <div class="space-y-1">
+                  <span class="block text-sm font-medium text-text-primary">Digital Marketing</span>
+                  <a href="/services/digital-marketing" class="text-sm text-text-body hover:text-brand-hover transition-colors inline-flex items-center gap-1 desktop-dropdown-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
+                    View Digital Marketing Services <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Social Media -->
+              <div>
+                <h3 class="text-xs font-bold text-brand-primary tracking-widest uppercase mb-2">Social Media</h3>
+                <div class="space-y-1">
+                  <span class="block text-sm font-medium text-text-primary">Social Media Management</span>
+                  <a href="/services/social-media" class="text-sm text-text-body hover:text-brand-hover transition-colors inline-flex items-center gap-1 desktop-dropdown-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
+                    View Social Media Services <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <a href="/#work" class="text-sm font-medium text-text-body hover:text-brand-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Work</a>
+      <a href="/#process" class="text-sm font-medium text-text-body hover:text-brand-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Process</a>
+      <a href="/contact" class="text-sm font-semibold bg-button-fill text-[#0A1A05] px-4 py-2 rounded-full hover:bg-button-hover transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary">
         Start a Project
       </a>
     </nav>
@@ -36,3 +109,67 @@ import Logo from '../ui/Logo.astro';
     
   </div>
 </header>
+<script>
+  const desktopTrigger = document.getElementById('desktop-services-trigger') as HTMLButtonElement | null;
+  const desktopDropdown = document.getElementById('desktop-services-dropdown') as HTMLDivElement | null;
+  const desktopIcon = document.getElementById('desktop-services-icon') as SVGSVGElement | null;
+  const desktopLinks = document.querySelectorAll('.desktop-dropdown-link');
+  let isDesktopOpen = false;
+
+  function toggleDesktopDropdown(e?: Event) {
+    if(e) { e.stopPropagation(); }
+    if (!desktopTrigger || !desktopDropdown || !desktopIcon) return;
+
+    isDesktopOpen = !isDesktopOpen;
+    desktopTrigger.setAttribute('aria-expanded', isDesktopOpen.toString());
+    
+    if (isDesktopOpen) {
+      desktopDropdown.classList.remove('invisible', 'opacity-0', '-translate-y-2');
+      desktopDropdown.classList.add('opacity-100', 'translate-y-0');
+      desktopIcon.classList.add('rotate-180');
+      desktopTrigger.classList.add('text-brand-primary');
+      desktopTrigger.classList.remove('text-text-body');
+    } else {
+      desktopDropdown.classList.add('opacity-0', '-translate-y-2');
+      desktopDropdown.classList.remove('opacity-100', 'translate-y-0');
+      desktopIcon.classList.remove('rotate-180');
+      desktopTrigger.classList.remove('text-brand-primary');
+      desktopTrigger.classList.add('text-text-body');
+      
+      setTimeout(() => {
+        if (!isDesktopOpen) desktopDropdown.classList.add('invisible');
+      }, 200);
+    }
+  }
+
+  function closeDesktopDropdown() {
+    if(isDesktopOpen) toggleDesktopDropdown();
+  }
+
+  if (desktopTrigger) {
+    desktopTrigger.addEventListener('click', toggleDesktopDropdown);
+  }
+
+  // Click outside
+  document.addEventListener('click', (e) => {
+    if (isDesktopOpen && desktopDropdown && desktopTrigger) {
+      const target = e.target as Node;
+      if (!desktopDropdown.contains(target) && !desktopTrigger.contains(target)) {
+        closeDesktopDropdown();
+      }
+    }
+  });
+
+  // Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isDesktopOpen) {
+      closeDesktopDropdown();
+      if (desktopTrigger) desktopTrigger.focus();
+    }
+  });
+
+  // Link clicks
+  desktopLinks.forEach(link => {
+    link.addEventListener('click', closeDesktopDropdown);
+  });
+</script>

@@ -37,9 +37,31 @@ import Logo from '../ui/Logo.astro';
     </div>
 
     <nav class="flex-1 overflow-y-auto px-6 py-8 flex flex-col gap-6">
-      <a href="/#services" class="text-2xl font-semibold text-text-primary hover:text-brand-hover transition-colors drawer-link">Services</a>
-      <a href="/#work" class="text-2xl font-semibold text-text-primary hover:text-brand-hover transition-colors drawer-link">Work</a>
-      <a href="/#process" class="text-2xl font-semibold text-text-primary hover:text-brand-hover transition-colors drawer-link">Process</a>
+      
+      <!-- Mobile Services Group -->
+      <div>
+        <button 
+          id="mobile-services-trigger"
+          class="w-full flex items-center justify-between text-2xl font-semibold text-text-primary hover:text-brand-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded"
+          aria-expanded="false"
+          aria-controls="mobile-services-list"
+        >
+          Services
+          <svg id="mobile-services-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        
+        <div id="mobile-services-list" class="hidden flex-col gap-4 mt-4 pl-4 border-l border-brand-primary/30" role="region" aria-label="Services Menu">
+          <a href="/services/website-development" class="text-lg font-medium text-text-primary hover:text-brand-hover transition-colors drawer-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Website Development</a>
+          <a href="/services/seo" class="text-lg font-medium text-text-primary hover:text-brand-hover transition-colors drawer-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Search Engine Optimization</a>
+          <a href="/services/digital-marketing" class="text-lg font-medium text-text-primary hover:text-brand-hover transition-colors drawer-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Digital Marketing</a>
+          <a href="/services/social-media" class="text-lg font-medium text-text-primary hover:text-brand-hover transition-colors drawer-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Social Media Management</a>
+        </div>
+      </div>
+
+      <a href="/#work" class="text-2xl font-semibold text-text-primary hover:text-brand-hover transition-colors drawer-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Work</a>
+      <a href="/#process" class="text-2xl font-semibold text-text-primary hover:text-brand-hover transition-colors drawer-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Process</a>
       
       <div class="mt-8 pt-8 border-t border-hairline">
         <a href="/contact" class="inline-block w-full text-center text-lg font-semibold bg-button-fill text-[#0A1A05] px-6 py-3 rounded-full hover:bg-button-hover transition-colors drawer-link">
@@ -160,4 +182,34 @@ import Logo from '../ui/Logo.astro';
       }
     }
   });
+
+  // Mobile Services Toggle
+  const mobileServicesTrigger = document.getElementById('mobile-services-trigger') as HTMLButtonElement | null;
+  const mobileServicesList = document.getElementById('mobile-services-list') as HTMLDivElement | null;
+  const mobileServicesIcon = document.getElementById('mobile-services-icon') as SVGSVGElement | null;
+  let isMobileServicesOpen = false;
+
+  function toggleMobileServices(e?: Event) {
+    if(e) { e.stopPropagation(); }
+    if (!mobileServicesTrigger || !mobileServicesList || !mobileServicesIcon) return;
+    
+    isMobileServicesOpen = !isMobileServicesOpen;
+    mobileServicesTrigger.setAttribute('aria-expanded', isMobileServicesOpen.toString());
+    
+    if (isMobileServicesOpen) {
+      mobileServicesList.classList.remove('hidden');
+      mobileServicesList.classList.add('flex');
+      mobileServicesIcon.classList.add('rotate-180');
+      mobileServicesTrigger.classList.add('text-brand-primary');
+    } else {
+      mobileServicesList.classList.add('hidden');
+      mobileServicesList.classList.remove('flex');
+      mobileServicesIcon.classList.remove('rotate-180');
+      mobileServicesTrigger.classList.remove('text-brand-primary');
+    }
+  }
+
+  if (mobileServicesTrigger) {
+    mobileServicesTrigger.addEventListener('click', toggleMobileServices);
+  }
 </script>

@@ -1,12 +1,13 @@
 ---
 import Logo from '../ui/Logo.astro';
+import { SERVICE_GROUPS } from '../../data/services';
 ---
 
-<header class="fixed top-0 w-full z-40 bg-canvas/80 backdrop-blur-md border-b border-hairline h-16">
+<header class="fixed top-0 w-full z-50 isolate bg-canvas border-b border-hairline h-16" style="isolation: isolate;">
   <div class="max-w-[72rem] mx-auto px-4 md:px-8 h-full flex items-center justify-between">
     
     <div class="flex-shrink-0">
-      <Logo />
+      <Logo variant="header" />
     </div>
 
     <nav class="hidden md:flex items-center gap-8" aria-label="Desktop Navigation">
@@ -26,67 +27,37 @@ import Logo from '../ui/Logo.astro';
 
         <div 
           id="desktop-services-dropdown"
-          class="absolute top-full left-1/2 -translate-x-1/2 mt-6 w-[560px] bg-surface-1 border border-hairline rounded-lg shadow-2xl opacity-0 invisible transform -translate-y-2 transition-all duration-200 z-50 cursor-default"
+          class="absolute top-full left-1/2 -translate-x-1/2 mt-6 w-[640px] bg-surface-1 border border-hairline rounded-lg shadow-2xl opacity-0 invisible transform -translate-y-2 transition-all duration-200 z-50 cursor-default"
           role="region"
           aria-label="Services Menu"
         >
-          <div class="p-8 grid grid-cols-2 gap-12">
-            
-            <!-- Column 1: Website Development -->
-            <div>
-              <h3 class="text-xs font-bold text-brand-primary tracking-widest uppercase mb-4">Website Development</h3>
-              <ul class="space-y-4">
-                <li><a href="/services/website-development" class="text-sm font-medium text-text-primary hover:text-brand-hover transition-colors block desktop-dropdown-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Business Websites</a></li>
-                <li><a href="/services/website-development" class="text-sm font-medium text-text-primary hover:text-brand-hover transition-colors block desktop-dropdown-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Custom Web Applications</a></li>
-                <li><a href="/services/website-development" class="text-sm font-medium text-text-primary hover:text-brand-hover transition-colors block desktop-dropdown-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Website Modernization</a></li>
-                <li><a href="/services/website-development" class="text-sm font-medium text-text-primary hover:text-brand-hover transition-colors block desktop-dropdown-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Maintenance &amp; Scaling</a></li>
-              </ul>
-            </div>
-
-            <!-- Column 2: Other Services -->
-            <div class="space-y-6">
-              
-              <!-- SEO -->
-              <div>
-                <h3 class="text-xs font-bold text-brand-primary tracking-widest uppercase mb-2">SEO</h3>
-                <div class="space-y-1">
-                  <span class="block text-sm font-medium text-text-primary">Search Engine Optimization</span>
-                  <a href="/services/seo" class="text-sm text-text-body hover:text-brand-hover transition-colors inline-flex items-center gap-1 desktop-dropdown-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
-                    View SEO Services <span aria-hidden="true">&rarr;</span>
-                  </a>
+          <div class="p-8">
+            <a href="/services" class="desktop-dropdown-link mb-6 inline-flex text-sm font-semibold text-brand-primary hover:text-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Explore all services <span aria-hidden="true" class="ml-1">&rarr;</span></a>
+            <div class="grid grid-cols-2 gap-10">
+              {SERVICE_GROUPS.map((group) => (
+                <div>
+                  <h3 class="text-xs font-bold text-brand-primary tracking-widest uppercase mb-4">{group.title}</h3>
+                  <ul class="space-y-3">
+                    {group.services.map((service) => (
+                      <li>
+                        <a href={`/services/${service.slug}`} class="text-sm font-medium text-text-primary hover:text-brand-hover transition-colors block desktop-dropdown-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
+                          {service.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </div>
-
-              <!-- Digital Marketing -->
-              <div>
-                <h3 class="text-xs font-bold text-brand-primary tracking-widest uppercase mb-2">Digital Marketing</h3>
-                <div class="space-y-1">
-                  <span class="block text-sm font-medium text-text-primary">Digital Marketing</span>
-                  <a href="/services/digital-marketing" class="text-sm text-text-body hover:text-brand-hover transition-colors inline-flex items-center gap-1 desktop-dropdown-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
-                    View Digital Marketing Services <span aria-hidden="true">&rarr;</span>
-                  </a>
-                </div>
-              </div>
-
-              <!-- Social Media -->
-              <div>
-                <h3 class="text-xs font-bold text-brand-primary tracking-widest uppercase mb-2">Social Media</h3>
-                <div class="space-y-1">
-                  <span class="block text-sm font-medium text-text-primary">Social Media Management</span>
-                  <a href="/services/social-media" class="text-sm text-text-body hover:text-brand-hover transition-colors inline-flex items-center gap-1 desktop-dropdown-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
-                    View Social Media Services <span aria-hidden="true">&rarr;</span>
-                  </a>
-                </div>
-              </div>
-
+              ))}
             </div>
           </div>
         </div>
       </div>
       
-      <a href="/#work" class="text-sm font-medium text-text-body hover:text-brand-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Work</a>
-      <a href="/#process" class="text-sm font-medium text-text-body hover:text-brand-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Process</a>
-      <a href="/contact" class="text-sm font-semibold bg-button-fill text-[#0A1A05] px-4 py-2 rounded-full hover:bg-button-hover transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary">
+      <a href="/work" class="text-sm font-medium text-text-body hover:text-brand-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Work</a>
+      <a href="/about" class="text-sm font-medium text-text-body hover:text-brand-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">About</a>
+      <a href="/why-choose-us" class="text-sm font-medium text-text-body hover:text-brand-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Why Us</a>
+      <a href="/insights" class="text-sm font-medium text-text-body hover:text-brand-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Insights</a>
+      <a href="/contact" class="text-sm font-semibold bg-button-fill text-button-text px-4 py-2 rounded-full hover:bg-button-hover transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary">
         Start a Project
       </a>
     </nav>

@@ -1,0 +1,420 @@
+---
+// WhatsAppFloat.astro — High-converting floating WhatsApp Quick-Chat Island
+import { SITE } from '../../config/site';
+
+interface Props {
+  phone?: string;
+  defaultMessage?: string;
+}
+
+const {
+  phone = SITE.whatsapp.replace(/\D/g, '') || '917014865202',
+  defaultMessage = 'Hi SKYON IT SOLUTIONS, I would like to enquire about your services.'
+} = Astro.props;
+
+const baseWhatsAppUrl = `https://wa.me/${phone}`;
+---
+
+<div id="whatsapp-float-widget" class="wa-float-container" aria-label="WhatsApp live chat widget">
+  <!-- Expanded Mini-Chat Popup -->
+  <div id="wa-chat-popup" class="wa-popup" role="dialog" aria-modal="false" aria-labelledby="wa-popup-title" hidden>
+    <!-- Header -->
+    <div class="wa-popup-header">
+      <div class="wa-avatar-wrap">
+        <div class="wa-avatar">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2Z" />
+          </svg>
+          <span class="wa-status-beacon" title="Online now"></span>
+        </div>
+        <div>
+          <h3 id="wa-popup-title" class="wa-agent-name">SKYON IT SOLUTIONS</h3>
+          <p class="wa-agent-status">
+            <span class="wa-online-dot"></span> Online • Fast WhatsApp Reply
+          </p>
+        </div>
+      </div>
+      <button type="button" id="wa-close-btn" class="wa-close-btn" aria-label="Close chat bubble">
+        &times;
+      </button>
+    </div>
+
+    <!-- Body / Chat Message -->
+    <div class="wa-popup-body">
+      <div class="wa-bubble">
+        <p class="wa-bubble-text">
+          👋 Hi there! Looking to build, automate, or scale your software and digital presence?
+        </p>
+        <span class="wa-bubble-time">Just now</span>
+      </div>
+
+      <p class="wa-prompt-label">Select a quick topic to start:</p>
+      
+      <div class="wa-quick-chips">
+        <a href={`${baseWhatsAppUrl}?text=${encodeURIComponent("Hi SKYON, I would like to get a quote for a new Website or Web Application.")}`}
+           target="_blank" rel="noopener noreferrer" class="wa-chip">
+          🌐 Web & App Development
+        </a>
+        <a href={`${baseWhatsAppUrl}?text=${encodeURIComponent("Hi SKYON, I would like to learn about AI & Workflow Automation solutions.")}`}
+           target="_blank" rel="noopener noreferrer" class="wa-chip">
+          🤖 AI & Workflow Automation
+        </a>
+        <a href={`${baseWhatsAppUrl}?text=${encodeURIComponent("Hi SKYON, I want to grow our organic leads via SEO & Digital Marketing.")}`}
+           target="_blank" rel="noopener noreferrer" class="wa-chip">
+          📈 SEO & Digital Growth
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer Action -->
+    <div class="wa-popup-footer">
+      <a href={`${baseWhatsAppUrl}?text=${encodeURIComponent(defaultMessage)}`}
+         target="_blank" rel="noopener noreferrer" class="wa-start-btn">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2Z" />
+        </svg>
+        <span>Open WhatsApp Chat</span>
+        <span>&rarr;</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Collapsed Floating Button -->
+  <button type="button" id="wa-toggle-btn" class="wa-float-btn" aria-label="Chat with SKYON on WhatsApp" aria-expanded="false">
+    <span class="wa-btn-beacon" aria-hidden="true"></span>
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" class="wa-btn-icon" aria-hidden="true">
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2Z" />
+    </svg>
+    <span class="wa-pill-label">Chat with Us</span>
+  </button>
+</div>
+
+<style>
+  .wa-float-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 45;
+    font-family: inherit;
+  }
+
+  /* Floating Trigger Button */
+  .wa-float-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px 12px 14px;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 10px 28px rgba(18, 140, 126, 0.45), 0 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+  }
+
+  .wa-float-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 14px 34px rgba(18, 140, 126, 0.6), 0 6px 14px rgba(0, 0, 0, 0.4);
+  }
+
+  .wa-btn-icon {
+    flex-shrink: 0;
+  }
+
+  .wa-pill-label {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+
+  /* Pulsing live beacon on button */
+  .wa-btn-beacon {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #4ade80;
+    border: 2px solid #020a1a;
+    animation: waPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes waPulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.3);
+    }
+  }
+
+  /* Mini-Chat Popup */
+  .wa-popup {
+    position: absolute;
+    bottom: calc(100% + 14px);
+    right: 0;
+    width: 320px;
+    max-width: calc(100vw - 32px);
+    border-radius: 20px;
+    background: rgba(4, 18, 42, 0.94);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(8, 216, 255, 0.12);
+    overflow: hidden;
+    animation: waFadeIn 0.25s ease-out forwards;
+  }
+
+  @keyframes waFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .wa-popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, rgba(37, 211, 102, 0.2) 0%, rgba(18, 140, 126, 0.25) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .wa-avatar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .wa-avatar {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #ffffff;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+  }
+
+  .wa-status-beacon {
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #22c55e;
+    border: 2px solid #04122a;
+  }
+
+  .wa-agent-name {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 800;
+    color: #f7fbff;
+    letter-spacing: -0.01em;
+  }
+
+  .wa-agent-status {
+    margin: 2px 0 0;
+    font-size: 11px;
+    color: #86efac;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .wa-online-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    display: inline-block;
+  }
+
+  .wa-close-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: color 0.15s ease;
+  }
+
+  .wa-close-btn:hover {
+    color: #ffffff;
+  }
+
+  .wa-popup-body {
+    padding: 16px;
+  }
+
+  .wa-bubble {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px 12px 12px 2px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+  }
+
+  .wa-bubble-text {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.45;
+    color: #f1f5f9;
+  }
+
+  .wa-bubble-time {
+    display: block;
+    margin-top: 6px;
+    font-size: 10px;
+    color: #94a3b8;
+    text-align: right;
+  }
+
+  .wa-prompt-label {
+    margin: 0 0 10px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #38bdf8;
+  }
+
+  .wa-quick-chips {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .wa-chip {
+    padding: 9px 12px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: block;
+  }
+
+  .wa-chip:hover {
+    background: rgba(37, 211, 102, 0.15);
+    border-color: rgba(37, 211, 102, 0.5);
+    color: #ffffff;
+    transform: translateX(4px);
+  }
+
+  .wa-popup-footer {
+    padding: 12px 16px 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .wa-start-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 16px;
+    border-radius: 10px;
+    background: #25D366;
+    color: #06170d;
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+  }
+
+  .wa-start-btn:hover {
+    background: #20ba59;
+    transform: translateY(-2px);
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 640px) {
+    .wa-float-container {
+      bottom: 20px;
+      right: 18px;
+    }
+
+    .wa-pill-label {
+      display: none;
+    }
+
+    .wa-float-btn {
+      padding: 14px;
+    }
+
+    .wa-popup {
+      right: -6px;
+      width: calc(100vw - 32px);
+    }
+  }
+</style>
+
+<script>
+  function setupWhatsAppFloat() {
+    const toggleBtn = document.getElementById('wa-toggle-btn');
+    const closeBtn = document.getElementById('wa-close-btn');
+    const popup = document.getElementById('wa-chat-popup');
+
+    if (!toggleBtn || !popup || !closeBtn) return;
+
+    function openPopup() {
+      popup!.hidden = false;
+      toggleBtn!.setAttribute('aria-expanded', 'true');
+    }
+
+    function closePopup() {
+      popup!.hidden = true;
+      toggleBtn!.setAttribute('aria-expanded', 'false');
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      if (popup.hidden) {
+        openPopup();
+      } else {
+        closePopup();
+      }
+    });
+
+    closeBtn.addEventListener('click', closePopup);
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      const widget = document.getElementById('whatsapp-float-widget');
+      if (widget && !widget.contains(e.target as Node) && !popup.hidden) {
+        closePopup();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !popup.hidden) {
+        closePopup();
+      }
+    });
+  }
+
+  setupWhatsAppFloat();
+  document.addEventListener('astro:page-load', setupWhatsAppFloat);
+</script>

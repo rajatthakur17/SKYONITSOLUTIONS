@@ -1,0 +1,188 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { SITE } from '../../config/site';
+import { SERVICES, type ServiceItem } from '../../data/services';
+
+export function getStaticPaths() {
+  return SERVICES.map((service) => ({
+    params: { slug: service.slug },
+    props: { service }
+  }));
+}
+
+interface Props {
+  service: ServiceItem;
+}
+
+const { service } = Astro.props;
+
+const title = `${service.title} | SKYON IT SOLUTIONS`;
+const description = service.description;
+const currentUrl = `${SITE.url}/services/${service.slug}`;
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE.url },
+    { "@type": "ListItem", "position": 2, "name": "Services", "item": `${SITE.url}/#services` },
+    { "@type": "ListItem", "position": 3, "name": service.title, "item": currentUrl }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": service.title,
+  "provider": { 
+    "@type": "Organization", 
+    "name": "SKYON IT SOLUTIONS", 
+    "url": SITE.url,
+    "telephone": SITE.phone,
+    "email": SITE.email
+  },
+  "url": currentUrl,
+  "description": description
+};
+
+const otherServices = SERVICES.filter((s) => s.slug !== service.slug);
+---
+
+<Layout title={title} description={description}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  </Fragment>
+
+  <article class="pt-32 pb-24 px-4 md:px-8 max-w-[48rem] mx-auto">
+    <!-- Breadcrumbs -->
+    <nav aria-label="Breadcrumb" class="mb-8 text-sm text-text-disabled">
+      <ol class="flex items-center gap-2 flex-wrap">
+        <li><a href="/" class="hover:text-brand-hover transition-colors">Home</a></li>
+        <li><span aria-hidden="true">/</span></li>
+        <li><a href="/#services" class="hover:text-brand-hover transition-colors">Services</a></li>
+        <li><span aria-hidden="true">/</span></li>
+        <li class="text-text-primary font-medium" aria-current="page">{service.shortTitle}</li>
+      </ol>
+    </nav>
+
+    <!-- Header & Badge -->
+    <div class="mb-8">
+      <span class="inline-block px-3 py-1 bg-brand-primary/10 text-brand-primary text-xs font-bold tracking-widest uppercase rounded mb-4">
+        {service.badge}
+      </span>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-text-primary tracking-tight leading-tight mb-6">
+        {service.title}
+      </h1>
+      <p class="text-lg md:text-xl text-text-body leading-relaxed">
+        {service.longDescription}
+      </p>
+    </div>
+
+    <!-- Target Audiences -->
+    <div class="mb-14 p-6 bg-surface-1 border border-hairline rounded-lg">
+      <h2 class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-3">Tailored For</h2>
+      <div class="flex flex-wrap gap-2">
+        {service.audiences.map((aud) => (
+          <span class="px-3 py-1 bg-canvas border border-hairline text-text-primary text-xs font-medium rounded-full">
+            {aud}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Deliverables -->
+    <div class="mb-16">
+      <h2 class="text-2xl font-bold text-text-primary mb-2">Scope &amp; Deliverables</h2>
+      <p class="text-text-body mb-8">What we specifically plan, engineer, and deliver for this service area.</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {service.deliverables.map((item) => (
+          <div class="bg-surface-1 border border-hairline rounded-lg p-6 hover:border-brand-primary/40 transition-colors">
+            <h3 class="text-lg font-bold text-text-primary mb-2">{item.title}</h3>
+            <p class="text-text-body text-sm leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Process -->
+    <div class="mb-16">
+      <h2 class="text-2xl font-bold text-text-primary mb-2">Engagement Process</h2>
+      <p class="text-text-body mb-8">Our structured approach from initial scope to verified execution.</p>
+
+      <div class="space-y-4">
+        {service.process.map((step) => (
+          <div class="p-6 bg-surface-1 border border-hairline rounded-lg flex items-start gap-4">
+            <span class="font-mono text-2xl font-extrabold text-brand-primary shrink-0 leading-none">{step.step}</span>
+            <div>
+              <h3 class="text-lg font-bold text-text-primary mb-1">{step.title}</h3>
+              <p class="text-text-body text-sm leading-relaxed">{step.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Tech Stack / Tools -->
+    <div class="mb-16 p-6 bg-canvas border border-hairline rounded-lg">
+      <h2 class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-4">Technologies &amp; Standards</h2>
+      <div class="flex flex-wrap gap-2">
+        {service.techStack.map((tech) => (
+          <span class="px-3 py-1.5 bg-surface-1 border border-hairline text-text-body font-mono text-xs rounded">
+            {tech}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- FAQs -->
+    {service.faqs.length > 0 && (
+      <div class="mb-16">
+        <h2 class="text-2xl font-bold text-text-primary mb-6">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          {service.faqs.map((faq) => (
+            <details class="group border border-hairline bg-surface-1 rounded-lg [&_summary::-webkit-details-marker]:hidden">
+              <summary class="flex items-center justify-between p-6 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded-lg text-text-primary font-bold text-base hover:text-brand-hover transition-colors">
+                <span>{faq.question}</span>
+                <span class="transition-transform duration-300 group-open:-rotate-180 shrink-0 ml-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+              <div class="p-6 pt-0 text-text-body text-sm leading-relaxed border-t border-hairline mt-2">
+                <p class="pt-4">{faq.answer}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- CTA Section -->
+    <div class="mt-16 pt-8 border-t border-hairline flex flex-col sm:flex-row items-center justify-between gap-6 bg-surface-1/50 p-8 rounded-lg border">
+      <div>
+        <h3 class="text-xl font-bold text-text-primary mb-2">Ready to discuss your {service.shortTitle} project?</h3>
+        <p class="text-text-body text-sm">We provide clear consultations and realistic timelines tailored to your budget.</p>
+      </div>
+      <div class="flex items-center gap-3 shrink-0 w-full sm:w-auto">
+        <a href="/contact" class="w-full sm:w-auto text-center bg-button-fill text-button-text px-6 py-3 rounded-full font-bold hover:bg-button-hover transition-colors shadow-sm min-h-[44px] flex items-center justify-center">
+          Start a Project
+        </a>
+      </div>
+    </div>
+
+    <!-- Sibling Services Nav -->
+    <div class="mt-16 pt-8 border-t border-hairline">
+      <h3 class="text-xs font-bold text-text-disabled uppercase tracking-widest mb-4">Explore Other IT Services</h3>
+      <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm font-medium">
+        {otherServices.map((s) => (
+          <a href={`/services/${s.slug}`} class="text-brand-primary hover:text-brand-hover transition-colors">
+            {s.title} &rarr;
+          </a>
+        ))}
+      </div>
+    </div>
+  </article>
+</Layout>

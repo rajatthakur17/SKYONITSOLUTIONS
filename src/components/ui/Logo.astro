@@ -1,17 +1,28 @@
 ---
 import { Image } from "astro:assets";
 import symbolLogo from "../../assets/SYMBOL.png";
+import symbolLogoHeader from "../../assets/SYMBOL-header.png";
+
+interface Props {
+  variant?: 'header' | 'footer' | 'default';
+  class?: string;
+}
+
+const { variant = 'header', class: className = '' } = Astro.props;
+const logoSrc = variant === 'footer' ? symbolLogo : symbolLogoHeader;
 ---
 
 <a
   href="/"
-  class="flex items-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded-sm"
+  class={`flex items-center group relative z-50 isolate focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded-sm ${className}`}
+  style="isolation: isolate;"
   aria-label="SKYON IT Solutions Home"
 >
   <Image
-    src={symbolLogo}
+    src={logoSrc}
     alt="SKYON IT Solutions"
-    class="h-11 md:h-14 w-auto object-contain"
+    class="h-11 md:h-14 w-auto object-contain relative z-50"
+    style="mix-blend-mode: normal !important; filter: none !important;"
     loading="eager"
   />
 </a>

@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import particleWaveBackground from '../../../backgoundim/Neon Particle Wave Landscape.png';
+
 const steps = [
   { num: '01', title: 'Understand', desc: 'We start by learning about your business, your target audience, and your specific goals.' },
   { num: '02', title: 'Strategize', desc: 'We map out a clear, actionable plan covering architecture, design, and marketing channels.' },
@@ -7,23 +10,78 @@ const steps = [
   { num: '05', title: 'Grow', desc: 'We monitor performance, manage your social presence, and prepare the foundation for ongoing marketing and optimization.' }
 ];
 ---
-<section id="process" class="py-24 px-4 md:px-8 border-b border-hairline">
-  <div class="max-w-[72rem] mx-auto">
-    <div class="mb-16">
+<section id="process" class="process-section backdrop-05-process py-16 md:py-24 px-4 md:px-8 border-b border-hairline">
+  <Image
+    src={particleWaveBackground}
+    alt=""
+    aria-hidden="true"
+    class="process-background"
+    loading="lazy"
+  />
+  <div class="process-content max-w-[72rem] mx-auto">
+    <div class="mb-12 md:mb-16">
+      <p class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-3">How We Work</p>
       <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-4 tracking-tight">Our Process</h2>
       <p class="text-lg text-text-body max-w-[42rem]">
         A structured, transparent approach to delivering digital solutions that work.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
       {steps.map((step) => (
-        <div class="relative">
-          <div class="text-4xl font-extrabold text-text-disabled opacity-40 mb-4">{step.num}</div>
-          <h3 class="text-xl font-bold text-text-primary mb-3">{step.title}</h3>
-          <p class="text-text-body text-sm leading-relaxed">{step.desc}</p>
+        <div class="p-6 bg-surface-1/85 backdrop-blur-xs border border-hairline rounded-xl hover:border-brand-primary/50 hover:shadow-md transition-all flex flex-col justify-between">
+          <div>
+            <div class="text-3xl font-black text-brand-primary mb-3">{step.num}</div>
+            <h3 class="text-lg font-bold text-text-primary mb-2">{step.title}</h3>
+            <p class="text-text-body text-sm leading-relaxed">{step.desc}</p>
+          </div>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .process-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .process-section::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(244, 248, 252, 0.94) 0%,
+      rgba(234, 242, 249, 0.88) 50%,
+      rgba(244, 248, 252, 0.95) 100%
+    );
+    content: '';
+    pointer-events: none;
+  }
+
+  .process-background {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom;
+    opacity: 0.85;
+    pointer-events: none;
+  }
+
+  .process-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (min-width: 48rem) {
+    .process-background {
+      object-position: center 65%;
+    }
+  }
+</style>

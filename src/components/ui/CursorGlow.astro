@@ -1,0 +1,246 @@
+---
+// CursorGlow.astro — Ambient fluid smoky wave tracking and flowing with cursor
+---
+
+<canvas id="ambient-smoke-canvas" class="cursor-smoke-canvas" aria-hidden="true"></canvas>
+
+<style>
+  .cursor-smoke-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .cursor-smoke-canvas.is-active {
+    opacity: 1;
+  }
+
+  @media (pointer: coarse), (prefers-reduced-motion: reduce) {
+    .cursor-smoke-canvas {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  function setupSmokeWave() {
+    const canvas = document.getElementById('ambient-smoke-canvas') as HTMLCanvasElement | null;
+    if (!canvas || window.matchMedia('(pointer: coarse)').matches) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas!.width = width * dpr;
+      canvas!.height = height * dpr;
+      ctx!.setTransform(1, 0, 0, 1, 0, 0);
+      ctx!.scale(dpr, dpr);
+    }
+
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    // Spine nodes for flowing smoky wave
+    const NODE_COUNT = 24;
+    interface Node {
+      x: number;
+      y: number;
+    }
+    const nodes: Node[] = [];
+    let mouseX = -500;
+    let mouseY = -500;
+    let prevMouseX = -500;
+    let prevMouseY = -500;
+    let lastMoveTime = 0;
+    let hueBase = 0;
+
+    for (let i = 0; i < NODE_COUNT; i++) {
+      nodes.push({ x: -500, y: -500 });
+    }
+
+    // Billowing smoke puffs
+    interface SmokePuff {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
+      maxRadius: number;
+      alpha: number;
+      decay: number;
+      hue: number;
+    }
+    const puffs: SmokePuff[] = [];
+
+    let animId: number | null = null;
+
+    function onPointerMove(e: MouseEvent) {
+      const isFirst = mouseX < 0;
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      lastMoveTime = performance.now();
+
+      if (isFirst) {
+        for (let i = 0; i < NODE_COUNT; i++) {
+          nodes[i].x = mouseX;
+          nodes[i].y = mouseY;
+        }
+      }
+
+      if (!canvas!.classList.contains('is-active')) {
+        canvas!.classList.add('is-active');
+      }
+
+      if (animId === null) {
+        animId = requestAnimationFrame(render);
+      }
+    }
+
+    function onMouseLeave() {
+      canvas!.classList.remove('is-active');
+    }
+
+    window.addEventListener('pointermove', onPointerMove, { passive: true });
+    document.addEventListener('mouseleave', onMouseLeave);
+
+    function render(now: number) {
+      ctx!.clearRect(0, 0, width, height);
+
+      // Color cycle for spectral iridescent smoke
+      hueBase = (hueBase + 0.6) % 360;
+
+      const idleDuration = now - lastMoveTime;
+      const speed = Math.hypot(mouseX - prevMouseX, mouseY - prevMouseY);
+      prevMouseX = mouseX;
+      prevMouseY = mouseY;
+
+      // Spawn soft smoke puffs along the cursor path when moving
+      if (speed > 1.2 && puffs.length < 32) {
+        puffs.push({
+          x: mouseX + (Math.random() - 0.5) * 6,
+          y: mouseY + (Math.random() - 0.5) * 6,
+          vx: (Math.random() - 0.5) * 0.7,
+          vy: (Math.random() - 0.5) * 0.7 - 0.35, // soft upward drift like smoke
+          radius: 12 + Math.random() * 8,
+          maxRadius: 45 + Math.random() * 25,
+          alpha: 0.22,
+          decay: 0.006 + Math.random() * 0.004,
+          hue: (hueBase + Math.random() * 40) % 360,
+        });
+      }
+
+      // Update and draw smoke puffs
+      for (let i = puffs.length - 1; i >= 0; i--) {
+        const p = puffs[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.radius += (p.maxRadius - p.radius) * 0.045;
+        p.alpha -= p.decay;
+
+        if (p.alpha <= 0) {
+          puffs.splice(i, 1);
+          continue;
+        }
+
+        const grad = ctx!.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius);
+        grad.addColorStop(0, `hsla(${p.hue}, 90%, 65%, ${p.alpha.toFixed(3)})`);
+        grad.addColorStop(0.45, `hsla(${(p.hue + 25) % 360}, 85%, 60%, ${(p.alpha * 0.6).toFixed(3)})`);
+        grad.addColorStop(1, 'transparent');
+
+        ctx!.fillStyle = grad;
+        ctx!.beginPath();
+        ctx!.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx!.fill();
+      }
+
+      // Update spine nodes with spring easing
+      nodes[0].x += (mouseX - nodes[0].x) * 0.55;
+      nodes[0].y += (mouseY - nodes[0].y) * 0.55;
+
+      for (let i = 1; i < NODE_COUNT; i++) {
+        nodes[i].x += (nodes[i - 1].x - nodes[i].x) * 0.38;
+        nodes[i].y += (nodes[i - 1].y - nodes[i].y) * 0.38;
+      }
+
+      // Compute wave-displaced coordinates
+      const waveCoords: { x: number; y: number }[] = [];
+      for (let i = 0; i < NODE_COUNT; i++) {
+        let nx = 0, ny = 0;
+        if (i < NODE_COUNT - 1) {
+          const dx = nodes[i + 1].x - nodes[i].x;
+          const dy = nodes[i + 1].y - nodes[i].y;
+          const len = Math.hypot(dx, dy) || 1;
+          nx = -dy / len;
+          ny = dx / len;
+        } else if (i > 0) {
+          const dx = nodes[i].x - nodes[i - 1].x;
+          const dy = nodes[i].y - nodes[i - 1].y;
+          const len = Math.hypot(dx, dy) || 1;
+          nx = -dy / len;
+          ny = dx / len;
+        }
+
+        // Sinusoidal smoky wave undulation
+        const waveAmount = Math.sin(now * 0.005 + i * 0.35) * (i * 0.9);
+        waveCoords.push({
+          x: nodes[i].x + nx * waveAmount,
+          y: nodes[i].y + ny * waveAmount,
+        });
+      }
+
+      // Draw flowing smoky ribbon segments
+      if (nodes[0].x > -200) {
+        // Multi-pass smoky wave: Outer soft glow & inner flowing filament
+        const passes = [
+          { widthScale: 38, alphaScale: 0.10 },
+          { widthScale: 20, alphaScale: 0.18 },
+          { widthScale: 6, alphaScale: 0.32 },
+        ];
+
+        for (const pass of passes) {
+          for (let i = 0; i < NODE_COUNT - 1; i++) {
+            const p1 = waveCoords[i];
+            const p2 = waveCoords[i + 1];
+            const progress = i / NODE_COUNT;
+            const tWidth = Math.max(1.5, pass.widthScale * (1 - progress * 0.85));
+            const tAlpha = pass.alphaScale * (1 - progress * 0.7);
+            const segHue = (hueBase + i * 14) % 360;
+
+            ctx!.strokeStyle = `hsla(${segHue}, 90%, 65%, ${tAlpha.toFixed(3)})`;
+            ctx!.lineWidth = tWidth;
+            ctx!.lineCap = 'round';
+            ctx!.lineJoin = 'round';
+
+            ctx!.beginPath();
+            ctx!.moveTo(p1.x, p1.y);
+            ctx!.lineTo(p2.x, p2.y);
+            ctx!.stroke();
+          }
+        }
+      }
+
+      // If idle for over 2.5 seconds and no active puffs, stop animation loop to conserve battery
+      if (idleDuration > 2500 && puffs.length === 0) {
+        animId = null;
+        return;
+      }
+
+      animId = requestAnimationFrame(render);
+    }
+  }
+
+  setupSmokeWave();
+  document.addEventListener('astro:page-load', setupSmokeWave);
+</script>

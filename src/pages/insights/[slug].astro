@@ -1,0 +1,66 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { INSIGHTS, type InsightArticle } from '../../data/insights';
+
+export function getStaticPaths() {
+  return INSIGHTS.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+interface Props {
+  article: InsightArticle;
+}
+
+const { article } = Astro.props;
+const title = `${article.title} | SKYON IT SOLUTIONS`;
+const description = article.summary;
+---
+
+<Layout title={title} description={description}>
+  <article class="backdrop-10-insights px-4 pt-28 pb-20 md:px-8 md:pt-36">
+    <div class="mx-auto max-w-[48rem]">
+      <nav aria-label="Breadcrumb" class="mb-8 text-sm text-text-muted">
+        <ol class="flex flex-wrap items-center gap-2">
+          <li><a href="/" class="hover:text-brand-hover">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href="/insights" class="hover:text-brand-hover">Insights</a></li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page" class="text-text-primary">{article.category}</li>
+        </ol>
+      </nav>
+
+      <header class="border-b border-hairline pb-8">
+        <p class="mb-3 text-sm font-bold uppercase text-brand-primary">{article.category}</p>
+        <h1 class="text-4xl font-extrabold leading-tight text-text-primary md:text-5xl">{article.title}</h1>
+        <p class="mt-5 text-lg leading-relaxed text-text-body">{article.summary}</p>
+      </header>
+
+      <div class="space-y-10 pt-8">
+        {article.sections.map((section) => (
+          <section>
+            <h2 class="text-2xl font-bold text-text-primary">{section.heading}</h2>
+            {section.paragraphs.map((paragraph) => (
+              <p class="mt-4 leading-relaxed text-text-body">{paragraph}</p>
+            ))}
+            {section.points && (
+              <ul class="mt-4 space-y-2 border-l-2 border-brand-primary pl-5 text-text-body">
+                {section.points.map((point) => <li>{point}</li>)}
+              </ul>
+            )}
+          </section>
+        ))}
+      </div>
+
+      <aside class="mt-12 border-t border-hairline pt-8">
+        <h2 class="text-xl font-bold text-text-primary">Planning a related project?</h2>
+        <p class="mt-2 text-text-body">Explore SKYON services or share your requirements.</p>
+        <div class="mt-5 flex flex-wrap gap-3">
+          <a href="/services" class="inline-flex min-h-11 items-center rounded-md border border-hairline px-4 py-2 font-semibold text-text-primary hover:border-brand-primary">Explore services</a>
+          <a href="/contact" class="inline-flex min-h-11 items-center rounded-md bg-button-fill px-4 py-2 font-semibold text-button-text hover:bg-button-hover">Contact SKYON</a>
+        </div>
+      </aside>
+    </div>
+  </article>
+</Layout>

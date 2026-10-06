@@ -1,46 +1,55 @@
-# Astro Starter Kit: Basics
+# SKYON IT SOLUTIONS Website
+
+Public IT-services website built with Astro and Tailwind CSS v4. The site is statically generated and includes the homepage, service pages, contact flow, legal pages, and sitemap.
+
+## Requirements
+
+- Node.js 22.12 or later
+- npm
+
+## Local Development
 
 ```sh
-npm create astro@latest -- --template basics
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The development server is available at `http://localhost:4321`. For a persistent background server, use `npx astro dev --background`; manage it with `npx astro dev stop`, `npx astro dev status`, and `npx astro dev logs`.
 
-## 🚀 Project Structure
+## Validation and Build
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```sh
+npm run check
+npm run build
+npm run preview
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+`npm run check` runs Astro's type and template diagnostics. `npm run build` creates the static production site in `dist/`. `npm run preview` serves the latest build locally.
 
-## 🧞 Commands
+## Content and Routes
 
-All commands are run from the root of the project, from a terminal:
+- Shared site information and contact details: `src/config/site.ts`
+- Service catalog and service navigation groups: `src/data/services.ts`
+- Service detail template: `src/pages/services/[slug].astro`
+- Services overview: `src/pages/services/index.astro`
+- Work portfolio: `src/pages/work.astro`
+- About page: `src/pages/about.astro`
+- Insights catalog and shared article data: `src/data/insights.ts`, `src/pages/insights/`
+- Shared layouts and components: `src/components/` and `src/layouts/`
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Service routes are generated from the central service catalog. When adding or changing a service, update the catalog and run `npm run check` and `npm run build` to verify its route and navigation links.
 
-## 👀 Want to learn more?
+## Environment Configuration
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- `PUBLIC_NOINDEX=true` adds `noindex, nofollow` for preview or staging builds. Do not set this for the public production build.
+- `PUBLIC_FORM_ENDPOINT` is optional. When configured, the contact form posts to that endpoint. When unset, the form prepares an inquiry in WhatsApp; visitors must review and send the message themselves. A direct WhatsApp link is also available.
+
+Never put private credentials in `PUBLIC_*` variables or client-side code. Confirm the endpoint provider's privacy requirements before enabling it and update the privacy notice accordingly.
+
+## Publishing Content
+
+Service content is currently maintained in the repository's TypeScript catalog. A non-technical CMS is not configured yet. The repository has no Git remote, so a Git-backed CMS cannot be connected until the hosting repository, branch, CMS provider, and authentication method are selected.
+
+## Deployment Notes
+
+The production domain is configured in `astro.config.mjs` and `src/config/site.ts`. Keep those values aligned when changing domains. Verify the built canonical URLs, robots directives, sitemap, contact destination, and environment variables before publishing.

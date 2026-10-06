@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Page Not Found | SKYON IT SOLUTIONS">
+<Layout title="Page Not Found | SKYON IT SOLUTIONS" noindex={true}>
   <div class="max-w-[72rem] mx-auto px-4 md:px-8 py-32 flex flex-col items-center justify-center text-center min-h-[60vh]">
     <div class="text-brand-primary font-mono text-sm tracking-widest uppercase mb-4">Error 404</div>
     <h1 class="text-4xl md:text-6xl font-extrabold text-text-primary tracking-tight mb-6">
@@ -11,7 +11,7 @@ import Layout from '../layouts/Layout.astro';
     <p class="text-xl text-text-body max-w-[28rem] mb-10">
       The page you are looking for doesn't exist or has been moved.
     </p>
-    <a href="/" class="bg-button-fill text-[#0A1A05] px-8 py-3 rounded-full font-semibold hover:bg-button-hover transition-colors">
+    <a href="/" class="bg-button-fill text-button-text px-8 py-3 rounded-full font-semibold hover:bg-button-hover transition-colors">
       Return Home
     </a>
   </div>

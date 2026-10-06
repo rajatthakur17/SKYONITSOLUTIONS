@@ -1,113 +1,515 @@
 ---
-import { Image } from "astro:assets";
-import growthIcon from "../../assets/growth-icon.png";
+import { Image } from 'astro:assets';
+import skylineBackground from '../../../backgoundim/Futuristic Skyline with Neon Light Trails.png';
+import { SITE } from '../../config/site';
+import { SERVICES } from '../../data/services';
 ---
 
-<section
-  class="pt-12 pb-8 md:pt-16 md:pb-16 px-2 md:px-4 border-b border-hairline overflow-hidden"
->
-  <div
-    class="max-w-[72rem] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center"
-  >
-    <!-- LEFT: Text & CTA -->
-    <div
-      class="flex flex-col items-center lg:items-start text-center lg:text-left"
-    >
-      <h1
-        class="text-4xl md:text-4xl lg:text-5xl font-extrabold text-text-primary tracking-tight leading-tight mb-8"
-      >
-        Build your digital presence. <br />
-        <span class="text-brand-primary">Grow online.</span>
-      </h1>
-
-      <p class="text-lg md:text-xl text-text-body max-w-[42rem] mb-12">
-        Websites, SEO, digital marketing and social media to help your business
-        build a stronger online presence.
+<section id="top" class="hero-section backdrop-01-hero">
+  <Image
+    src={skylineBackground}
+    alt=""
+    aria-hidden="true"
+    class="hero-background"
+    loading="eager"
+  />
+  <div class="hero-layout">
+    <div class="hero-copy">
+      <p class="hero-eyebrow"><span aria-hidden="true"></span> IT services for business</p>
+      <h1>Build. Automate.<br /><span>Grow digitally.</span></h1>
+      <p class="hero-description">
+        Software, web, cloud, AI, design, consulting, and digital growth for Indian and international businesses.
       </p>
 
-      <div
-        class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
-      >
-        <a
-          href="/contact"
-          class="motion-click w-full sm:w-auto bg-button-fill text-[#0A1A05] px-8 py-3 rounded-full font-semibold hover:bg-button-hover transition-colors shadow-sm text-center"
-        >
-          Start a Project
-        </a>
-        <a
-          href="#services"
-          class="w-full sm:w-auto bg-surface-1 border border-hairline text-text-primary px-8 py-3 rounded-full font-semibold hover:border-text-body transition-colors text-center"
-        >
-          View Services
+      <div class="hero-actions">
+        <a href="/contact" class="hero-button hero-button-primary">Discuss a project</a>
+        <a href="/services" class="hero-button hero-button-secondary">
+          Explore services
+          <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
+            <path d="M4 10h11M10 5l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
         </a>
       </div>
+
+      <dl class="hero-stats">
+        <div>
+          <dt class="stat-counter" data-target="20" data-suffix="+">20+</dt>
+          <dd>Projects delivered</dd>
+        </div>
+        <div>
+          <dt class="stat-counter" data-target="9" data-suffix="">9</dt>
+          <dd>Service areas</dd>
+        </div>
+        <div>
+          <dt class="stat-counter" data-target="99.9" data-suffix="%" data-decimals="1">99.9%</dt>
+          <dd>Uptime target</dd>
+        </div>
+        <div>
+          <dt>India + Global</dt>
+          <dd>Markets served</dd>
+        </div>
+      </dl>
     </div>
 
-    <!-- RIGHT: Growth Graphic (Animated Raster) -->
-    <div
-      class="w-full max-w-[16rem] mx-auto lg:max-w-[21rem] flex justify-center"
-    >
-      <div class="hero-graphic-container w-full">
-        <Image
-          src={growthIcon}
-          alt="SKYON Business Growth Graphic"
-          class="hero-graphic-float w-full h-auto object-contain drop-shadow-sm"
-          loading="eager"
-        />
+    <div class="hero-enquiry-stage">
+      <div class="hero-enquiry-intro">
+        <p>Quick project enquiry</p>
+        <h2>What can we help you build?</h2>
+        <span>Choose a service to prepare a WhatsApp message you can review.</span>
       </div>
+      <form id="hero-inquiry-form" class="hero-quick-form" action="/contact" method="get" aria-describedby="hero-inquiry-note">
+        <p class="hero-form-title">Quick enquiry</p>
+        <div class="hero-form-controls">
+          <label class="hero-form-label" for="hero-inquiry-service">Choose a service</label>
+          <select id="hero-inquiry-service" name="service" required>
+            <option value="" disabled selected>What do you need?</option>
+            {SERVICES.map((service) => <option value={service.title}>{service.shortTitle}</option>)}
+            <option value="Not sure yet">Not sure yet</option>
+          </select>
+          <button type="submit" aria-label="Continue this enquiry on WhatsApp">
+            Send
+            <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
+              <path d="M4 10h11M10 5l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+        <p id="hero-inquiry-note" class="hero-form-note">Opens WhatsApp with your selection for you to review.</p>
+      </form>
     </div>
+  </div>
+
+  <div class="hero-audiences" aria-label="Customer segments">
+    <span>Working with</span>
+    <ul>
+      <li>Clinics</li>
+      <li>Real estate</li>
+      <li>Jewellery</li>
+      <li>SMEs &amp; startups</li>
+      <li>International teams</li>
+    </ul>
   </div>
 </section>
 
-<style is:global>
-  /* Base state hides the image for the wipe */
-  .hero-graphic-container {
-    clip-path: polygon(0 100%, 0 100%, 0 100%);
-    opacity: 0;
+<style>
+  .hero-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-hairline);
+    background-color: var(--color-canvas);
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    .hero-graphic-container {
-      animation: growth-wipe 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
-      animation-delay: 0.2s;
-    }
+  .hero-section::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(244, 248, 252, 0.93) 0%, rgba(244, 248, 252, 0.87) 45%, rgba(244, 248, 252, 0.68) 100%);
+    content: '';
+    pointer-events: none;
+  }
 
-    .hero-graphic-float {
-      /* Slow, subtle continuous floating loop */
-      animation: slow-float 6s ease-in-out infinite;
+  .hero-background {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 58% center;
+    opacity: 0.78;
+    pointer-events: none;
+  }
+
+  .hero-layout {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: center;
+    gap: 3.5rem;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding: 4.25rem 2rem 3.5rem;
+  }
+
+  .hero-copy {
+    min-width: 0;
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0 0 1.15rem;
+    color: var(--color-brand-primary);
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .hero-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .hero-button-primary {
+    background: var(--color-button-fill);
+    color: var(--color-button-text);
+  }
+
+  .hero-button-primary:hover {
+    background: var(--color-button-hover);
+  }
+
+  .hero-button-secondary {
+    border: 1px solid var(--color-hairline);
+    background: var(--color-surface-1);
+    color: var(--color-text-primary);
+  }
+
+  .hero-button-secondary:hover {
+    border-color: var(--color-brand-primary);
+    color: var(--color-brand-hover);
+  }
+
+  .hero-button svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 2.25rem 0 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-hairline);
+  }
+
+  .hero-stats dt {
+    color: var(--color-text-primary);
+    font-size: 1.2rem;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  .hero-stats dd {
+    margin: 0.25rem 0 0;
+    color: var(--color-text-muted);
+    font-size: 0.72rem;
+    line-height: 1.4;
+  }
+
+  .hero-enquiry-stage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 34rem;
+    padding: 2rem;
+    background: transparent;
+    border-radius: 12px;
+  }
+
+  .hero-enquiry-intro {
+    margin-bottom: 1rem;
+  }
+
+  .hero-enquiry-intro p {
+    margin: 0 0 0.45rem;
+    color: var(--color-brand-primary);
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .hero-enquiry-intro h2 {
+    margin: 0;
+    color: var(--color-text-primary);
+    font-size: 1.45rem;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .hero-enquiry-intro span {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .hero-form-title {
+    margin: 0 0 0.5rem;
+    color: var(--color-text-primary);
+    font-size: 0.8rem;
+    font-weight: 800;
+  }
+
+  .hero-form-controls {
+    display: flex;
+    align-items: stretch;
+    gap: 0.45rem;
+  }
+
+  .hero-form-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
+
+  .hero-form-controls select {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.65rem;
+    padding: 0.55rem 1.8rem 0.55rem 0.65rem;
+    border: 1px solid rgba(16, 42, 67, 0.22);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(5px);
+    color: var(--color-text-primary);
+    font: inherit;
+    font-size: 0.75rem;
+  }
+
+  .hero-form-controls button {
+    display: inline-flex;
+    min-width: 4.4rem;
+    min-height: 2.65rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0.6rem;
+    border: 0;
+    border-radius: 5px;
+    background: var(--color-button-fill);
+    color: var(--color-button-text);
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .hero-form-controls button:hover {
+    background: var(--color-button-hover);
+  }
+
+  .hero-form-controls button svg {
+    width: 0.95rem;
+    height: 0.95rem;
+  }
+
+  .hero-form-note {
+    margin: 0.45rem 0 0;
+    color: var(--color-text-muted);
+    font-size: 0.65rem;
+    line-height: 1.35;
+  }
+
+  .hero-audiences {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    max-width: 72rem;
+    align-items: center;
+    gap: 1.25rem;
+    margin: 0 auto;
+    padding: 1.15rem 2rem;
+    border-top: 1px solid var(--color-hairline);
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+  }
+
+  .hero-audiences > span {
+    flex: none;
+    font-weight: 700;
+  }
+
+  .hero-audiences ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem 1.4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .hero-audiences li::before {
+    content: '';
+    display: inline-block;
+    width: 0.35rem;
+    height: 0.35rem;
+    margin: 0 0.5rem 0.08rem 0;
+    border-radius: 50%;
+    background: var(--color-accent-warm);
+  }
+
+  @media (min-width: 64rem) {
+    .hero-copy h1 {
+      font-size: 3.65rem;
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .hero-graphic-container {
-      clip-path: polygon(0 100%, 0 -100%, 200% 100%);
-      opacity: 1;
+  @media (max-width: 63.99rem) {
+    .hero-layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2.25rem;
+      padding-top: 3.25rem;
+    }
+
+    .hero-copy h1,
+    .hero-description {
+      max-width: 42rem;
     }
   }
 
-  @keyframes growth-wipe {
-    0% {
-      opacity: 0;
-      clip-path: polygon(0 100%, 0 100%, 0 100%);
-      transform: translateY(10px);
+  @media (max-width: 39.99rem) {
+    .hero-layout {
+      gap: 1.25rem;
+      padding: 1.5rem 1rem 1rem;
     }
-    10% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 1;
-      clip-path: polygon(0 100%, 0 -100%, 200% 100%);
-      transform: translateY(0);
-    }
-  }
 
-  @keyframes slow-float {
-    0%,
-    100% {
-      transform: translateY(0px);
+    .hero-copy h1 {
+      font-size: 2.25rem;
     }
-    50% {
-      transform: translateY(-12px);
+
+    .hero-description {
+      margin-top: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .hero-actions {
+      flex-wrap: nowrap;
+      gap: 0.5rem;
+    }
+
+    .hero-button {
+      min-width: 0;
+      flex: 1 1 0;
+      padding-inline: 0.55rem;
+      font-size: 0.78rem;
+    }
+
+    .hero-stats {
+      gap: 0.6rem;
+      margin-top: 1.25rem;
+    }
+
+    .hero-stats dt {
+      font-size: 1rem;
+    }
+
+    .hero-stats dd {
+      font-size: 0.68rem;
+    }
+
+    .hero-quick-form {
+      right: 0.5rem;
+      bottom: 2.8rem;
+      left: 0.5rem;
+      width: auto;
+    }
+
+    .hero-form-title {
+      display: none;
+    }
+
+    .hero-form-note {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      clip-path: inset(50%);
+    }
+
+    .hero-form-controls select,
+    .hero-form-controls button {
+      min-height: 2.4rem;
+    }
+
+    .hero-background {
+      object-position: 70% center;
+    }
+
+    .hero-audiences {
+      display: none;
     }
   }
 </style>
+
+<script define:vars={{ whatsappUrl: SITE.whatsappUrl }}>
+  const form = document.getElementById('hero-inquiry-form');
+
+  if (form instanceof HTMLFormElement) {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const service = new FormData(form).get('service');
+      const whatsappLink = new URL(whatsappUrl);
+      whatsappLink.searchParams.set('text', `Hi SKYON IT SOLUTIONS, I would like to discuss ${service}.`);
+      window.open(whatsappLink.toString(), '_blank', 'noopener,noreferrer');
+    });
+  }
+
+  // Interactive Counter Animation on Scroll
+  function initCounters() {
+    const counters = document.querySelectorAll('.stat-counter');
+    if (!counters.length) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return; // Respect reduced motion
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        obs.unobserve(entry.target);
+
+        const el = entry.target;
+        const target = parseFloat(el.getAttribute('data-target') || '0');
+        const suffix = el.getAttribute('data-suffix') || '';
+        const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+        const duration = 1400; // ms
+        const startTime = performance.now();
+
+        function step(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease out expo
+          const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+          const current = (target * ease);
+
+          el.textContent = (decimals > 0 ? current.toFixed(decimals) : Math.round(current).toString()) + suffix;
+
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = (decimals > 0 ? target.toFixed(decimals) : target.toString()) + suffix;
+          }
+        }
+
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.2 });
+
+    counters.forEach((c) => observer.observe(c));
+  }
+
+  initCounters();
+  document.addEventListener('astro:page-load', initCounters);
+</script>

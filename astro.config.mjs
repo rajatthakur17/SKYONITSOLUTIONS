@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://skyon-placeholder.com', // Placeholder URL as requested
+  site: 'https://skyonitsolutions.com',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],

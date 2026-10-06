@@ -1,0 +1,336 @@
+---
+// CallToAction Section
+---
+
+<section class="skyon-cta" aria-label="Get started">
+  <div class="skyon-cta__inner">
+    <div class="skyon-cta__content">
+
+      <p class="eyebrow">Let's build together</p>
+
+      <h2 class="cta-heading">
+        Ready to Grow<br>
+        <span>Your Business Online?</span>
+      </h2>
+
+      <p class="lead">
+        Get a free consultation and discover how SKYON IT SOLUTIONS
+        can help you build, automate and scale your digital presence.
+      </p>
+
+      <div class="proof-row">
+        <div class="proof">
+          <span class="proof__icon">💬</span>
+          <span>Free<br>Consultation</span>
+        </div>
+
+        <div class="proof">
+          <span class="proof__icon">ϟ</span>
+          <span>Tailored<br>Solutions</span>
+        </div>
+
+        <div class="proof">
+          <span class="proof__icon">▥</span>
+          <span>Real<br>Growth Results</span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn--primary"
+           href="https://wa.me/917014865202?text=Hi%20SKYON%20IT%20SOLUTIONS%2C%20I%E2%80%99d%20like%20a%20free%20consultation."
+           target="_blank"
+           rel="noopener noreferrer">
+          Get a Free Consultation <span>→</span>
+        </a>
+
+        <a class="btn btn--secondary"
+           href="tel:+917014865202">
+          Schedule a Call <span>→</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  :root {
+    --blue: #08d8ff;
+    --blue-2: #0b69ff;
+    --white: #f7fbff;
+    --muted: #d3dfef;
+  }
+
+  .skyon-cta {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 640px;
+    display: flex;
+    align-items: center;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(1, 9, 27, 0.90) 0%,
+        rgba(1, 13, 34, 0.75) 40%,
+        rgba(1, 12, 33, 0.30) 72%,
+        rgba(1, 9, 27, 0.14) 100%
+      ),
+      url("/brand/futuristic-earthrise.png") center right / cover no-repeat;
+    background-color: #020a1a;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+  }
+
+  .skyon-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 76% 43%, rgba(0, 198, 255, 0.08), transparent 28%),
+      radial-gradient(circle at 52% 75%, rgba(0, 89, 255, 0.08), transparent 30%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .skyon-cta__inner {
+    width: min(1180px, 92%);
+    margin: 0 auto;
+    padding: 80px 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .skyon-cta__content {
+    width: min(690px, 100%);
+    color: var(--white);
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0 0 22px;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #eef6ff;
+  }
+
+  .eyebrow::after {
+    content: "";
+    width: 125px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(65, 210, 255, .95), transparent);
+  }
+
+  h1,
+  .cta-heading {
+    margin: 0;
+    font-size: clamp(48px, 7vw, 82px);
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+    font-weight: 800;
+    max-width: 720px;
+  }
+
+  h1 span,
+  .cta-heading span {
+    color: var(--blue);
+  }
+
+  .lead {
+    margin: 28px 0 0;
+    max-width: 700px;
+    color: #edf5ff;
+    font-size: clamp(17px, 2vw, 23px);
+    line-height: 1.5;
+  }
+
+  .proof-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 34px;
+    margin-top: 34px;
+  }
+
+  .proof {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    color: var(--white);
+    font-size: 18px;
+    line-height: 1.15;
+  }
+
+  .proof__icon {
+    width: 55px;
+    height: 55px;
+    display: grid;
+    place-items: center;
+    flex: 0 0 55px;
+    border-radius: 10px;
+    border: 1px solid rgba(65, 183, 255, .18);
+    background: rgba(7, 76, 153, .65);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.05),
+      0 12px 30px rgba(0, 0, 0, .18);
+    font-size: 26px;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 34px;
+  }
+
+  .btn {
+    min-height: 58px;
+    padding: 0 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-size: 16px;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+
+  .btn--primary {
+    color: #06111e;
+    background: linear-gradient(90deg, #0ae1ff, #0a7eff);
+    box-shadow: 0 18px 38px rgba(0, 112, 255, .32);
+  }
+
+  .btn--secondary {
+    color: #f5fbff;
+    border-color: rgba(166, 214, 255, .62);
+    background: rgba(4, 22, 50, .32);
+    backdrop-filter: blur(8px);
+  }
+
+  .btn:hover {
+    transform: translateY(-3px);
+  }
+
+  .btn--primary:hover {
+    box-shadow: 0 24px 44px rgba(0, 112, 255, .45);
+    background: linear-gradient(90deg, #2ae7ff, #1d89ff);
+  }
+
+  .btn--secondary:hover {
+    background: rgba(6, 32, 72, .55);
+    border-color: rgba(200, 230, 255, .9);
+  }
+
+  .btn span {
+    font-size: 18px;
+    transition: transform .2s ease;
+  }
+
+  .btn:hover span {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 900px) {
+    .skyon-cta {
+      min-height: auto;
+      padding: 30px 0;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(1, 9, 27, 0.90) 0%,
+          rgba(1, 13, 34, 0.85) 60%,
+          rgba(1, 9, 27, 0.94) 100%
+        ),
+        url("/brand/futuristic-earthrise.png") center right / cover no-repeat;
+    }
+
+    .skyon-cta__inner {
+      padding: 44px 0;
+    }
+
+    h1,
+    .cta-heading {
+      font-size: clamp(38px, 8vw, 56px);
+      line-height: 1.02;
+    }
+
+    .lead {
+      font-size: 17px;
+      margin-top: 20px;
+    }
+
+    .proof-row {
+      gap: 20px;
+      margin-top: 26px;
+    }
+
+    .proof {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .skyon-cta__inner {
+      padding: 36px 0;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      margin-bottom: 16px;
+    }
+
+    .eyebrow::after {
+      width: 70px;
+    }
+
+    h1,
+    .cta-heading {
+      font-size: 34px;
+      line-height: 1.06;
+    }
+
+    .lead {
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .proof-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .proof__icon {
+      width: 48px;
+      height: 48px;
+      flex-basis: 48px;
+      font-size: 22px;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      margin-top: 28px;
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn {
+      transition: none;
+    }
+  }
+</style>

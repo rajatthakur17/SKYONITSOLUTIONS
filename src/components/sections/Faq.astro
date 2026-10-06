@@ -21,7 +21,21 @@ const faqs = [
     a: 'Yes, we offer ongoing maintenance and marketing retainers to support your digital presence after the initial launch.'
   }
 ];
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+};
 ---
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
 <section class="py-24 px-4 md:px-8 border-b border-hairline">
   <div class="max-w-[48rem] mx-auto">
     <div class="text-center mb-16">

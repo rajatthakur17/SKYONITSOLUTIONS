@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "skyon-it-solutions",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -7,8 +7,10 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "check": "astro check",
     "build": "astro build",
     "preview": "astro preview",
+    "restore:cta": "node scripts/restore_cta.js",
     "astro": "astro"
   },
   "dependencies": {

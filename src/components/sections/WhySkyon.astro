@@ -1,39 +1,240 @@
 ---
+import { Image } from 'astro:assets';
+import strategyBackground from '../../../backgoundim/Futuristic Cyber Strategy Dashboard.png';
+
+interface Props {
+  isPage?: boolean;
+}
+
+const { isPage = false } = Astro.props;
 ---
-<section class="py-24 px-4 md:px-8 border-b border-hairline bg-surface-1/30">
-  <div class="max-w-[72rem] mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 tracking-tight">Why SKYON?</h2>
-        <p class="text-lg text-text-body mb-6">
-          We are a founder-led agency. When you work with us, you aren't handed off to a junior account manager. You get direct access to the technical and strategic skills to build and improve your digital presence.
-        </p>
-        <p class="text-lg text-text-body mb-8">
-          We keep our focus narrow—Websites, SEO, and Digital Marketing—so projects can stay focused, practical, and aligned with their goals.
-        </p>
-        
-        <div class="border-l-2 border-brand-primary pl-4">
-          <p class="font-semibold text-text-primary">Rajat Kumar</p>
-          <p class="text-sm text-text-body">Founder, SKYON IT SOLUTIONS</p>
-        </div>
+<section id="why-skyon" class={`why-skyon backdrop-04-why border-b border-hairline ${isPage ? 'pt-28 md:pt-36 pb-16 md:pb-24' : ''}`}>
+  <Image
+    src={strategyBackground}
+    alt=""
+    aria-hidden="true"
+    class="why-background"
+    loading={isPage ? 'eager' : 'lazy'}
+  />
+  <div class="why-layout">
+    <div class="why-intro">
+      <p class="why-eyebrow">Why Choose SKYON</p>
+      {isPage ? (
+        <h1>Technology, automation, and digital growth in one place.</h1>
+      ) : (
+        <h2>Technology, automation, and digital growth in one place.</h2>
+      )}
+      <p>
+        We eliminate fragmented agency handoffs. From engineering your digital infrastructure to streamlining operations with AI and scaling online reach, we deliver unified solutions built for measurable ROI.
+      </p>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-6">
+        <a href="/why-choose-us" class="why-button-primary">
+          Explore Why Choose Us &rarr;
+        </a>
+        <a href="/contact" class="why-link">
+          Discuss your goals &rarr;
+        </a>
       </div>
-      
-      <div class="bg-canvas border border-hairline rounded-lg p-8 grid grid-cols-1 gap-6">
+    </div>
+
+    <div class="why-capabilities">
+      <article class="why-capability">
+        <span class="why-number">01</span>
         <div>
-          <h3 class="text-xl font-bold text-text-primary mb-2">Direct Communication</h3>
-          <p class="text-text-body text-sm">Clear, honest updates without the corporate runaround.</p>
+          <h3>Build</h3>
+          <p>High-performance web applications, portals, and cloud infrastructure engineered with clean, modern code.</p>
         </div>
-        <div class="h-px w-full bg-hairline"></div>
+      </article>
+      <article class="why-capability">
+        <span class="why-number">02</span>
         <div>
-          <h3 class="text-xl font-bold text-text-primary mb-2">Technical Excellence</h3>
-          <p class="text-text-body text-sm">We build accessible, maintainable digital foundations.</p>
+          <h3>Automate</h3>
+          <p>AI agents, intelligent chatbots, and automated CRM workflows that eliminate manual operational bottlenecks.</p>
         </div>
-        <div class="h-px w-full bg-hairline"></div>
+      </article>
+      <article class="why-capability">
+        <span class="why-number">03</span>
         <div>
-          <h3 class="text-xl font-bold text-text-primary mb-2">Outcome Focused</h3>
-          <p class="text-text-body text-sm">Every technical and marketing decision is made with your business goals in mind.</p>
+          <h3>Analyze</h3>
+          <p>Data visualization, BI reporting, and customer analytics that turn raw business metrics into actionable decisions.</p>
         </div>
-      </div>
+      </article>
+      <article class="why-capability">
+        <span class="why-number">04</span>
+        <div>
+          <h3>Grow</h3>
+          <p>Technical SEO, high-intent digital advertising, and conversion optimization to drive consistent qualified leads.</p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
+
+<style>
+  .why-skyon {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    color: var(--color-text-primary);
+  }
+
+  .why-skyon::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      rgba(244, 248, 252, 0.95) 0%,
+      rgba(234, 242, 249, 0.90) 55%,
+      rgba(244, 248, 252, 0.82) 100%
+    );
+    content: '';
+    pointer-events: none;
+  }
+
+  .why-background {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 70% center;
+    opacity: 0.85;
+    pointer-events: none;
+  }
+
+  .why-layout {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: center;
+    gap: 4rem;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding: 5rem 2rem;
+  }
+
+  .why-eyebrow {
+    margin: 0 0 1rem;
+    color: var(--color-brand-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .why-intro h1,
+  .why-intro h2 {
+    max-width: 34rem;
+    margin: 0;
+    color: var(--color-text-primary);
+    font-size: 2.25rem;
+    font-weight: 800;
+    line-height: 1.12;
+  }
+
+  .why-intro > p:not(.why-eyebrow) {
+    max-width: 33rem;
+    margin: 1.25rem 0 1.5rem;
+    color: var(--color-text-body);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .why-button-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background-color: var(--color-button-fill);
+    color: var(--color-button-text);
+    font-size: 0.875rem;
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+  }
+
+  .why-button-primary:hover {
+    background-color: var(--color-button-hover);
+  }
+
+  .why-link {
+    color: var(--color-brand-primary);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent-warm);
+    text-underline-offset: 0.3rem;
+  }
+
+  .why-link:hover {
+    color: var(--color-brand-hover);
+  }
+
+  .why-capabilities {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--color-hairline);
+    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+    box-shadow: 0 4px 20px -2px rgba(16, 42, 67, 0.05);
+  }
+
+  .why-capability {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1rem;
+    align-items: start;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--color-hairline);
+  }
+
+  .why-capability:last-child {
+    border-bottom: none;
+  }
+
+  .why-number {
+    color: var(--color-brand-primary);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .why-capability h3 {
+    margin: 0 0 0.25rem;
+    color: var(--color-text-primary);
+    font-size: 1.1rem;
+  }
+
+  .why-capability p {
+    margin: 0;
+    color: var(--color-text-body);
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 63.99rem) {
+    .why-layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 39.99rem) {
+    .why-layout {
+      gap: 1.5rem;
+      padding: 3.5rem 1rem;
+    }
+
+    .why-intro h1,
+    .why-intro h2 {
+      font-size: 1.9rem;
+    }
+
+    .why-background {
+      object-position: center;
+    }
+  }
+</style>

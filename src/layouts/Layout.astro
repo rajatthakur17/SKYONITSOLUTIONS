@@ -5,32 +5,59 @@ import Header from '../components/layout/Header.astro';
 import MobileDrawer from '../components/layout/MobileDrawer.astro';
 import Footer from '../components/layout/Footer.astro';
 import MotionSystem from '../components/utils/MotionSystem.astro';
+import ScrollProgress from '../components/ui/ScrollProgress.astro';
+import CursorGlow from '../components/ui/CursorGlow.astro';
+import WhatsAppFloat from '../components/ui/WhatsAppFloat.astro';
 import { SITE } from '../config/site';
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
+  noindex?: boolean;
 }
 
 const { 
   title = SITE.title,
   description = SITE.description,
-  image = '/og-image.jpg' // Default OG image
+  image = '/og-image.jpg',
+  noindex = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE.url);
+
+const isStagingNoindex = import.meta.env.PUBLIC_NOINDEX === 'true';
+const robotsMeta = (noindex || isStagingNoindex) ? 'noindex, nofollow' : 'index, follow';
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": ["Organization", "ProfessionalService"],
+  "name": "SKYON IT SOLUTIONS",
+  "url": SITE.url,
+  "logo": `${SITE.url}/favicon.svg`,
+  "image": `${SITE.url}/og-image.jpg`,
+  "email": SITE.email,
+  "telephone": SITE.phone,
+  "priceRange": "$$",
+  "areaServed": ["IN", "US", "AE", "GB", "Global"],
+  "sameAs": [
+    SITE.linkedinUrl,
+    SITE.instagramUrl
+  ].filter(Boolean),
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": SITE.phone,
+    "contactType": "customer support",
+    "availableLanguage": ["English", "Hindi"]
+  }
+};
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "SKYON IT SOLUTIONS",
   "url": SITE.url,
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": `${SITE.url}/search?q={search_term_string}`,
-    "query-input": "required name=search_term_string"
-  }
+  "description": SITE.description
 };
 ---
 
@@ -39,7 +66,7 @@ const websiteSchema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex, nofollow" />
+    <meta name="robots" content={robotsMeta} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     
     <!-- Primary Meta Tags -->
@@ -64,15 +91,19 @@ const websiteSchema = {
 
     <!-- JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
     
     <meta name="generator" content={Astro.generator} />
     <slot name="head" />
   </head>
   <body class="antialiased min-h-screen flex flex-col">
     <!-- Accessible Skip to Content -->
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 bg-brand-primary text-text-primary px-4 py-2 rounded shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 bg-button-fill text-button-text px-4 py-2 rounded shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary">
       Skip to content
     </a>
+    
+    <ScrollProgress />
+    <CursorGlow />
     
     <Header />
     <MobileDrawer />
@@ -82,6 +113,7 @@ const websiteSchema = {
     </main>
 
     <Footer />
+    <WhatsAppFloat />
     <MotionSystem />
   </body>
 </html>

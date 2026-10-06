@@ -1,0 +1,259 @@
+---
+import { Image } from 'astro:assets';
+import strategyBackground from '../../backgoundim/Futuristic Cyber Strategy Dashboard.png';
+import Layout from '../layouts/Layout.astro';
+import Process from '../components/sections/Process.astro';
+import CallToAction from '../components/sections/CallToAction.astro';
+
+const title = 'Why Choose Us | SKYON IT SOLUTIONS';
+const description = 'Discover why businesses choose SKYON IT SOLUTIONS: full-lifecycle engineering, intelligent automation, modern tech stacks, and transparent collaboration.';
+
+const differentiators = [
+  {
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+    title: 'Integrated End-to-End Delivery',
+    subtitle: 'From Code to Growth',
+    description: 'Most agencies only design, while traditional developers write code without considering SEO or conversions. We unite custom software, cloud architecture, AI automation, and digital marketing into one coherent system.'
+  },
+  {
+    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+    title: 'Modern, High-Performance Tech Stack',
+    subtitle: 'Zero Template Bloat',
+    description: 'We avoid bloated page-builders and vulnerable plugins. We build with modern Astro, TypeScript, and clean cloud architectures that load fast, rank higher, and ensure sub-second performance.'
+  },
+  {
+    icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10',
+    title: 'Intelligent Automation & AI',
+    subtitle: 'Operational Efficiency',
+    description: 'We help you eliminate repetitive manual work with custom AI agents, automated CRM pipelines, and intelligent data integrations that free your team to focus on core business operations.'
+  },
+  {
+    icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
+    title: 'Industry-Specific Expertise',
+    subtitle: 'Tailored Solutions',
+    description: 'We understand the specific workflows of clinics & healthcare, real estate, jewellery & retail, and growing MSMEs. Every solution is tailored to your industry standards and target customers.'
+  },
+  {
+    icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z',
+    title: 'Direct, Transparent Collaboration',
+    subtitle: 'No Middlemen',
+    description: 'You communicate directly with the engineers and strategists building your project. We provide rapid feedback, transparent milestone tracking, and direct WhatsApp / video communication.'
+  },
+  {
+    icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
+    title: 'Accessibility & Quality Gates',
+    subtitle: 'Built to Last',
+    description: 'Every project is built to WCAG 2.2 AA accessibility standards, semantic HTML, and strict TypeScript types. You receive 100% clean, fully documented, and client-owned source code.'
+  }
+];
+
+const comparisons = [
+  {
+    feature: 'Architecture & Performance',
+    traditional: 'Heavy generic CMS, bloated plugins, slow loading speeds',
+    skyon: 'Modern Astro & TypeScript, sub-second loading, zero unnecessary dependencies'
+  },
+  {
+    feature: 'Scope of Service',
+    traditional: 'Fragmented vendors: developers blame marketers, marketers blame developers',
+    skyon: 'Unified engineering, AI automation, data analytics, and digital growth under one roof'
+  },
+  {
+    feature: 'Communication & Updates',
+    traditional: 'Layered account managers, slow email ticketing, unclear delivery status',
+    skyon: 'Direct engineering collaboration, milestone tracking, and fast WhatsApp responsiveness'
+  },
+  {
+    feature: 'Code Ownership & Freedom',
+    traditional: 'Vendor lock-in, recurring proprietary fees, obscure source files',
+    skyon: '100% client code ownership, clean documentation, zero platform hostage'
+  },
+  {
+    feature: 'Approach to AI & Tools',
+    traditional: 'Surface-level buzzwords without practical integration',
+    skyon: 'Pragmatic workflows, custom chatbots, and automated CRM pipelines that save real time'
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="why-hero backdrop-04-why border-b border-hairline pt-28 md:pt-36 pb-16 md:pb-24 px-4 md:px-8">
+    <Image
+      src={strategyBackground}
+      alt=""
+      aria-hidden="true"
+      class="why-hero-background"
+      loading="eager"
+    />
+    <div class="relative z-1 max-w-[72rem] mx-auto">
+      <div class="max-w-[48rem]">
+        <span class="inline-block px-3 py-1 bg-brand-primary/10 text-brand-primary text-xs font-bold tracking-widest uppercase rounded mb-4">
+          Why Choose SKYON
+        </span>
+        <h1 class="text-4xl md:text-6xl font-extrabold text-text-primary tracking-tight leading-[1.1] mb-6">
+          Technology engineered for clarity, speed, and real business results.
+        </h1>
+        <p class="text-lg md:text-xl text-text-body leading-relaxed mb-8">
+          We bridge the gap between robust software engineering, intelligent business automation, and measurable digital growth. We build practical digital systems that solve real problems.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/contact" class="inline-flex items-center gap-2 bg-button-fill text-button-text px-6 py-3.5 rounded-lg font-bold hover:bg-button-hover transition-colors shadow-sm">
+            Schedule a Consultation &rarr;
+          </a>
+          <a href="#comparison" class="inline-flex items-center gap-2 bg-surface-1 border border-hairline text-text-primary px-6 py-3.5 rounded-lg font-bold hover:border-brand-primary transition-colors">
+            See How We Compare
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Trust Indicators -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-16 pt-8 border-t border-hairline">
+        <div class="p-4 bg-surface-1/80 backdrop-blur-xs border border-hairline rounded-lg">
+          <div class="text-2xl font-black text-brand-primary mb-1">01</div>
+          <div class="text-sm font-bold text-text-primary">Unified Team</div>
+          <p class="text-xs text-text-muted mt-1">Design, code, automation &amp; SEO in sync.</p>
+        </div>
+        <div class="p-4 bg-surface-1/80 backdrop-blur-xs border border-hairline rounded-lg">
+          <div class="text-2xl font-black text-brand-primary mb-1">100%</div>
+          <div class="text-sm font-bold text-text-primary">Code Ownership</div>
+          <p class="text-xs text-text-muted mt-1">Full source code access with zero lock-in.</p>
+        </div>
+        <div class="p-4 bg-surface-1/80 backdrop-blur-xs border border-hairline rounded-lg">
+          <div class="text-2xl font-black text-brand-primary mb-1">AA</div>
+          <div class="text-sm font-bold text-text-primary">WCAG Standard</div>
+          <p class="text-xs text-text-muted mt-1">Accessible, clean, and search-friendly markup.</p>
+        </div>
+        <div class="p-4 bg-surface-1/80 backdrop-blur-xs border border-hairline rounded-lg">
+          <div class="text-2xl font-black text-brand-primary mb-1">Direct</div>
+          <div class="text-sm font-bold text-text-primary">Communication</div>
+          <p class="text-xs text-text-muted mt-1">Direct access to the engineers building your tech.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 Detailed Differentiators -->
+  <section class="py-16 md:py-24 px-4 md:px-8 border-b border-hairline bg-canvas">
+    <div class="max-w-[72rem] mx-auto">
+      <div class="mb-12 md:mb-16 max-w-[48rem]">
+        <p class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-3">Our Core Advantages</p>
+        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight leading-tight mb-4">
+          What makes partnering with SKYON different.
+        </h2>
+        <p class="text-lg text-text-body">
+          We treat technology as an operational foundation rather than just a cosmetic website. Every decision is made to improve reliability, lead flow, and user experience.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {differentiators.map((diff) => (
+          <div class="p-8 bg-surface-1 border border-hairline rounded-xl hover:border-brand-primary/60 hover:shadow-lg transition-all flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-lg bg-brand-primary/10 border border-brand-primary/20 flex items-center justify-center text-brand-primary mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d={diff.icon} />
+                </svg>
+              </div>
+              <p class="text-xs font-bold text-brand-primary uppercase tracking-wider mb-1">{diff.subtitle}</p>
+              <h3 class="text-xl font-bold text-text-primary mb-3">{diff.title}</h3>
+              <p class="text-sm text-text-body leading-relaxed">{diff.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Matrix -->
+  <section id="comparison" class="py-16 md:py-24 px-4 md:px-8 border-b border-hairline bg-surface-2/60">
+    <div class="max-w-[72rem] mx-auto">
+      <div class="mb-12 md:mb-16 text-center max-w-[44rem] mx-auto">
+        <p class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-3">Side-by-Side Comparison</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary tracking-tight mb-4">
+          Traditional Agency vs. SKYON IT SOLUTIONS
+        </h2>
+        <p class="text-text-body">
+          See why forward-thinking companies choose an integrated engineering and digital growth partner over fragmented alternatives.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse bg-surface-1 border border-hairline rounded-xl overflow-hidden shadow-xs">
+          <thead>
+            <tr class="border-b border-hairline bg-surface-2">
+              <th class="p-5 font-bold text-sm text-text-primary uppercase tracking-wider w-1/4">Evaluation Point</th>
+              <th class="p-5 font-bold text-sm text-text-muted uppercase tracking-wider w-3/8">Traditional Agencies &amp; Freelancers</th>
+              <th class="p-5 font-bold text-sm text-brand-primary uppercase tracking-wider w-3/8 bg-brand-primary/5">SKYON IT SOLUTIONS</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-hairline text-sm">
+            {comparisons.map((item) => (
+              <tr class="hover:bg-canvas transition-colors">
+                <td class="p-5 font-bold text-text-primary align-top">{item.feature}</td>
+                <td class="p-5 text-text-body align-top text-red-900/80 dark:text-red-300">
+                  <div class="flex items-start gap-2">
+                    <span class="text-error font-bold text-base">&times;</span>
+                    <span>{item.traditional}</span>
+                  </div>
+                </td>
+                <td class="p-5 text-text-primary align-top bg-brand-primary/5 font-medium">
+                  <div class="flex items-start gap-2">
+                    <span class="text-brand-primary font-bold text-base">&check;</span>
+                    <span>{item.skyon}</span>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process & Principles Section -->
+  <Process />
+
+  <!-- Action Section -->
+  <CallToAction />
+</Layout>
+
+<style>
+  .why-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .why-hero::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      rgba(244, 248, 252, 0.96) 0%,
+      rgba(234, 242, 249, 0.91) 50%,
+      rgba(244, 248, 252, 0.82) 100%
+    );
+    content: '';
+    pointer-events: none;
+  }
+
+  .why-hero-background {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 70% center;
+    opacity: 0.85;
+    pointer-events: none;
+  }
+
+  @media (max-width: 48rem) {
+    .why-hero-background {
+      object-position: center;
+    }
+  }
+</style>

@@ -1,0 +1,184 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import officeBackground from '../../backgoundim/Futuristic Blue Office with Digital Waves.png';
+
+const title = 'About SKYON IT SOLUTIONS';
+const description = 'Learn about SKYON IT SOLUTIONS, its services, audiences, and practical project approach.';
+
+const solutionGroups = [
+  {
+    title: 'Build',
+    items: ['Website Development', 'Web Applications', 'E-commerce', 'Mobile Apps', 'SaaS', 'UI/UX', 'Custom Software'],
+  },
+  {
+    title: 'Automate',
+    items: ['AI Solutions', 'AI Agents', 'Chatbots', 'Business Automation', 'CRM Automation', 'Workflow Automation', 'API Integrations'],
+  },
+  {
+    title: 'Analyze',
+    items: ['Data Analytics', 'Business Intelligence', 'Dashboards', 'Data Visualization', 'Customer Analytics', 'Sales & Marketing Analytics', 'Reporting Automation'],
+  },
+  {
+    title: 'Grow',
+    items: ['SEO', 'Local SEO', 'Digital Marketing', 'Google & Meta Ads', 'Social Media Management', 'Content Marketing', 'Conversion Optimization'],
+  },
+];
+
+const enterpriseSolutions = [
+  'Cloud Solutions', 'AWS / Azure', 'DevOps', 'Cybersecurity', 'CRM & ERP',
+  'Business Management Systems', 'IT Infrastructure', 'Website Maintenance & Support',
+];
+
+const industries = [
+  'Real Estate', 'Healthcare', 'Education', 'Retail & E-commerce',
+  'Manufacturing', 'Finance', 'Professional Services',
+];
+
+const approach = ['Understand', 'Strategize', 'Build', 'Automate', 'Analyze', 'Grow'];
+
+const founders = [
+  {
+    name: 'Rajveer Singh Shekhawat',
+    role: 'Co-founder & MD',
+    linkedin: 'https://www.linkedin.com/in/rajveer-singh-shekhawat-403a5824a/',
+  },
+  {
+    name: 'Rajat Kumar',
+    role: 'Co-founder',
+    linkedin: 'https://www.linkedin.com/in/rajat-kumarofficial/',
+  },
+];
+---
+
+<Layout title={title} description={description}>
+  <section class="about-story backdrop-03-about px-4 pt-28 pb-16 text-text-inverse md:px-8 md:pt-36 md:pb-20">
+    <Image
+      src={officeBackground}
+      alt=""
+      aria-hidden="true"
+      class="about-story-background"
+      loading="eager"
+    />
+    <div class="about-story-content mx-auto grid max-w-[72rem] gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+      <div>
+        <p class="mb-3 text-sm font-bold uppercase text-brand-primary">About SKYON</p>
+        <h1 class="max-w-[48rem] text-4xl font-extrabold leading-tight text-text-inverse md:text-5xl">Technology should make business clearer, not more complicated.</h1>
+      </div>
+      <div>
+        <p class="text-lg leading-relaxed text-text-inverse-body">SKYON IT SOLUTIONS is a technology and digital growth partner helping businesses build their digital foundation, automate operations, use data intelligently, and grow online.</p>
+        <p class="mt-4 leading-relaxed text-text-inverse-body">We combine technology, digital strategy, automation, analytics, and digital marketing to create practical solutions aligned with business goals.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="backdrop-04-why border-y border-hairline px-4 py-16 md:px-8 md:py-20">
+    <div class="mx-auto max-w-[72rem]">
+      <p class="mb-3 text-sm font-bold uppercase text-brand-primary">What we do</p>
+      <h2 class="max-w-[44rem] text-3xl font-bold leading-tight text-text-primary md:text-4xl">Our Core Solutions</h2>
+      <div class="mt-8 grid grid-cols-1 gap-x-12 gap-y-8 md:grid-cols-2">
+        {solutionGroups.map((group) => (
+          <section class="border-t border-hairline pt-5">
+            <h3 class="text-xl font-extrabold uppercase text-brand-primary">{group.title}</h3>
+            <ul class="mt-3 grid grid-cols-1 gap-x-5 sm:grid-cols-2">
+              {group.items.map((item) => (
+                <li class="border-b border-hairline py-2 text-sm text-text-body">{item}</li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+
+      <div class="mt-12 border-t border-hairline pt-8">
+        <h3 class="text-xl font-bold text-text-primary">Enterprise &amp; IT Solutions</h3>
+        <ul class="mt-4 flex flex-wrap gap-2">
+          {enterpriseSolutions.map((item) => (
+            <li class="border border-hairline bg-surface-1 px-3 py-2 text-sm text-text-body">{item}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="mt-12 border-t border-hairline pt-8">
+        <h3 class="text-xl font-bold text-text-primary">Industry Solutions</h3>
+        <ul class="mt-4 grid grid-cols-2 gap-x-5 sm:grid-cols-3 lg:grid-cols-4">
+          {industries.map((industry) => (
+            <li class="border-b border-hairline py-3 text-sm font-semibold text-text-body">{industry}</li>
+          ))}
+        </ul>
+      </div>
+
+      <a href="/services" class="mt-10 inline-flex min-h-11 items-center gap-2 rounded-md bg-button-fill px-5 py-3 font-bold text-button-text hover:bg-button-hover">Explore IT services <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </section>
+
+  <section class="backdrop-03-about border-b border-hairline px-4 py-16 text-text-inverse md:px-8 md:py-20">
+    <div class="mx-auto max-w-[72rem]">
+      <p class="mb-3 text-sm font-bold uppercase text-accent-inverse">Our Approach</p>
+      <h2 class="max-w-[44rem] text-3xl font-bold leading-tight text-text-inverse md:text-4xl">Understand, then build toward the outcome.</h2>
+      <ol class="mt-8 grid grid-cols-2 gap-x-5 md:grid-cols-3 lg:grid-cols-6">
+        {approach.map((step, index) => (
+          <li class="border-t border-white/25 py-4">
+            <span class="block text-xs font-bold text-accent-inverse">0{index + 1}</span>
+            <span class="mt-2 block font-bold text-text-inverse">{step}</span>
+          </li>
+        ))}
+      </ol>
+      <p class="mt-6 max-w-[54rem] text-base leading-relaxed text-text-inverse-body">We believe technology should not simply look impressive. It should solve real problems, improve efficiency, generate insight, and create measurable business value.</p>
+
+      <div class="mt-10 border-t border-white/25 pt-8">
+        <h3 class="text-lg font-bold text-text-inverse">SKYON IT SOLUTIONS</h3>
+        <p class="mt-1 text-sm text-text-inverse-body">Build. Automate. Analyze. Grow.</p>
+        <ul class="mt-5 flex flex-wrap gap-x-8 gap-y-4">
+          {founders.map((founder) => (
+            <li>
+              <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" class="font-semibold text-text-inverse underline decoration-accent-inverse underline-offset-4 hover:text-accent-inverse">
+                {founder.name} <span class="font-normal text-text-inverse-body">· {founder.role}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .about-story {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background-color: var(--color-surface-inverse);
+  }
+
+  .about-story::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(16, 42, 67, 0.96) 0%, rgba(16, 42, 67, 0.88) 52%, rgba(16, 42, 67, 0.72) 100%);
+    content: '';
+    pointer-events: none;
+  }
+
+  .about-story-background {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 58% center;
+    opacity: 0.92;
+    pointer-events: none;
+  }
+
+  .about-story-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 39.99rem) {
+    .about-story-background {
+      object-position: 68% center;
+    }
+  }
+</style>

@@ -16,7 +16,7 @@ import { SERVICES } from '../../data/services';
   <div class="hero-layout">
     <div class="hero-copy">
       <p class="hero-eyebrow"><span aria-hidden="true"></span> IT services for business</p>
-      <h1>Build your digital presence.<br /><span>Grow online.</span></h1>
+      <h1>Build your digital presence.<br /><span class="hero-highlight">Grow online.</span></h1>
       <p class="hero-description">
         Websites, SEO, digital marketing and social media to help your business build a stronger online presence.
       </p>
@@ -103,9 +103,23 @@ import { SERVICES } from '../../data/services';
     position: absolute;
     z-index: -1;
     inset: 0;
-    background: linear-gradient(90deg, rgba(7, 20, 31, 0.95) 0%, rgba(7, 20, 31, 0.88) 50%, rgba(7, 20, 31, 0.70) 100%);
+    background: var(--overlay-hero);
     content: '';
     pointer-events: none;
+  }
+
+  .hero-highlight {
+    color: var(--color-brand-primary);
+  }
+
+  :global(:root[data-theme="light"]) .hero-highlight,
+  :global(html[data-theme="light"]) .hero-highlight {
+    background-color: var(--color-button-fill);
+    color: var(--color-text-primary);
+    padding: 0.08em 0.3em;
+    border-radius: 4px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
   }
 
   .hero-background {

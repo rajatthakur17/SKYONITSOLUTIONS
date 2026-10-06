@@ -69,6 +69,24 @@ const websiteSchema = {
     <meta name="robots" content={robotsMeta} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="theme-color" content="#07141F" />
+    <script is:inline>
+      (function() {
+        try {
+          var saved = localStorage.getItem('theme');
+          if (saved === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute('content', '#EAF6FF');
+          } else {
+            document.documentElement.removeAttribute('data-theme');
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute('content', '#07141F');
+          }
+        } catch (e) {
+          document.documentElement.removeAttribute('data-theme');
+        }
+      })();
+    </script>
     
     <!-- Primary Meta Tags -->
     <title>{title}</title>
@@ -116,5 +134,50 @@ const websiteSchema = {
     <Footer />
     <WhatsAppFloat />
     <MotionSystem />
+
+    <script>
+      function setupThemeToggles() {
+        function updateAria(isLight: boolean) {
+          const toggles = document.querySelectorAll<HTMLButtonElement>('.theme-toggle-btn');
+          toggles.forEach((btn) => {
+            btn.setAttribute('aria-label', isLight ? 'Switch to dark theme' : 'Switch to light theme');
+          });
+        }
+
+        function setTheme(theme: 'light' | 'dark') {
+          const isLight = theme === 'light';
+          if (isLight) {
+            document.documentElement.setAttribute('data-theme', 'light');
+          } else {
+            document.documentElement.removeAttribute('data-theme');
+          }
+
+          try {
+            localStorage.setItem('theme', theme);
+          } catch (e) {}
+
+          const meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) {
+            meta.setAttribute('content', isLight ? '#EAF6FF' : '#07141F');
+          }
+
+          updateAria(isLight);
+        }
+
+        const isInitiallyLight = document.documentElement.getAttribute('data-theme') === 'light';
+        updateAria(isInitiallyLight);
+
+        const toggles = document.querySelectorAll<HTMLButtonElement>('.theme-toggle-btn');
+        toggles.forEach((btn) => {
+          btn.onclick = () => {
+            const isCurrentlyLight = document.documentElement.getAttribute('data-theme') === 'light';
+            setTheme(isCurrentlyLight ? 'dark' : 'light');
+          };
+        });
+      }
+
+      setupThemeToggles();
+      document.addEventListener('astro:page-load', setupThemeToggles);
+    </script>
   </body>
 </html>

@@ -1,5 +1,6 @@
 ---
 import Logo from '../ui/Logo.astro';
+import ThemeToggle from '../ui/ThemeToggle.astro';
 import { SERVICE_GROUPS } from '../../data/services';
 ---
 
@@ -60,6 +61,7 @@ import { SERVICE_GROUPS } from '../../data/services';
       <a href="/contact" class="text-sm font-semibold bg-button-fill text-button-text px-4 py-2 rounded-full hover:bg-button-hover transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary">
         Start a Project
       </a>
+      <ThemeToggle id="header-theme-toggle" />
     </nav>
 
     <div class="md:hidden flex items-center">

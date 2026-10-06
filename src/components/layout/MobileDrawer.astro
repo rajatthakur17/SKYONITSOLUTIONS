@@ -1,5 +1,6 @@
 ---
 import Logo from '../ui/Logo.astro';
+import ThemeToggle from '../ui/ThemeToggle.astro';
 import { SERVICE_GROUPS } from '../../data/services';
 ---
 
@@ -71,10 +72,11 @@ import { SERVICE_GROUPS } from '../../data/services';
       <a href="/why-choose-us" class="text-2xl font-semibold text-text-primary hover:text-brand-hover transition-colors drawer-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Why Us</a>
       <a href="/insights" class="text-2xl font-semibold text-text-primary hover:text-brand-hover transition-colors drawer-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Insights</a>
       
-      <div class="mt-8 pt-8 border-t border-hairline">
-        <a href="/contact" class="inline-block w-full text-center text-lg font-semibold bg-button-fill text-button-text px-6 py-3 rounded-full hover:bg-button-hover transition-colors drawer-link">
+      <div class="mt-8 pt-8 border-t border-hairline flex items-center gap-3">
+        <a href="/contact" class="flex-1 text-center text-lg font-semibold bg-button-fill text-button-text px-6 py-3 rounded-full hover:bg-button-hover transition-colors drawer-link">
           Start a Project
         </a>
+        <ThemeToggle id="drawer-theme-toggle" />
       </div>
     </nav>
   </div>

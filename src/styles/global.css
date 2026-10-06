@@ -30,6 +30,7 @@
   --color-accent-inverse: #5CC2FF;
 
   --color-whatsapp: #0E7A3E;
+  --color-whatsapp-text: #FFFFFF;
   --color-error: #FF7A7A;
 
   --color-hairline: rgba(255, 255, 255, 0.12);
@@ -39,6 +40,74 @@
   --color-warning: #F59E0B;
 
   --font-sans: 'Manrope Variable', system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+
+  /* Background Image Overlays - Verbatim Dark Values */
+  --overlay-hero: linear-gradient(90deg, rgba(7, 20, 31, 0.95) 0%, rgba(7, 20, 31, 0.88) 50%, rgba(7, 20, 31, 0.70) 100%);
+  --overlay-services: linear-gradient(180deg, rgba(7, 20, 31, 0.95) 0%, rgba(13, 29, 45, 0.88) 50%, rgba(7, 20, 31, 0.95) 100%);
+  --overlay-why: linear-gradient(105deg, rgba(7, 20, 31, 0.95) 0%, rgba(13, 29, 45, 0.90) 55%, rgba(7, 20, 31, 0.82) 100%);
+  --overlay-process: linear-gradient(180deg, rgba(7, 20, 31, 0.95) 0%, rgba(13, 29, 45, 0.88) 50%, rgba(7, 20, 31, 0.95) 100%);
+  --overlay-work: linear-gradient(105deg, rgba(7, 20, 31, 0.95) 0%, rgba(13, 29, 45, 0.90) 55%, rgba(7, 20, 31, 0.82) 100%);
+  --overlay-cta: linear-gradient(90deg, rgba(7, 20, 31, 0.94) 0%, rgba(7, 20, 31, 0.82) 40%, rgba(7, 20, 31, 0.50) 72%, rgba(7, 20, 31, 0.25) 100%);
+  --overlay-cta-mobile: linear-gradient(180deg, rgba(7, 20, 31, 0.94) 0%, rgba(7, 20, 31, 0.88) 60%, rgba(7, 20, 31, 0.96) 100%);
+  --overlay-about: linear-gradient(90deg, rgba(7, 20, 31, 0.96) 0%, rgba(13, 29, 45, 0.88) 52%, rgba(7, 20, 31, 0.72) 100%);
+  --overlay-why-hero: linear-gradient(105deg, rgba(7, 20, 31, 0.96) 0%, rgba(13, 29, 45, 0.91) 50%, rgba(7, 20, 31, 0.82) 100%);
+}
+
+:root[data-theme="light"],
+html[data-theme="light"] {
+  color-scheme: light;
+
+  --color-canvas: #EAF6FF;
+  --color-surface-1: #FFFFFF;
+  --color-surface-2: #D9ECFA;
+
+  --color-text-primary: #0B1F3A;
+  --color-text-body: #334E68;
+  --color-text-muted: #52667A;
+  --color-text-disabled: #7A8CA3;
+
+  /* Inverse Aliases in Light Theme */
+  --color-text-inverse: #0B1F3A;
+  --color-text-inverse-body: #334E68;
+  --color-surface-inverse: #FFFFFF;
+
+  --color-brand-primary: #1769AA;
+  --color-brand-hover: #0F4F86;
+
+  /* Primary Button in Light Theme */
+  --color-button-fill: #B8F04D;
+  --color-button-text: #0A1A05;
+  --color-button-hover: #A4DC3A;
+
+  /* Deprecated Aliases */
+  --color-accent-warm: #1769AA;
+  --color-accent-inverse: #1769AA;
+
+  --color-whatsapp: #0E7A3E;
+  --color-whatsapp-text: #FFFFFF;
+  --color-error: #B42318;
+
+  --color-hairline: rgba(11, 31, 58, 0.14);
+  --color-border-strong: #6B7F97;
+
+  /* Light Status Tokens (Amendment 2) */
+  --color-success: #166534;
+  --color-warning: #92400E;
+
+  /* Overlays in Light Theme (Same angles and stops, light tints) */
+  --overlay-hero: linear-gradient(90deg, rgba(234, 246, 255, 0.95) 0%, rgba(234, 246, 255, 0.88) 50%, rgba(234, 246, 255, 0.70) 100%);
+  --overlay-services: linear-gradient(180deg, rgba(234, 246, 255, 0.95) 0%, rgba(217, 236, 250, 0.88) 50%, rgba(234, 246, 255, 0.95) 100%);
+  --overlay-why: linear-gradient(105deg, rgba(234, 246, 255, 0.95) 0%, rgba(217, 236, 250, 0.90) 55%, rgba(234, 246, 255, 0.82) 100%);
+  --overlay-process: linear-gradient(180deg, rgba(234, 246, 255, 0.95) 0%, rgba(217, 236, 250, 0.88) 50%, rgba(234, 246, 255, 0.95) 100%);
+  --overlay-work: linear-gradient(105deg, rgba(234, 246, 255, 0.95) 0%, rgba(217, 236, 250, 0.90) 55%, rgba(234, 246, 255, 0.82) 100%);
+  --overlay-cta: linear-gradient(90deg, rgba(234, 246, 255, 0.94) 0%, rgba(234, 246, 255, 0.82) 40%, rgba(234, 246, 255, 0.50) 72%, rgba(234, 246, 255, 0.25) 100%);
+  --overlay-cta-mobile: linear-gradient(180deg, rgba(234, 246, 255, 0.94) 0%, rgba(234, 246, 255, 0.88) 60%, rgba(234, 246, 255, 0.96) 100%);
+  --overlay-about: linear-gradient(90deg, rgba(234, 246, 255, 0.96) 0%, rgba(217, 236, 250, 0.88) 52%, rgba(234, 246, 255, 0.72) 100%);
+  --overlay-why-hero: linear-gradient(105deg, rgba(234, 246, 255, 0.96) 0%, rgba(217, 236, 250, 0.91) 50%, rgba(234, 246, 255, 0.82) 100%);
 }
 
 @layer components {
@@ -102,6 +171,67 @@
     background-color: var(--color-surface-1);
     background-image: linear-gradient(180deg, rgba(13, 29, 45, 0.94), rgba(7, 20, 31, 0.99)), repeating-linear-gradient(166deg, transparent 0 68px, rgba(92, 194, 255, 0.04) 69px, transparent 70px 136px);
   }
+}
+
+/* Light Mode Overrides for Backdrop Patterns */
+:root[data-theme="light"] .backdrop-01-hero,
+html[data-theme="light"] .backdrop-01-hero {
+  background-image: linear-gradient(115deg, rgba(234, 246, 255, 0.94), rgba(217, 236, 250, 0.85)), repeating-linear-gradient(158deg, transparent 0 80px, rgba(23, 105, 170, 0.04) 81px, transparent 82px 160px);
+}
+
+:root[data-theme="light"] .backdrop-02-services,
+html[data-theme="light"] .backdrop-02-services {
+  background-image: linear-gradient(112deg, rgba(255, 255, 255, 0.75), transparent 58%), repeating-linear-gradient(164deg, transparent 0 72px, rgba(23, 105, 170, 0.035) 73px, transparent 74px 146px);
+}
+
+:root[data-theme="light"] .backdrop-03-about,
+html[data-theme="light"] .backdrop-03-about {
+  background-image: linear-gradient(112deg, rgba(234, 246, 255, 0.94), rgba(217, 236, 250, 0.84)), repeating-radial-gradient(ellipse at 76% 44%, transparent 0 42px, rgba(23, 105, 170, 0.05) 43px, transparent 44px 84px);
+}
+
+:root[data-theme="light"] .backdrop-04-why,
+html[data-theme="light"] .backdrop-04-why {
+  background-image: linear-gradient(100deg, rgba(217, 236, 250, 0.92), rgba(234, 246, 255, 0.78)), repeating-linear-gradient(90deg, transparent 0 68px, rgba(23, 105, 170, 0.04) 69px, transparent 70px 138px), repeating-linear-gradient(0deg, transparent 0 52px, rgba(23, 105, 170, 0.025) 53px, transparent 54px 106px);
+}
+
+:root[data-theme="light"] .backdrop-05-process,
+html[data-theme="light"] .backdrop-05-process {
+  background-image: radial-gradient(rgba(23, 105, 170, 0.12) 0.8px, transparent 0.8px);
+}
+
+:root[data-theme="light"] .backdrop-06-work,
+html[data-theme="light"] .backdrop-06-work {
+  background-image: linear-gradient(140deg, rgba(23, 105, 170, 0.05), transparent 52%), repeating-linear-gradient(0deg, transparent 0 88px, rgba(11, 31, 58, 0.02) 89px, transparent 90px 178px);
+}
+
+:root[data-theme="light"] .backdrop-07-testimonials,
+html[data-theme="light"] .backdrop-07-testimonials {
+  background-image: linear-gradient(125deg, rgba(217, 236, 250, 0.82), rgba(23, 105, 170, 0.04)), repeating-linear-gradient(145deg, transparent 0 64px, rgba(23, 105, 170, 0.03) 65px, transparent 66px 130px);
+}
+
+:root[data-theme="light"] .backdrop-08-pricing,
+html[data-theme="light"] .backdrop-08-pricing {
+  background-image: linear-gradient(118deg, #EAF6FF, #FFFFFF 72%, #D9ECFA), repeating-linear-gradient(155deg, transparent 0 54px, rgba(11, 31, 58, 0.04) 55px, transparent 56px 110px);
+}
+
+:root[data-theme="light"] .backdrop-09-cta,
+html[data-theme="light"] .backdrop-09-cta {
+  background-image: linear-gradient(112deg, #EAF6FF 0%, #FFFFFF 72%, #D9ECFA 100%), repeating-linear-gradient(158deg, transparent 0 56px, rgba(11, 31, 58, 0.035) 57px, transparent 58px 112px);
+}
+
+:root[data-theme="light"] .backdrop-10-insights,
+html[data-theme="light"] .backdrop-10-insights {
+  background-image: linear-gradient(135deg, rgba(217, 236, 250, 0.72), rgba(234, 246, 255, 0.8)), repeating-linear-gradient(0deg, transparent 0 74px, rgba(11, 31, 58, 0.02) 75px, transparent 76px 150px);
+}
+
+:root[data-theme="light"] .backdrop-11-contact,
+html[data-theme="light"] .backdrop-11-contact {
+  background-image: linear-gradient(135deg, rgba(217, 236, 250, 0.64), rgba(234, 246, 255, 0.88)), repeating-linear-gradient(0deg, transparent 0 52px, rgba(23, 105, 170, 0.03) 53px, transparent 54px 106px), repeating-linear-gradient(90deg, transparent 0 52px, rgba(23, 105, 170, 0.03) 53px, transparent 54px 106px);
+}
+
+:root[data-theme="light"] .backdrop-12-footer,
+html[data-theme="light"] .backdrop-12-footer {
+  background-image: linear-gradient(180deg, rgba(217, 236, 250, 0.94), rgba(234, 246, 255, 0.99)), repeating-linear-gradient(166deg, transparent 0 68px, rgba(23, 105, 170, 0.04) 69px, transparent 70px 136px);
 }
 
 @layer base {

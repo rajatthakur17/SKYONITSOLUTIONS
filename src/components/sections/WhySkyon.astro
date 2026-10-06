@@ -82,12 +82,7 @@ const { isPage = false } = Astro.props;
     position: absolute;
     z-index: -1;
     inset: 0;
-    background: linear-gradient(
-      105deg,
-      rgba(7, 20, 31, 0.95) 0%,
-      rgba(13, 29, 45, 0.90) 55%,
-      rgba(7, 20, 31, 0.82) 100%
-    );
+    background: var(--overlay-why);
     content: '';
     pointer-events: none;
   }

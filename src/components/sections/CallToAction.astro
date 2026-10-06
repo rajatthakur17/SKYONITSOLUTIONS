@@ -62,13 +62,7 @@
     display: flex;
     align-items: center;
     background:
-      linear-gradient(
-        90deg,
-        rgba(7, 20, 31, 0.94) 0%,
-        rgba(7, 20, 31, 0.82) 40%,
-        rgba(7, 20, 31, 0.50) 72%,
-        rgba(7, 20, 31, 0.25) 100%
-      ),
+      var(--overlay-cta),
       url("/brand/futuristic-earthrise.png") center right / cover no-repeat;
     background-color: var(--color-canvas);
     font-family: inherit;
@@ -237,12 +231,7 @@
       min-height: auto;
       padding: 30px 0;
       background:
-        linear-gradient(
-          180deg,
-          rgba(7, 20, 31, 0.94) 0%,
-          rgba(7, 20, 31, 0.88) 60%,
-          rgba(7, 20, 31, 0.96) 100%
-        ),
+        var(--overlay-cta-mobile),
         url("/brand/futuristic-earthrise.png") center right / cover no-repeat;
     }
 

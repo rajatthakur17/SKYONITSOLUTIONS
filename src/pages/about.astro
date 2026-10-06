@@ -52,7 +52,7 @@ const founders = [
 ---
 
 <Layout title={title} description={description}>
-  <section class="about-story backdrop-03-about px-4 pt-28 pb-16 text-text-inverse md:px-8 md:pt-36 md:pb-20">
+  <section class="about-story backdrop-03-about px-4 pt-28 pb-16 text-text-primary md:px-8 md:pt-36 md:pb-20">
     <Image
       src={officeBackground}
       alt=""
@@ -63,11 +63,11 @@ const founders = [
     <div class="about-story-content mx-auto grid max-w-[72rem] gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
       <div>
         <p class="mb-3 text-sm font-bold uppercase text-brand-primary">About SKYON</p>
-        <h1 class="max-w-[48rem] text-4xl font-extrabold leading-tight text-text-inverse md:text-5xl">Technology should make business clearer, not more complicated.</h1>
+        <h1 class="max-w-[48rem] text-4xl font-extrabold leading-tight text-text-primary md:text-5xl">Technology should make business clearer, not more complicated.</h1>
       </div>
       <div>
-        <p class="text-lg leading-relaxed text-text-inverse-body">SKYON IT SOLUTIONS is a technology and digital growth partner helping businesses build their digital foundation, automate operations, use data intelligently, and grow online.</p>
-        <p class="mt-4 leading-relaxed text-text-inverse-body">We combine technology, digital strategy, automation, analytics, and digital marketing to create practical solutions aligned with business goals.</p>
+        <p class="text-lg leading-relaxed text-text-body">SKYON IT SOLUTIONS is a technology and digital growth partner helping businesses build their digital foundation, automate operations, use data intelligently, and grow online.</p>
+        <p class="mt-4 leading-relaxed text-text-body">We combine technology, digital strategy, automation, analytics, and digital marketing to create practical solutions aligned with business goals.</p>
       </div>
     </div>
   </section>
@@ -111,28 +111,28 @@ const founders = [
     </div>
   </section>
 
-  <section class="backdrop-03-about border-b border-hairline px-4 py-16 text-text-inverse md:px-8 md:py-20">
+  <section class="backdrop-03-about border-b border-hairline px-4 py-16 text-text-primary md:px-8 md:py-20">
     <div class="mx-auto max-w-[72rem]">
-      <p class="mb-3 text-sm font-bold uppercase text-accent-inverse">Our Approach</p>
-      <h2 class="max-w-[44rem] text-3xl font-bold leading-tight text-text-inverse md:text-4xl">Understand, then build toward the outcome.</h2>
+      <p class="mb-3 text-sm font-bold uppercase text-brand-primary">Our Approach</p>
+      <h2 class="max-w-[44rem] text-3xl font-bold leading-tight text-text-primary md:text-4xl">Understand, then build toward the outcome.</h2>
       <ol class="mt-8 grid grid-cols-2 gap-x-5 md:grid-cols-3 lg:grid-cols-6">
         {approach.map((step, index) => (
-          <li class="border-t border-white/25 py-4">
-            <span class="block text-xs font-bold text-accent-inverse">0{index + 1}</span>
-            <span class="mt-2 block font-bold text-text-inverse">{step}</span>
+          <li class="border-t border-hairline py-4">
+            <span class="block text-xs font-bold text-brand-primary">0{index + 1}</span>
+            <span class="mt-2 block font-bold text-text-primary">{step}</span>
           </li>
         ))}
       </ol>
-      <p class="mt-6 max-w-[54rem] text-base leading-relaxed text-text-inverse-body">We believe technology should not simply look impressive. It should solve real problems, improve efficiency, generate insight, and create measurable business value.</p>
+      <p class="mt-6 max-w-[54rem] text-base leading-relaxed text-text-body">We believe technology should not simply look impressive. It should solve real problems, improve efficiency, generate insight, and create measurable business value.</p>
 
-      <div class="mt-10 border-t border-white/25 pt-8">
-        <h3 class="text-lg font-bold text-text-inverse">SKYON IT SOLUTIONS</h3>
-        <p class="mt-1 text-sm text-text-inverse-body">Build. Automate. Analyze. Grow.</p>
+      <div class="mt-10 border-t border-hairline pt-8">
+        <h3 class="text-lg font-bold text-text-primary">SKYON IT SOLUTIONS</h3>
+        <p class="mt-1 text-sm text-text-body">Build. Automate. Analyze. Grow.</p>
         <ul class="mt-5 flex flex-wrap gap-x-8 gap-y-4">
           {founders.map((founder) => (
             <li>
-              <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" class="font-semibold text-text-inverse underline decoration-accent-inverse underline-offset-4 hover:text-accent-inverse">
-                {founder.name} <span class="font-normal text-text-inverse-body">· {founder.role}</span>
+              <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" class="font-semibold text-text-primary underline decoration-brand-primary underline-offset-4 hover:text-brand-hover">
+                {founder.name} <span class="font-normal text-text-body">· {founder.role}</span>
               </a>
             </li>
           ))}
@@ -147,14 +147,14 @@ const founders = [
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    background-color: var(--color-surface-inverse);
+    background-color: var(--color-canvas);
   }
 
   .about-story::before {
     position: absolute;
     z-index: -1;
     inset: 0;
-    background: linear-gradient(90deg, rgba(16, 42, 67, 0.96) 0%, rgba(16, 42, 67, 0.88) 52%, rgba(16, 42, 67, 0.72) 100%);
+    background: linear-gradient(90deg, rgba(7, 20, 31, 0.96) 0%, rgba(13, 29, 45, 0.88) 52%, rgba(7, 20, 31, 0.72) 100%);
     content: '';
     pointer-events: none;
   }

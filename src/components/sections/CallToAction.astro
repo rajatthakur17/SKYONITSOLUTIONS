@@ -40,12 +40,12 @@
            href="https://wa.me/917014865202?text=Hi%20SKYON%20IT%20SOLUTIONS%2C%20I%E2%80%99d%20like%20a%20free%20consultation."
            target="_blank"
            rel="noopener noreferrer">
-          Get a Free Consultation <span>→</span>
+          Get a Free Consultation <span>&rarr;</span>
         </a>
 
         <a class="btn btn--secondary"
            href="tel:+917014865202">
-          Schedule a Call <span>→</span>
+          Schedule a Call <span>&rarr;</span>
         </a>
       </div>
 
@@ -54,13 +54,6 @@
 </section>
 
 <style>
-  :root {
-    --blue: #08d8ff;
-    --blue-2: #0b69ff;
-    --white: #f7fbff;
-    --muted: #d3dfef;
-  }
-
   .skyon-cta {
     position: relative;
     isolation: isolate;
@@ -71,14 +64,14 @@
     background:
       linear-gradient(
         90deg,
-        rgba(1, 9, 27, 0.90) 0%,
-        rgba(1, 13, 34, 0.75) 40%,
-        rgba(1, 12, 33, 0.30) 72%,
-        rgba(1, 9, 27, 0.14) 100%
+        rgba(7, 20, 31, 0.94) 0%,
+        rgba(7, 20, 31, 0.82) 40%,
+        rgba(7, 20, 31, 0.50) 72%,
+        rgba(7, 20, 31, 0.25) 100%
       ),
       url("/brand/futuristic-earthrise.png") center right / cover no-repeat;
-    background-color: #020a1a;
-    font-family: Inter, Arial, Helvetica, sans-serif;
+    background-color: var(--color-canvas);
+    font-family: inherit;
   }
 
   .skyon-cta::before {
@@ -86,8 +79,8 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(circle at 76% 43%, rgba(0, 198, 255, 0.08), transparent 28%),
-      radial-gradient(circle at 52% 75%, rgba(0, 89, 255, 0.08), transparent 30%);
+      radial-gradient(circle at 76% 43%, rgba(92, 194, 255, 0.05), transparent 28%),
+      radial-gradient(circle at 52% 75%, rgba(92, 194, 255, 0.05), transparent 30%);
     z-index: 1;
     pointer-events: none;
   }
@@ -102,7 +95,7 @@
 
   .skyon-cta__content {
     width: min(690px, 100%);
-    color: var(--white);
+    color: var(--color-text-primary);
   }
 
   .eyebrow {
@@ -115,14 +108,14 @@
     letter-spacing: 0.28em;
     text-transform: uppercase;
     font-weight: 700;
-    color: #eef6ff;
+    color: var(--color-brand-primary);
   }
 
   .eyebrow::after {
     content: "";
     width: 125px;
     height: 1px;
-    background: linear-gradient(90deg, rgba(65, 210, 255, .95), transparent);
+    background: linear-gradient(90deg, var(--color-brand-primary), transparent);
   }
 
   h1,
@@ -137,13 +130,13 @@
 
   h1 span,
   .cta-heading span {
-    color: var(--blue);
+    color: var(--color-brand-primary);
   }
 
   .lead {
     margin: 28px 0 0;
     max-width: 700px;
-    color: #edf5ff;
+    color: var(--color-text-body);
     font-size: clamp(17px, 2vw, 23px);
     line-height: 1.5;
   }
@@ -159,7 +152,7 @@
     display: flex;
     align-items: center;
     gap: 13px;
-    color: var(--white);
+    color: var(--color-text-primary);
     font-size: 18px;
     line-height: 1.15;
   }
@@ -171,11 +164,12 @@
     place-items: center;
     flex: 0 0 55px;
     border-radius: 10px;
-    border: 1px solid rgba(65, 183, 255, .18);
-    background: rgba(7, 76, 153, .65);
+    border: 1px solid var(--color-hairline);
+    background: var(--color-surface-1);
+    color: var(--color-brand-primary);
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,.05),
-      0 12px 30px rgba(0, 0, 0, .18);
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 12px 30px rgba(0, 0, 0, 0.25);
     font-size: 26px;
   }
 
@@ -203,16 +197,15 @@
   }
 
   .btn--primary {
-    color: #06111e;
-    background: linear-gradient(90deg, #0ae1ff, #0a7eff);
-    box-shadow: 0 18px 38px rgba(0, 112, 255, .32);
+    color: var(--color-button-text);
+    background: var(--color-button-fill);
+    box-shadow: 0 12px 28px rgba(184, 240, 77, 0.25);
   }
 
   .btn--secondary {
-    color: #f5fbff;
-    border-color: rgba(166, 214, 255, .62);
-    background: rgba(4, 22, 50, .32);
-    backdrop-filter: blur(8px);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-surface-1);
   }
 
   .btn:hover {
@@ -220,13 +213,14 @@
   }
 
   .btn--primary:hover {
-    box-shadow: 0 24px 44px rgba(0, 112, 255, .45);
-    background: linear-gradient(90deg, #2ae7ff, #1d89ff);
+    box-shadow: 0 16px 36px rgba(184, 240, 77, 0.35);
+    background: var(--color-button-hover);
   }
 
   .btn--secondary:hover {
-    background: rgba(6, 32, 72, .55);
-    border-color: rgba(200, 230, 255, .9);
+    background: var(--color-surface-2);
+    border-color: var(--color-brand-primary);
+    color: var(--color-brand-hover);
   }
 
   .btn span {
@@ -245,9 +239,9 @@
       background:
         linear-gradient(
           180deg,
-          rgba(1, 9, 27, 0.90) 0%,
-          rgba(1, 13, 34, 0.85) 60%,
-          rgba(1, 9, 27, 0.94) 100%
+          rgba(7, 20, 31, 0.94) 0%,
+          rgba(7, 20, 31, 0.88) 60%,
+          rgba(7, 20, 31, 0.96) 100%
         ),
         url("/brand/futuristic-earthrise.png") center right / cover no-repeat;
     }

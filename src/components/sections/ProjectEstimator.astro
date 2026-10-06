@@ -7,46 +7,46 @@ interface Props {
 const { phone = '917014865202' } = Astro.props;
 ---
 
-<section id="estimator" data-phone={phone} class="estimator-section py-20 md:py-28 px-4 md:px-8 border-b border-white/10 relative overflow-hidden" aria-label="Interactive Project Scope Calculator">
+<section id="estimator" data-phone={phone} class="estimator-section py-20 md:py-28 px-4 md:px-8 border-b border-hairline relative overflow-hidden" aria-label="Interactive Project Scope Calculator">
   <!-- Ambient background glow -->
   <div class="absolute inset-0 pointer-events-none -z-10" aria-hidden="true">
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[380px] bg-[#08d8ff]/10 rounded-full blur-[150px]"></div>
-    <div class="absolute bottom-10 right-10 w-[500px] h-[300px] bg-[#0b69ff]/10 rounded-full blur-[130px]"></div>
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[380px] bg-brand-primary/10 rounded-full blur-[150px]"></div>
+    <div class="absolute bottom-10 right-10 w-[500px] h-[300px] bg-brand-primary/5 rounded-full blur-[130px]"></div>
   </div>
 
   <div class="max-w-[76rem] mx-auto">
     <!-- Header -->
     <div class="text-center max-w-[48rem] mx-auto mb-12 md:mb-16">
-      <span class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/10 backdrop-blur-md text-[#38bdf8] border border-white/20 text-xs font-bold tracking-widest uppercase rounded-full mb-4 shadow-xs">
-        <span class="w-2 h-2 rounded-full bg-[#38bdf8] animate-pulse"></span>
+      <span class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-surface-2/60 backdrop-blur-md text-brand-primary border border-hairline text-xs font-bold tracking-widest uppercase rounded-full mb-4 shadow-xs">
+        <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
         Interactive Scope &amp; Timeline Calculator
       </span>
-      <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-text-primary tracking-tight leading-tight mb-4">
         Configure Your Project in 30 Seconds.
       </h2>
-      <p class="text-base md:text-lg text-slate-300 leading-relaxed">
+      <p class="text-base md:text-lg text-text-body leading-relaxed">
         Select your required service type, project scale, and integrations. Our system dynamically estimates turnaround time, architected tech stack, and generates a pre-formatted WhatsApp brief for an instant quote.
       </p>
 
       <!-- Step Progress Bar -->
-      <div class="mt-8 flex items-center justify-center gap-2 sm:gap-3 text-xs font-semibold text-slate-300">
-        <span class="flex items-center gap-1.5 text-[#38bdf8]">
-          <span class="w-5 h-5 rounded-full bg-[#08d8ff]/20 border border-[#08d8ff] flex items-center justify-center text-[10px] font-bold">1</span>
+      <div class="mt-8 flex items-center justify-center gap-2 sm:gap-3 text-xs font-semibold text-text-body">
+        <span class="flex items-center gap-1.5 text-brand-primary">
+          <span class="w-5 h-5 rounded-full bg-brand-primary/20 border border-brand-primary flex items-center justify-center text-[10px] font-bold">1</span>
           Category
         </span>
-        <span class="w-6 sm:w-8 h-[1px] bg-white/20"></span>
-        <span class="flex items-center gap-1.5 text-[#38bdf8]">
-          <span class="w-5 h-5 rounded-full bg-[#08d8ff]/20 border border-[#08d8ff] flex items-center justify-center text-[10px] font-bold">2</span>
+        <span class="w-6 sm:w-8 h-[1px] bg-hairline"></span>
+        <span class="flex items-center gap-1.5 text-brand-primary">
+          <span class="w-5 h-5 rounded-full bg-brand-primary/20 border border-brand-primary flex items-center justify-center text-[10px] font-bold">2</span>
           Scale
         </span>
-        <span class="w-6 sm:w-8 h-[1px] bg-white/20"></span>
-        <span class="flex items-center gap-1.5 text-[#38bdf8]">
-          <span class="w-5 h-5 rounded-full bg-[#08d8ff]/20 border border-[#08d8ff] flex items-center justify-center text-[10px] font-bold">3</span>
+        <span class="w-6 sm:w-8 h-[1px] bg-hairline"></span>
+        <span class="flex items-center gap-1.5 text-brand-primary">
+          <span class="w-5 h-5 rounded-full bg-brand-primary/20 border border-brand-primary flex items-center justify-center text-[10px] font-bold">3</span>
           Add-ons
         </span>
-        <span class="w-6 sm:w-8 h-[1px] bg-white/20"></span>
-        <span class="flex items-center gap-1 text-emerald-400 font-bold">
-          <span class="w-5 h-5 rounded-full bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-[10px]">✓</span>
+        <span class="w-6 sm:w-8 h-[1px] bg-hairline"></span>
+        <span class="flex items-center gap-1 text-[var(--color-success)] font-bold">
+          <span class="w-5 h-5 rounded-full bg-[var(--color-success)]/20 border border-[var(--color-success)] flex items-center justify-center text-[10px]">✓</span>
           Quote
         </span>
       </div>
@@ -59,13 +59,13 @@ const { phone = '917014865202' } = Astro.props;
       <div class="lg:col-span-7 flex flex-col gap-6">
         
         <!-- Step 1: Service Type -->
-        <div class="estimator-group p-6 rounded-2xl bg-[#061530]/80 border border-white/15 backdrop-blur-md shadow-lg">
+        <div class="estimator-group p-6 rounded-2xl bg-surface-1/90 border border-hairline backdrop-blur-md shadow-lg">
           <div class="flex items-center justify-between mb-4">
-            <label class="text-xs font-bold uppercase tracking-wider text-[#38bdf8] flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-[#08d8ff]"></span>
+            <label class="text-xs font-bold uppercase tracking-wider text-brand-primary flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
               Step 1 • Select Service Category
             </label>
-            <span class="text-[11px] text-slate-400">Pick engineering focus</span>
+            <span class="text-[11px] text-text-muted">Pick engineering focus</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5" id="service-options">
             <button type="button" class="estimator-option is-active" aria-pressed="true"
@@ -124,13 +124,13 @@ const { phone = '917014865202' } = Astro.props;
         </div>
 
         <!-- Step 2: Scale & Stage -->
-        <div class="estimator-group p-6 rounded-2xl bg-[#061530]/80 border border-white/15 backdrop-blur-md shadow-lg">
+        <div class="estimator-group p-6 rounded-2xl bg-surface-1/90 border border-hairline backdrop-blur-md shadow-lg">
           <div class="flex items-center justify-between mb-4">
-            <label class="text-xs font-bold uppercase tracking-wider text-[#38bdf8] flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-[#08d8ff]"></span>
+            <label class="text-xs font-bold uppercase tracking-wider text-brand-primary flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
               Step 2 • Project Scale &amp; Tier
             </label>
-            <span class="text-[11px] text-slate-400">Architecture depth</span>
+            <span class="text-[11px] text-text-muted">Architecture depth</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5" id="scale-options">
             <button type="button" class="estimator-option is-active" aria-pressed="true"
@@ -138,7 +138,7 @@ const { phone = '917014865202' } = Astro.props;
                     data-tier="Essential Launch Tier"
                     data-tag="Quick ROI">
               <div class="flex items-center justify-between w-full mb-1.5">
-                <span class="text-[11px] text-emerald-400 font-bold bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/40">Lean MVP</span>
+                <span class="text-[11px] text-brand-primary font-bold bg-surface-2 px-2 py-0.5 rounded border border-brand-primary/40">Lean MVP</span>
                 <span class="radio-indicator"></span>
               </div>
               <span class="estimator-option-label font-bold">Starter MVP</span>
@@ -149,7 +149,7 @@ const { phone = '917014865202' } = Astro.props;
                     data-tier="Business Scaling Tier"
                     data-tag="Most Popular">
               <div class="flex items-center justify-between w-full mb-1.5">
-                <span class="text-[11px] text-cyan-300 font-bold bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-500/40">Popular</span>
+                <span class="text-[11px] text-brand-primary font-bold bg-surface-2 px-2 py-0.5 rounded border border-brand-primary/40">Popular</span>
                 <span class="radio-indicator"></span>
               </div>
               <span class="estimator-option-label font-bold">Growth Scale</span>
@@ -160,7 +160,7 @@ const { phone = '917014865202' } = Astro.props;
                     data-tier="Enterprise Custom Engineering Tier"
                     data-tag="High SLA">
               <div class="flex items-center justify-between w-full mb-1.5">
-                <span class="text-[11px] text-purple-300 font-bold bg-purple-950/60 px-2 py-0.5 rounded border border-purple-500/40">Full SLA</span>
+                <span class="text-[11px] text-brand-primary font-bold bg-surface-2 px-2 py-0.5 rounded border border-brand-primary/40">Full SLA</span>
                 <span class="radio-indicator"></span>
               </div>
               <span class="estimator-option-label font-bold">Enterprise</span>
@@ -170,13 +170,13 @@ const { phone = '917014865202' } = Astro.props;
         </div>
 
         <!-- Step 3: Add-ons & Integrations -->
-        <div class="estimator-group p-6 rounded-2xl bg-[#061530]/80 border border-white/15 backdrop-blur-md shadow-lg">
+        <div class="estimator-group p-6 rounded-2xl bg-surface-1/90 border border-hairline backdrop-blur-md shadow-lg">
           <div class="flex items-center justify-between mb-4">
-            <label class="text-xs font-bold uppercase tracking-wider text-[#38bdf8] flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-[#08d8ff]"></span>
+            <label class="text-xs font-bold uppercase tracking-wider text-brand-primary flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
               Step 3 • Integrations &amp; Accelerators
             </label>
-            <span class="text-[11px] text-slate-400">Toggle desired features</span>
+            <span class="text-[11px] text-text-muted">Toggle desired features</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="addon-options">
             <button type="button" class="estimator-pill" aria-pressed="false" data-addon="WhatsApp Lead CRM Integration">
@@ -209,38 +209,38 @@ const { phone = '917014865202' } = Astro.props;
             </button>
             <button type="button" class="estimator-pill is-fasttrack" aria-pressed="false" data-addon="⚡ Priority Fast-Track Launch">
               <span class="estimator-pill-checkbox"></span>
-              <span class="estimator-pill-text text-amber-300 font-bold">⚡ Priority Fast-Track Launch</span>
+              <span class="estimator-pill-text text-brand-primary font-bold">⚡ Priority Fast-Track Launch</span>
             </button>
           </div>
         </div>
 
         <!-- Optional Personalization Field -->
-        <div class="p-4 rounded-xl bg-white/[0.04] border border-white/10 flex flex-col sm:flex-row items-center gap-3">
-          <label for="client-name-input" class="text-xs font-semibold text-slate-300 whitespace-nowrap">
-            Your Name / Company <span class="text-slate-500 font-normal">(Optional)</span>:
+        <div class="p-4 rounded-xl bg-surface-1/60 border border-hairline flex flex-col sm:flex-row items-center gap-3">
+          <label for="client-name-input" class="text-xs font-semibold text-text-body whitespace-nowrap">
+            Your Name / Company <span class="text-text-muted font-normal">(Optional)</span>:
           </label>
           <input type="text"
                  id="client-name-input"
                  placeholder="e.g. Rahul Sharma / Acme Corp"
-                 class="w-full px-3.5 py-2 text-xs rounded-lg bg-black/50 border border-white/20 text-white placeholder-slate-500 focus:outline-none focus:border-[#08d8ff] focus:ring-2 focus:ring-[#08d8ff]/40 transition-all" />
+                 class="w-full px-3.5 py-2 text-xs rounded-lg bg-surface-2 border border-border-strong text-text-primary placeholder:text-text-disabled focus:outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/40 transition-all" />
         </div>
 
       </div>
 
       <!-- Right Column: Live Proposal Card (5 cols) -->
       <div class="lg:col-span-5 sticky top-24">
-        <div class="p-6 md:p-8 rounded-2xl bg-gradient-to-b from-[#081c42]/95 to-[#020a1a]/95 border-2 border-[#38bdf8]/40 shadow-2xl backdrop-blur-xl relative overflow-hidden">
+        <div class="p-6 md:p-8 rounded-2xl bg-surface-1 border border-border-strong shadow-2xl backdrop-blur-xl relative overflow-hidden">
           
           <!-- Glowing decorative accent -->
-          <div class="absolute -top-12 -right-12 w-44 h-44 bg-[#08d8ff]/25 rounded-full blur-2xl pointer-events-none"></div>
+          <div class="absolute -top-12 -right-12 w-44 h-44 bg-brand-primary/10 rounded-full blur-2xl pointer-events-none"></div>
 
           <!-- Card Header -->
-          <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+          <div class="flex items-center justify-between pb-4 border-b border-hairline mb-6">
             <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span class="text-xs font-bold uppercase tracking-widest text-slate-200">Live Proposal Summary</span>
+              <span class="w-3 h-3 rounded-full bg-[var(--color-success)] animate-pulse"></span>
+              <span class="text-xs font-bold uppercase tracking-widest text-text-primary">Live Proposal Summary</span>
             </div>
-            <span id="fasttrack-badge" class="hidden text-[10px] font-bold text-amber-300 bg-amber-950/70 border border-amber-500/40 px-2 py-0.5 rounded-full">
+            <span id="fasttrack-badge" class="hidden text-[10px] font-bold text-brand-primary bg-surface-2 border border-brand-primary/40 px-2 py-0.5 rounded-full">
               ⚡ Fast-Track Active
             </span>
           </div>
@@ -248,53 +248,53 @@ const { phone = '917014865202' } = Astro.props;
           <!-- Configuration Details -->
           <div class="space-y-4 mb-6">
             <div>
-              <span class="text-xs text-slate-400 uppercase font-semibold">Configured Solution</span>
-              <p id="summary-service" class="text-lg font-extrabold text-white mt-0.5">Web Application / SaaS</p>
+              <span class="text-xs text-text-muted uppercase font-semibold">Configured Solution</span>
+              <p id="summary-service" class="text-lg font-extrabold text-text-primary mt-0.5">Web Application / SaaS</p>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <span class="text-xs text-slate-400 uppercase font-semibold">Project Tier</span>
-                <p id="summary-scale" class="text-sm font-bold text-slate-200 mt-0.5">Starter MVP</p>
-                <span id="summary-tier" class="text-[11px] text-[#38bdf8] block">Essential Launch Tier</span>
+                <span class="text-xs text-text-muted uppercase font-semibold">Project Tier</span>
+                <p id="summary-scale" class="text-sm font-bold text-text-primary mt-0.5">Starter MVP</p>
+                <span id="summary-tier" class="text-[11px] text-brand-primary block">Essential Launch Tier</span>
               </div>
               <div>
-                <span class="text-xs text-slate-400 uppercase font-semibold">Est. Turnaround</span>
-                <p id="summary-timeline" class="text-xl font-black text-emerald-400 mt-0.5">2 - 3 Weeks</p>
-                <span class="text-[11px] text-slate-400 block">Milestone Delivery</span>
+                <span class="text-xs text-text-muted uppercase font-semibold">Est. Turnaround</span>
+                <p id="summary-timeline" class="text-xl font-black text-brand-primary mt-0.5">2 - 3 Weeks</p>
+                <span class="text-[11px] text-text-muted block">Milestone Delivery</span>
               </div>
             </div>
 
             <div>
-              <span class="text-xs text-slate-400 uppercase font-semibold">Recommended Architecture</span>
+              <span class="text-xs text-text-muted uppercase font-semibold">Recommended Architecture</span>
               <div id="summary-stack-pills" class="flex flex-wrap gap-1.5 mt-1.5">
-                <span class="text-[11px] font-mono text-[#38bdf8] bg-black/60 px-2.5 py-1 rounded border border-[#38bdf8]/30">Astro</span>
-                <span class="text-[11px] font-mono text-[#38bdf8] bg-black/60 px-2.5 py-1 rounded border border-[#38bdf8]/30">React Islands</span>
-                <span class="text-[11px] font-mono text-[#38bdf8] bg-black/60 px-2.5 py-1 rounded border border-[#38bdf8]/30">TypeScript</span>
-                <span class="text-[11px] font-mono text-[#38bdf8] bg-black/60 px-2.5 py-1 rounded border border-[#38bdf8]/30">Tailwind v4</span>
+                <span class="text-[11px] font-mono text-brand-primary bg-surface-2 px-2.5 py-1 rounded border border-hairline">Astro</span>
+                <span class="text-[11px] font-mono text-brand-primary bg-surface-2 px-2.5 py-1 rounded border border-hairline">React Islands</span>
+                <span class="text-[11px] font-mono text-brand-primary bg-surface-2 px-2.5 py-1 rounded border border-hairline">TypeScript</span>
+                <span class="text-[11px] font-mono text-brand-primary bg-surface-2 px-2.5 py-1 rounded border border-hairline">Tailwind v4</span>
               </div>
             </div>
 
             <div>
               <div class="flex items-center justify-between">
-                <span class="text-xs text-slate-400 uppercase font-semibold">Active Add-ons</span>
-                <span class="text-xs font-bold text-slate-300"><span id="addon-count">1</span> Selected</span>
+                <span class="text-xs text-text-muted uppercase font-semibold">Active Add-ons</span>
+                <span class="text-xs font-bold text-text-body"><span id="addon-count">1</span> Selected</span>
               </div>
-              <ul id="summary-addons" class="text-xs text-slate-300 mt-1.5 space-y-1">
-                <li class="flex items-center gap-1.5 text-slate-200">• Complete Technical SEO &amp; Schema</li>
+              <ul id="summary-addons" class="text-xs text-text-body mt-1.5 space-y-1">
+                <li class="flex items-center gap-1.5 text-text-primary">• Complete Technical SEO &amp; Schema</li>
               </ul>
             </div>
           </div>
 
           <!-- Included Value Guarantees -->
-          <div class="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 mb-6 text-xs text-slate-300 space-y-1.5">
-            <div class="flex items-center gap-2 text-emerald-400 font-semibold">
+          <div class="p-3.5 rounded-xl bg-surface-2/60 border border-hairline mb-6 text-xs text-text-body space-y-1.5">
+            <div class="flex items-center gap-2 text-[var(--color-success)] font-semibold">
               <span>✓</span> 100% Full Source Code &amp; Intellectual Property Ownership
             </div>
-            <div class="flex items-center gap-2 text-emerald-400 font-semibold">
+            <div class="flex items-center gap-2 text-[var(--color-success)] font-semibold">
               <span>✓</span> Sub-second Mobile Performance Standard Guarantee
             </div>
-            <div class="flex items-center gap-2 text-emerald-400 font-semibold">
+            <div class="flex items-center gap-2 text-[var(--color-success)] font-semibold">
               <span>✓</span> Direct WhatsApp Access with Technical Project Lead
             </div>
           </div>
@@ -304,7 +304,7 @@ const { phone = '917014865202' } = Astro.props;
              href={`https://wa.me/${phone}?text=Hi%20SKYON%20IT%20SOLUTIONS%2C%20I%20configured%20a%20project%20scope.`}
              target="_blank"
              rel="noopener noreferrer"
-             class="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white font-extrabold text-sm shadow-xl shadow-emerald-950/60 hover:shadow-emerald-900/90 hover:-translate-y-0.5 transition-all text-center">
+             class="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-extrabold text-sm shadow-xl shadow-black/40 hover:-translate-y-0.5 transition-all text-center">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" class="flex-shrink-0">
               <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2Z" />
             </svg>
@@ -316,18 +316,18 @@ const { phone = '917014865202' } = Astro.props;
           <div class="grid grid-cols-2 gap-2 mt-3">
             <button type="button"
                     id="copy-brief-btn"
-                    class="py-2.5 px-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/15 text-slate-200 hover:text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer">
+                    class="py-2.5 px-3 rounded-lg bg-surface-2 hover:bg-surface-2/80 border border-hairline text-text-primary text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer">
               <span id="copy-icon">📋</span>
               <span id="copy-text">Copy Scope</span>
             </button>
             <a href="/contact"
-               class="py-2.5 px-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/15 text-slate-200 hover:text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
+               class="py-2.5 px-3 rounded-lg bg-surface-2 hover:bg-surface-2/80 border border-hairline text-text-primary text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
               <span>📞</span>
               <span>Formal RFP / Email</span>
             </a>
           </div>
 
-          <p class="text-[11px] text-center text-slate-400 mt-4">
+          <p class="text-[11px] text-center text-text-muted mt-4">
             Zero commitment • Direct WhatsApp consultation • Strict NDA confidentiality
           </p>
         </div>
@@ -346,9 +346,9 @@ const { phone = '917014865202' } = Astro.props;
     align-items: flex-start;
     padding: 16px 18px;
     border-radius: 14px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1.5px solid rgba(255, 255, 255, 0.12);
-    color: #f1f5f9;
+    background: var(--color-surface-2);
+    border: 1.5px solid var(--color-hairline);
+    color: var(--color-text-primary);
     cursor: pointer;
     text-align: left;
     user-select: none;
@@ -356,10 +356,10 @@ const { phone = '917014865202' } = Astro.props;
   }
 
   .estimator-option:hover {
-    background: rgba(8, 216, 255, 0.09);
-    border-color: rgba(8, 216, 255, 0.5);
+    background: rgba(92, 194, 255, 0.08);
+    border-color: var(--color-brand-primary);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(8, 216, 255, 0.12);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   }
 
   .estimator-option:active {
@@ -368,14 +368,14 @@ const { phone = '917014865202' } = Astro.props;
 
   .estimator-option:focus-visible {
     outline: none;
-    border-color: #08d8ff;
-    box-shadow: 0 0 0 3px rgba(8, 216, 255, 0.35);
+    border-color: var(--color-brand-primary);
+    box-shadow: 0 0 0 3px rgba(92, 194, 255, 0.35);
   }
 
   .estimator-option.is-active {
-    background: linear-gradient(145deg, rgba(8, 216, 255, 0.18) 0%, rgba(11, 105, 255, 0.10) 100%);
-    border-color: #08d8ff;
-    box-shadow: 0 0 24px rgba(8, 216, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: rgba(92, 194, 255, 0.12);
+    border-color: var(--color-brand-primary);
+    box-shadow: 0 0 24px rgba(92, 194, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
   /* Radio Indicator inside Option */
@@ -383,7 +383,7 @@ const { phone = '917014865202' } = Astro.props;
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    border: 1.5px solid var(--color-hairline);
     display: grid;
     place-items: center;
     pointer-events: none;
@@ -391,9 +391,9 @@ const { phone = '917014865202' } = Astro.props;
   }
 
   .estimator-option.is-active .radio-indicator {
-    border-color: #08d8ff;
-    background: rgba(8, 216, 255, 0.25);
-    box-shadow: 0 0 10px rgba(8, 216, 255, 0.6);
+    border-color: var(--color-brand-primary);
+    background: rgba(92, 194, 255, 0.25);
+    box-shadow: 0 0 10px rgba(92, 194, 255, 0.4);
   }
 
   .estimator-option.is-active .radio-indicator::after {
@@ -401,8 +401,8 @@ const { phone = '917014865202' } = Astro.props;
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #08d8ff;
-    box-shadow: 0 0 8px #08d8ff;
+    background: var(--color-brand-primary);
+    box-shadow: 0 0 8px var(--color-brand-primary);
   }
 
   .estimator-option-icon {
@@ -414,14 +414,14 @@ const { phone = '917014865202' } = Astro.props;
   .estimator-option-label {
     font-size: 14px;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--color-text-primary);
     margin-top: 4px;
     pointer-events: none;
   }
 
   .estimator-option-desc {
     font-size: 11px;
-    color: #94a3b8;
+    color: var(--color-text-muted);
     margin-top: 3px;
     line-height: 1.35;
     pointer-events: none;
@@ -434,9 +434,9 @@ const { phone = '917014865202' } = Astro.props;
     gap: 12px;
     padding: 12px 14px;
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1.5px solid rgba(255, 255, 255, 0.12);
-    color: #cbd5e1;
+    background: var(--color-surface-2);
+    border: 1.5px solid var(--color-hairline);
+    color: var(--color-text-body);
     font-size: 12px;
     font-weight: 600;
     cursor: pointer;
@@ -446,8 +446,8 @@ const { phone = '917014865202' } = Astro.props;
   }
 
   .estimator-pill:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(92, 194, 255, 0.08);
+    border-color: var(--color-brand-primary);
     transform: translateY(-1px);
   }
 
@@ -457,28 +457,28 @@ const { phone = '917014865202' } = Astro.props;
 
   .estimator-pill:focus-visible {
     outline: none;
-    border-color: #22c55e;
+    border-color: var(--color-success);
     box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3);
   }
 
   .estimator-pill.is-active {
     background: rgba(34, 197, 94, 0.14);
-    border-color: #22c55e;
-    color: #ffffff;
+    border-color: var(--color-success);
+    color: var(--color-text-primary);
     box-shadow: 0 0 18px rgba(34, 197, 94, 0.2);
   }
 
   .estimator-pill.is-fasttrack.is-active {
-    background: rgba(245, 158, 11, 0.16);
-    border-color: #f59e0b;
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.28);
+    background: rgba(92, 194, 255, 0.16);
+    border-color: var(--color-brand-primary);
+    box-shadow: 0 0 20px rgba(92, 194, 255, 0.28);
   }
 
   .estimator-pill-checkbox {
     width: 18px;
     height: 18px;
     border-radius: 5px;
-    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    border: 1.5px solid var(--color-hairline);
     flex-shrink: 0;
     display: grid;
     place-items: center;
@@ -487,22 +487,22 @@ const { phone = '917014865202' } = Astro.props;
   }
 
   .estimator-pill.is-active .estimator-pill-checkbox {
-    background: #22c55e;
-    border-color: #22c55e;
-    box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+    background: var(--color-success);
+    border-color: var(--color-success);
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
   }
 
   .estimator-pill.is-fasttrack.is-active .estimator-pill-checkbox {
-    background: #f59e0b;
-    border-color: #f59e0b;
-    box-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
+    background: var(--color-brand-primary);
+    border-color: var(--color-brand-primary);
+    box-shadow: 0 0 12px rgba(92, 194, 255, 0.6);
   }
 
   .estimator-pill.is-active .estimator-pill-checkbox::after {
     content: "✓";
     font-size: 11px;
     font-weight: 900;
-    color: #020a1a;
+    color: var(--color-canvas);
   }
 
   .estimator-pill-text {
@@ -609,17 +609,17 @@ const { phone = '917014865202' } = Astro.props;
       if (summaryStackPills) {
         const stackParts = selectedStack.split('+').map(s => s.trim());
         summaryStackPills.innerHTML = stackParts
-          .map(p => `<span class="text-[11px] font-mono text-[#38bdf8] bg-black/60 px-2.5 py-1 rounded border border-[#38bdf8]/30">${p}</span>`)
+          .map(p => `<span class="text-[11px] font-mono text-brand-primary bg-surface-2 px-2.5 py-1 rounded border border-hairline">${p}</span>`)
           .join('');
       }
 
       // Render addons
       if (summaryAddons) {
         if (selectedAddons.length === 0) {
-          summaryAddons.innerHTML = '<li class="text-slate-500 italic">None selected</li>';
+          summaryAddons.innerHTML = '<li class="text-text-muted italic">None selected</li>';
         } else {
           summaryAddons.innerHTML = selectedAddons
-            .map((a) => `<li class="flex items-center gap-1.5 text-slate-200">• ${a}</li>`)
+            .map((a) => `<li class="flex items-center gap-1.5 text-text-primary">• ${a}</li>`)
             .join('');
         }
       }
@@ -698,11 +698,11 @@ const { phone = '917014865202' } = Astro.props;
           await navigator.clipboard.writeText(brief);
           copyText.textContent = "Copied Scope!";
           copyIcon.textContent = "✓";
-          copyBriefBtn.classList.add('text-emerald-400');
+          copyBriefBtn.classList.add('text-brand-primary');
           setTimeout(() => {
             copyText.textContent = "Copy Scope";
             copyIcon.textContent = "📋";
-            copyBriefBtn.classList.remove('text-emerald-400');
+            copyBriefBtn.classList.remove('text-brand-primary');
           }, 2000);
         } catch (err) {
           console.error("Clipboard write failed", err);

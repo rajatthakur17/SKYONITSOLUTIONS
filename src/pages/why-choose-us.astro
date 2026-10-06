@@ -191,7 +191,7 @@ const comparisons = [
             {comparisons.map((item) => (
               <tr class="hover:bg-canvas transition-colors">
                 <td class="p-5 font-bold text-text-primary align-top">{item.feature}</td>
-                <td class="p-5 text-text-body align-top text-red-900/80 dark:text-red-300">
+                <td class="p-5 text-text-muted align-top">
                   <div class="flex items-start gap-2">
                     <span class="text-error font-bold text-base">&times;</span>
                     <span>{item.traditional}</span>
@@ -231,9 +231,9 @@ const comparisons = [
     inset: 0;
     background: linear-gradient(
       105deg,
-      rgba(244, 248, 252, 0.96) 0%,
-      rgba(234, 242, 249, 0.91) 50%,
-      rgba(244, 248, 252, 0.82) 100%
+      rgba(7, 20, 31, 0.96) 0%,
+      rgba(13, 29, 45, 0.91) 50%,
+      rgba(7, 20, 31, 0.82) 100%
     );
     content: '';
     pointer-events: none;

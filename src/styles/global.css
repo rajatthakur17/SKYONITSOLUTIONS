@@ -51,7 +51,7 @@
   --overlay-why: linear-gradient(105deg, rgba(7, 20, 31, 0.95) 0%, rgba(13, 29, 45, 0.90) 55%, rgba(7, 20, 31, 0.82) 100%);
   --overlay-process: linear-gradient(180deg, rgba(7, 20, 31, 0.95) 0%, rgba(13, 29, 45, 0.88) 50%, rgba(7, 20, 31, 0.95) 100%);
   --overlay-work: linear-gradient(105deg, rgba(7, 20, 31, 0.95) 0%, rgba(13, 29, 45, 0.90) 55%, rgba(7, 20, 31, 0.82) 100%);
-  --overlay-cta: linear-gradient(90deg, rgba(7, 20, 31, 0.94) 0%, rgba(7, 20, 31, 0.82) 40%, rgba(7, 20, 31, 0.50) 72%, rgba(7, 20, 31, 0.25) 100%);
+  --overlay-cta: linear-gradient(90deg, rgba(7, 20, 31, 0.92) 0%, rgba(7, 20, 31, 0.80) 40%, rgba(7, 20, 31, 0.45) 72%, rgba(7, 20, 31, 0.20) 100%);
   --overlay-cta-mobile: linear-gradient(180deg, rgba(7, 20, 31, 0.94) 0%, rgba(7, 20, 31, 0.88) 60%, rgba(7, 20, 31, 0.96) 100%);
   --overlay-about: linear-gradient(90deg, rgba(7, 20, 31, 0.96) 0%, rgba(13, 29, 45, 0.88) 52%, rgba(7, 20, 31, 0.72) 100%);
   --overlay-why-hero: linear-gradient(105deg, rgba(7, 20, 31, 0.96) 0%, rgba(13, 29, 45, 0.91) 50%, rgba(7, 20, 31, 0.82) 100%);
@@ -104,7 +104,7 @@ html[data-theme="light"] {
   --overlay-why: linear-gradient(105deg, rgba(234, 246, 255, 0.95) 0%, rgba(217, 236, 250, 0.90) 55%, rgba(234, 246, 255, 0.82) 100%);
   --overlay-process: linear-gradient(180deg, rgba(234, 246, 255, 0.95) 0%, rgba(217, 236, 250, 0.88) 50%, rgba(234, 246, 255, 0.95) 100%);
   --overlay-work: linear-gradient(105deg, rgba(234, 246, 255, 0.95) 0%, rgba(217, 236, 250, 0.90) 55%, rgba(234, 246, 255, 0.82) 100%);
-  --overlay-cta: linear-gradient(90deg, rgba(234, 246, 255, 0.94) 0%, rgba(234, 246, 255, 0.82) 40%, rgba(234, 246, 255, 0.50) 72%, rgba(234, 246, 255, 0.25) 100%);
+  --overlay-cta: linear-gradient(90deg, rgba(234, 246, 255, 0.94) 0%, rgba(234, 246, 255, 0.85) 45%, rgba(234, 246, 255, 0.78) 72%, rgba(234, 246, 255, 0.40) 86%, rgba(234, 246, 255, 0.20) 100%);
   --overlay-cta-mobile: linear-gradient(180deg, rgba(234, 246, 255, 0.94) 0%, rgba(234, 246, 255, 0.88) 60%, rgba(234, 246, 255, 0.96) 100%);
   --overlay-about: linear-gradient(90deg, rgba(234, 246, 255, 0.96) 0%, rgba(217, 236, 250, 0.88) 52%, rgba(234, 246, 255, 0.72) 100%);
   --overlay-why-hero: linear-gradient(105deg, rgba(234, 246, 255, 0.96) 0%, rgba(217, 236, 250, 0.91) 50%, rgba(234, 246, 255, 0.82) 100%);

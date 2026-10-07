@@ -37,8 +37,7 @@
 
 > [!IMPORTANT]
 > **Lime Rules:**
-> - In **Dark Theme**: Lime (`#B8F04D`) is strictly and exclusively used for the primary CTA button fill (with `#0A1A05` text). It is never used for headings, body, icons, badges, borders, or glows.
-> - In **Light Theme**: Lime is allowed exclusively on the primary CTA button fill AND the headline accent highlight in the Hero (`<span class="hero-highlight">Grow online.</span>`, `#0B1F3A` on `#B8F04D`, 12.28:1 AAA). Nowhere else.
+> Lime (`#B8F04D`) is strictly and exclusively used for primary button fills (including the "Chat with Us" floating pill) with `#0A1A05` text, in both themes. It is never used for headings, body, icons, badges, borders, text highlights, or glows.
 
 ---
 
@@ -63,7 +62,6 @@ All contrast ratios are computed with the WCAG 2.1 relative-luminance formula $(
 | `button-text` on `button-fill` | `#0A1A05` on `#B8F04D` | — | — | **13.42:1** | AAA Pass |
 | `button-text` on `button-hover` | `#0A1A05` on `#A4DC3A` | — | — | **11.07:1** | AAA Pass |
 | `whatsapp-text` on `whatsapp` | `#FFFFFF` on `#0E7A3E` | — | — | **5.42:1** | AA Pass |
-| Hero Headline Lime Highlight | `#0B1F3A` on `#B8F04D` | — | — | **12.28:1** | AAA Pass |
 
 ---
 

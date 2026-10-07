@@ -6,70 +6,127 @@ import { SERVICES } from '../../data/services';
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="site-footer backdrop-12-footer border-t border-hairline pt-16 pb-8 relative z-20 isolate" style="isolation: isolate;">
+<footer class="site-footer backdrop-12-footer border-t border-hairline pt-12 md:pt-16 relative z-20 isolate" style="isolation: isolate;">
   <div class="max-w-[72rem] mx-auto px-4 md:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
-      <div class="md:col-span-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-8 md:mb-10">
+      <!-- Column 1: Brand & Social -->
+      <div class="md:col-span-1 lg:col-span-3">
         <Logo variant="footer" />
-        <p class="mt-6 text-text-body max-w-[24rem]">
-          {SITE.description}
+        <p class="mt-4 text-text-body text-sm leading-relaxed max-w-[20rem]">
+          IT services for Indian and international organizations.
         </p>
+        <div class="mt-6 flex items-center gap-3" aria-label="Social media profiles">
+          {SITE.linkedinUrl && (
+            <a
+              href={SITE.linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-11 h-11 min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-lg border border-hairline text-text-body hover:text-brand-hover hover:border-brand-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
+              aria-label="SKYON IT SOLUTIONS on LinkedIn"
+            >
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.64a1.65 1.65 0 0 0-1.66 1.66 1.66 1.66 0 0 0 1.66 1.66 1.66 1.66 0 0 0 1.66-1.66 1.65 1.65 0 0 0-1.66-1.66Z" />
+              </svg>
+            </a>
+          )}
+          {SITE.instagramUrl && (
+            <a
+              href={SITE.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-11 h-11 min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-lg border border-hairline text-text-body hover:text-brand-hover hover:border-brand-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
+              aria-label="SKYON IT SOLUTIONS on Instagram"
+            >
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069ZM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0Zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881Z" />
+              </svg>
+            </a>
+          )}
+        </div>
       </div>
       
-      <div class="md:col-span-4">
-        <h3 class="text-text-primary font-semibold mb-6 tracking-wide text-sm uppercase">IT Services</h3>
-        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-sm">
-          {SERVICES.map((service) => (
-            <li><a href={`/services/${service.slug}`} class="text-text-body hover:text-brand-hover transition-colors">{service.shortTitle}</a></li>
-          ))}
-        </ul>
+      <!-- Column 2: Services -->
+      <div class="md:col-span-1 lg:col-span-4">
+        <nav aria-label="Footer: Services">
+          <details id="footer-services-details" class="footer-services-details" open>
+            <summary class="footer-services-summary">
+              <h2 class="text-text-primary font-semibold mb-4 tracking-wide text-sm uppercase inline-flex items-center justify-between w-full">
+                IT Services
+                <svg class="md:hidden w-4 h-4 transition-transform duration-200 details-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                </svg>
+              </h2>
+            </summary>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3 text-sm">
+              {SERVICES.map((service) => (
+                <li>
+                  <a href={`/services/${service.slug}`} class="text-text-body hover:text-brand-hover transition-colors min-h-[44px] inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
+                    {service.shortTitle}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </details>
+        </nav>
       </div>
 
-      <div class="md:col-span-3">
-        <h3 class="text-text-primary font-semibold mb-6 tracking-wide text-sm uppercase">Explore &amp; Connect</h3>
+      <!-- Column 3: Company -->
+      <div class="md:col-span-1 lg:col-span-2">
+        <nav aria-label="Footer: Company">
+          <h2 class="text-text-primary font-semibold mb-4 tracking-wide text-sm uppercase">Company</h2>
+          <ul class="flex flex-col gap-3 text-sm">
+            <li><a href="/work" class="text-text-body hover:text-brand-hover transition-colors min-h-[44px] inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Work</a></li>
+            <li><a href="/about" class="text-text-body hover:text-brand-hover transition-colors min-h-[44px] inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">About</a></li>
+            <li><a href="/why-choose-us" class="text-text-body hover:text-brand-hover transition-colors min-h-[44px] inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Why Choose Us</a></li>
+            <li><a href="/insights" class="text-text-body hover:text-brand-hover transition-colors min-h-[44px] inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Insights</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Column 4: Contact (list, not a nav) -->
+      <div class="md:col-span-1 lg:col-span-3">
+        <h2 class="text-text-primary font-semibold mb-4 tracking-wide text-sm uppercase">Contact</h2>
         <ul class="flex flex-col gap-3 text-sm">
-          <li><a href="/work" class="text-text-body hover:text-brand-hover transition-colors">Work</a></li>
-          <li><a href="/about" class="text-text-body hover:text-brand-hover transition-colors">About</a></li>
-          <li><a href="/why-choose-us" class="text-text-body hover:text-brand-hover transition-colors">Why Choose Us</a></li>
-          <li><a href="/insights" class="text-text-body hover:text-brand-hover transition-colors">Insights</a></li>
           <li>
-            <a href="/contact" class="text-text-primary hover:text-brand-hover transition-colors font-semibold">Start a Project &rarr;</a>
-          </li>
-          <li>
-            <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer" class="text-text-body hover:text-brand-hover transition-colors flex items-center gap-2">
-              <span class="text-whatsapp">WhatsApp:</span> {SITE.phone}
+            <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer" class="text-text-body hover:text-brand-hover transition-colors min-h-[44px] inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded" aria-label={`WhatsApp: ${SITE.phone}`}>
+              WhatsApp
             </a>
           </li>
           <li>
-            <a href={`mailto:${SITE.email}`} class="break-all text-text-body hover:text-brand-hover transition-colors">
+            <a href={`mailto:${SITE.email}`} class="break-all text-text-body hover:text-brand-hover transition-colors min-h-[44px] inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded" aria-label={`Email: ${SITE.email}`}>
               {SITE.email}
             </a>
           </li>
-          {SITE.linkedinUrl && (
-            <li>
-              <a href={SITE.linkedinUrl} target="_blank" rel="noopener noreferrer" class="text-text-body hover:text-brand-hover transition-colors">
-                LinkedIn Profile &rarr;
-              </a>
-            </li>
-          )}
-          {SITE.instagramUrl && (
-            <li>
-              <a href={SITE.instagramUrl} target="_blank" rel="noopener noreferrer" class="text-text-body hover:text-brand-hover transition-colors">
-                Instagram Profile &rarr;
-              </a>
+          <li>
+            <a href={`tel:${SITE.phone.replace(/\s+/g, '')}`} class="text-text-body hover:text-brand-hover transition-colors min-h-[44px] inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded" aria-label={`Phone: ${SITE.phone}`}>
+              {SITE.phone}
+            </a>
+          </li>
+          <li>
+            <a href="/contact" class="text-text-primary hover:text-brand-hover transition-colors font-medium min-h-[44px] inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
+              Start a Project &rarr;
+            </a>
+          </li>
+          {(SITE as any).responseTime && (
+            <li class="text-text-muted text-xs min-h-[44px] flex items-center">
+              {(SITE as any).responseTime}
             </li>
           )}
         </ul>
       </div>
     </div>
 
-    <div class="footer-bottom border-t border-hairline pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p class="text-text-muted text-sm">
-        &copy; {currentYear} SKYON IT SOLUTIONS. ALL RIGHTS RESERVED.
+    <!-- Bottom Bar -->
+    <div class="footer-bottom border-t border-hairline pt-6 pb-24 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-text-muted text-sm text-center md:text-left">
+        &copy; {currentYear} SKYON IT SOLUTIONS. All rights reserved.
       </p>
-      <div class="flex gap-6">
-        <a href="/privacy" class="text-text-muted text-sm hover:text-brand-hover transition-colors">Privacy Policy</a>
-        <a href="/terms" class="text-text-muted text-sm hover:text-brand-hover transition-colors">Terms of Service</a>
+      <div class="flex flex-wrap items-center justify-center gap-6 text-sm">
+        <a href="/privacy" class="text-text-muted hover:text-brand-hover transition-colors min-h-[44px] inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Privacy Policy</a>
+        <a href="/terms" class="text-text-muted hover:text-brand-hover transition-colors min-h-[44px] inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Terms of Service</a>
+        <a href="#top" class="text-text-muted hover:text-brand-hover transition-colors min-h-[44px] inline-flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded" aria-label="Back to top">
+          Back to top <span aria-hidden="true">&uarr;</span>
+        </a>
       </div>
     </div>
   </div>
@@ -83,4 +140,49 @@ const currentYear = new Date().getFullYear();
   .footer-bottom {
     border-color: var(--color-hairline);
   }
+
+  .footer-services-summary {
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+  .footer-services-summary::-webkit-details-marker,
+  .footer-services-summary::marker {
+    display: none;
+  }
+
+  .footer-services-details[open] .details-chevron {
+    transform: rotate(180deg);
+  }
+
+  @media (min-width: 768px) {
+    .footer-services-summary {
+      pointer-events: none;
+      cursor: default;
+    }
+    .details-chevron {
+      display: none;
+    }
+  }
 </style>
+
+<script>
+  function setupFooterDetails() {
+    const details = document.getElementById('footer-services-details') as HTMLDetailsElement | null;
+    if (!details) return;
+    const mql = window.matchMedia('(min-width: 768px)');
+    function update(e: MediaQueryList | MediaQueryListEvent) {
+      if (e.matches) {
+        details!.open = true;
+      } else {
+        details!.open = false;
+      }
+    }
+    update(mql);
+    mql.addEventListener('change', update);
+  }
+
+  setupFooterDetails();
+  document.addEventListener('astro:page-load', setupFooterDetails);
+</script>

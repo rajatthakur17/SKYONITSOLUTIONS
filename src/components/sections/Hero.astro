@@ -15,8 +15,7 @@ import { SERVICES } from '../../data/services';
   />
   <div class="hero-layout">
     <div class="hero-copy">
-      <p class="hero-eyebrow"><span aria-hidden="true"></span> IT services for business</p>
-      <h1>Build your digital presence.<br /><span class="hero-highlight">Grow online.</span></h1>
+      <h1>Build your digital presence &amp; <br /><span class="hero-highlight">Grow online.</span></h1>
       <p class="hero-description">
         Websites, SEO, digital marketing and social media to help your business build a stronger online presence.
       </p>
@@ -112,15 +111,6 @@ import { SERVICES } from '../../data/services';
     color: var(--color-brand-primary);
   }
 
-  :global(:root[data-theme="light"]) .hero-highlight,
-  :global(html[data-theme="light"]) .hero-highlight {
-    background-color: var(--color-button-fill);
-    color: var(--color-text-primary);
-    padding: 0.08em 0.3em;
-    border-radius: 4px;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-  }
 
   .hero-background {
     position: absolute;
@@ -150,14 +140,17 @@ import { SERVICES } from '../../data/services';
     min-width: 0;
   }
 
-  .hero-eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin: 0 0 1.15rem;
-    color: var(--color-brand-primary);
-    font-weight: 700;
-    line-height: 1.4;
+  .hero-copy h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px;
+  }
+
+  .hero-description {
+    margin: 0 0 32px;
+    line-height: 1.6;
   }
 
   .hero-actions {
@@ -401,8 +394,6 @@ import { SERVICES } from '../../data/services';
     }
 
     .hero-description {
-      margin-top: 0.75rem;
-      margin-bottom: 1rem;
       font-size: 0.95rem;
     }
 

@@ -1,40 +1,319 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
 import { SITE } from '../config/site';
 
 const title = "Privacy Policy | SKYON IT SOLUTIONS";
-const description = "Privacy Policy for SKYON IT SOLUTIONS. Learn how we handle your data.";
+const description = "Privacy Policy for SKYON IT SOLUTIONS. Learn how we collect, use, protect, and process your personal data in compliance with India DPDP Act 2023 and GDPR.";
+const lastUpdated = "October 2024";
 ---
 
 <Layout title={title} description={description}>
-  <article class="pt-32 pb-24 px-4 md:px-8 max-w-[48rem] mx-auto text-text-body">
-    <div class="mb-8 p-4 bg-brand-primary/10 border border-brand-primary text-brand-primary rounded-md font-medium text-center">
-      Draft pending legal review
+  <article class="pt-28 pb-20 px-4 md:px-8 max-w-[48rem] mx-auto text-text-body">
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="mb-8 text-xs text-text-muted">
+      <ol class="flex flex-wrap items-center gap-2">
+        <li>
+          <a href="/" class="hover:text-brand-hover transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded">
+            Home
+          </a>
+        </li>
+        <li aria-hidden="true">/</li>
+        <li aria-current="page" class="text-text-primary font-semibold">
+          Privacy Policy
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Header -->
+    <header class="border-b border-hairline pb-8 mb-10">
+      <p class="text-xs font-bold uppercase tracking-wider text-brand-primary mb-2">
+        Data Governance & Protection
+      </p>
+      <h1 class="text-3xl md:text-5xl font-extrabold text-text-primary tracking-tight">
+        Privacy Policy
+      </h1>
+      <div class="mt-4 flex flex-wrap items-center gap-4 text-xs text-text-muted">
+        <span>Last Updated: <strong class="text-text-primary">{lastUpdated}</strong></span>
+        <span>•</span>
+        <span>Applicable to: <strong class="text-text-primary">{SITE.domain}</strong></span>
+      </div>
+      <p class="mt-5 text-sm md:text-base leading-relaxed text-text-body">
+        SKYON IT SOLUTIONS (&ldquo;SKYON&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;) is committed to protecting your privacy and handling digital personal data transparently, responsibly, and in accordance with applicable data protection laws, including the <strong>Digital Personal Data Protection (DPDP) Act, 2023</strong> of India and the <strong>General Data Protection Regulation (GDPR)</strong>.
+      </p>
+    </header>
+
+    <div class="space-y-10 text-sm md:text-base leading-relaxed">
+      <!-- 1. Identity & Roles -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          1. Identity of the Data Fiduciary & Dual Roles
+        </h2>
+        <p>
+          For visitors to our website, prospective clients, and individuals submitting business inquiries, <strong>SKYON IT SOLUTIONS</strong> acts as the <strong>Data Fiduciary</strong> (or Data Controller under the GDPR). We determine the purposes and means of processing your contact and inquiry information.
+        </p>
+        <p>
+          When providing custom software engineering, cloud architecture management, or workflow automation services to business clients under a Master Services Agreement (MSA), SKYON generally operates as a <strong>Data Processor</strong>. In those engagements, we process client data strictly under the written instructions, terms, and Non-Disclosure Agreements (NDAs) executed with the client.
+        </p>
+      </section>
+
+      <!-- 2. Personal Data We Collect -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          2. Personal Data We Collect
+        </h2>
+        <p>
+          We only collect personal information that is reasonably necessary to fulfill legitimate business inquiries, evaluate project scopes, and maintain the security of our services:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-text-body">
+          <li>
+            <strong class="text-text-primary">Inquiry & Contact Details:</strong> When you submit a project inquiry, request a quote, or email us, we collect your name, business email address, telephone/WhatsApp number, organization name, target timeline, estimated budget range, and project requirements.
+          </li>
+          <li>
+            <strong class="text-text-primary">Technical & Device Telemetry:</strong> Standard server logs that may include your Internet Protocol (IP) address, operating system, browser type, referring URLs, and request timestamps, collected strictly to detect malicious traffic, prevent DDoS attacks, and ensure website availability.
+          </li>
+          <li>
+            <strong class="text-text-primary">Client Project Communications:</strong> Technical specifications, functional requirements, and communications exchanged during active consultancy or development contracts.
+          </li>
+        </ul>
+      </section>
+
+      <!-- 3. Lawful Bases & Purposes -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          3. Purposes & Lawful Grounds for Processing
+        </h2>
+        <p>We process digital personal data under the following legal bases:</p>
+        <div class="grid gap-3 pt-2">
+          <div class="rounded-lg border border-hairline bg-surface-1 p-4">
+            <h3 class="text-sm font-bold text-brand-primary mb-1">Inquiry Response & Pre-contractual Steps</h3>
+            <p class="text-xs md:text-sm text-text-body">
+              To review your project details, prepare architectural feasibility assessments, issue price estimates, and schedule discovery consultations requested by you.
+            </p>
+          </div>
+          <div class="rounded-lg border border-hairline bg-surface-1 p-4">
+            <h3 class="text-sm font-bold text-brand-primary mb-1">Contract Performance & Service Delivery</h3>
+            <p class="text-xs md:text-sm text-text-body">
+              To fulfill our contractual obligations, deploy software builds, configure cloud environments, and communicate project milestones.
+            </p>
+          </div>
+          <div class="rounded-lg border border-hairline bg-surface-1 p-4">
+            <h3 class="text-sm font-bold text-brand-primary mb-1">Legitimate Business Interests & Security</h3>
+            <p class="text-xs md:text-sm text-text-body">
+              To protect the integrity, confidentiality, and resilience of our IT infrastructure against unauthorized access, bot attacks, and fraudulent activity.
+            </p>
+          </div>
+          <div class="rounded-lg border border-hairline bg-surface-1 p-4">
+            <h3 class="text-sm font-bold text-brand-primary mb-1">Legal & Regulatory Compliance</h3>
+            <p class="text-xs md:text-sm text-text-body">
+              To maintain statutory financial records, tax invoices, and legal contracts as mandated by Indian and applicable international commercial laws.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Chat Assistant & WhatsApp -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          4. Automated Chat Assistant & WhatsApp Communications
+        </h2>
+        <div class="rounded-lg border border-hairline bg-surface-2 p-4 text-text-primary font-medium">
+          <p>
+            The chat assistant stores nothing; if you choose to send your details on WhatsApp, the message is sent through WhatsApp, which is operated by a third party.
+          </p>
+        </div>
+        <p>
+          Our website features a rule-based automated assistant designed to guide visitors through quick service FAQs and project qualification. The assistant operates entirely in your browser's local memory during your active session. It does not use tracking cookies, does not persist data to local storage, and does not transmit conversations to external artificial intelligence services.
+        </p>
+        <p>
+          If you choose to use the &ldquo;Send on WhatsApp&rdquo; action, your pre-filled inquiry is transferred to WhatsApp (operated by Meta Platforms, Inc. / WhatsApp LLC). Any messages sent via WhatsApp are subject to WhatsApp's own terms of service, end-to-end encryption protocols, and privacy policies.
+        </p>
+      </section>
+
+      <!-- 5. Zero Sale of Personal Data -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          5. Zero Sale of Personal Information
+        </h2>
+        <p>
+          SKYON IT SOLUTIONS does <strong>not sell, lease, rent, trade, or monetize</strong> personal data to third parties, data brokers, or advertising networks under any circumstances. Personal information provided to us is used exclusively to evaluate, deliver, and support professional IT services.
+        </p>
+      </section>
+
+      <!-- 6. Third-Party Providers -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          6. Third-Party Service Providers & Sub-processors
+        </h2>
+        <p>
+          To maintain high availability and security, we engage vetted third-party service providers who process data strictly under confidentiality agreements:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-text-body">
+          <li>
+            <strong class="text-text-primary">Hosting & DNS Infrastructure:</strong> Enterprise cloud hosting, content delivery networks (CDNs), and DDoS mitigation services (e.g., Cloudflare, Vercel, or AWS) that deliver web assets securely.
+          </li>
+          <li>
+            <strong class="text-text-primary">Business Email Services:</strong> Encrypted email communication providers used to send and receive project proposals and contracts.
+          </li>
+          <li>
+            <strong class="text-text-primary">Inquiry Form Handling:</strong> If an automated form backend endpoint is configured, submitted details are transmitted securely over HTTPS directly to our designated intake system.
+          </li>
+          <li>
+            <strong class="text-text-primary">Analytics Disclosure:</strong> Website analytics tracking may be integrated in the future. Any analytics deployed will prioritize privacy and respect browser &ldquo;Do Not Track&rdquo; signals. This policy will be updated promptly upon implementation.
+          </li>
+        </ul>
+      </section>
+
+      <!-- 7. Cross-Border Transfers -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          7. International Data Transfers
+        </h2>
+        <p>
+          As an IT services provider collaborating with businesses across India, North America, Europe, and other regions, personal data may be stored or accessed across international borders.
+        </p>
+        <p>
+          Where personal data is transferred across borders, we ensure adequate security safeguards, such as Standard Contractual Clauses (SCCs) approved by international regulatory bodies, and compliance with the cross-border data transfer provisions of the DPDP Act, 2023.
+        </p>
+      </section>
+
+      <!-- 8. Data Retention -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          8. Data Retention & Erasure Schedules
+        </h2>
+        <p>
+          We retain personal data only for as long as necessary to achieve the specific purposes for which it was gathered:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-text-body">
+          <li>
+            <strong class="text-text-primary">Unconverted Business Inquiries:</strong> Retained for a maximum of twenty-four (24) months from the last communication to allow follow-up discussions, after which records are securely erased or anonymized.
+          </li>
+          <li>
+            <strong class="text-text-primary">Client Contractual Records:</strong> Retained for the duration of the active engagement plus the statutory period required for tax audits, accounting compliance, and limitation periods under Indian law.
+          </li>
+          <li>
+            <strong class="text-text-primary">Server Security Logs:</strong> Automatically rotated and deleted within 90 days, unless required for active investigation of security incidents.
+          </li>
+        </ul>
+      </section>
+
+      <!-- 9. Your Rights -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          9. Your Rights as a Data Principal / Subject
+        </h2>
+        <p>
+          Under the India DPDP Act, 2023 and the GDPR, you have comprehensive rights regarding your digital personal data:
+        </p>
+        <div class="grid sm:grid-cols-2 gap-3 pt-2">
+          <div class="rounded-lg border border-hairline bg-surface-1 p-3.5">
+            <strong class="text-xs font-bold text-brand-primary uppercase block mb-1">Right to Access</strong>
+            <p class="text-xs text-text-body">Request a summary of your personal data processed by us and the processing activities undertaken.</p>
+          </div>
+          <div class="rounded-lg border border-hairline bg-surface-1 p-3.5">
+            <strong class="text-xs font-bold text-brand-primary uppercase block mb-1">Right to Correction</strong>
+            <p class="text-xs text-text-body">Request the correction, updating, or completion of inaccurate or outdated personal data.</p>
+          </div>
+          <div class="rounded-lg border border-hairline bg-surface-1 p-3.5">
+            <strong class="text-xs font-bold text-brand-primary uppercase block mb-1">Right to Erasure</strong>
+            <p class="text-xs text-text-body">Request the deletion of your personal data when it is no longer necessary for the original business purpose.</p>
+          </div>
+          <div class="rounded-lg border border-hairline bg-surface-1 p-3.5">
+            <strong class="text-xs font-bold text-brand-primary uppercase block mb-1">Right to Withdraw Consent</strong>
+            <p class="text-xs text-text-body">Withdraw consent previously granted for data processing easily at any time without retroactive penalty.</p>
+          </div>
+          <div class="rounded-lg border border-hairline bg-surface-1 p-3.5">
+            <strong class="text-xs font-bold text-brand-primary uppercase block mb-1">Right to Nominate (DPDP)</strong>
+            <p class="text-xs text-text-body">Nominate an individual to exercise your data rights in the unfortunate event of death or incapacity.</p>
+          </div>
+          <div class="rounded-lg border border-hairline bg-surface-1 p-3.5">
+            <strong class="text-xs font-bold text-brand-primary uppercase block mb-1">Right to Grievance Redressal</strong>
+            <p class="text-xs text-text-body">Lodge a grievance with our designated Grievance Officer regarding any data handling concern.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. Security Safeguards -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          10. Technical & Organizational Safeguards
+        </h2>
+        <p>
+          We implement rigorous technical and administrative safeguards to protect your personal data against unauthorized access, loss, alteration, or disclosure:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-text-body">
+          <li>Transport Layer Security (TLS 1.3 / HTTPS) with 256-bit encryption for all network traffic.</li>
+          <li>Strict Role-Based Access Control (RBAC) and Multi-Factor Authentication (MFA) across internal systems.</li>
+          <li>Encrypted credential vaults and isolated development/staging environments for software engineering projects.</li>
+          <li>Periodic vulnerability reviews and security assessments.</li>
+        </ul>
+      </section>
+
+      <!-- 11. Grievance Redressal & Contact -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          11. Grievance Redressal Officer & Contact
+        </h2>
+        <p>
+          If you wish to exercise any of your data principal rights, request deletion of your information, or submit a privacy grievance, please contact our designated Grievance Officer:
+        </p>
+
+        <div class="rounded-xl border border-hairline bg-surface-1 p-6 space-y-3 shadow-sm">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider text-brand-primary">Data Protection & Grievance Officer</p>
+            <p class="text-base font-bold text-text-primary mt-1">SKYON IT SOLUTIONS</p>
+          </div>
+          <div class="text-xs md:text-sm space-y-1 text-text-body">
+            <p>
+              <strong class="text-text-primary">Email:</strong>{' '}
+              <a href={`mailto:${SITE.email}`} class="text-brand-primary hover:text-brand-hover underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded">
+                {SITE.email}
+              </a>
+            </p>
+            <p>
+              <strong class="text-text-primary">Phone / WhatsApp:</strong>{' '}
+              <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer" class="text-brand-primary hover:text-brand-hover underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded">
+                {SITE.phone}
+              </a>
+            </p>
+            <p>
+              <strong class="text-text-primary">Website:</strong>{' '}
+              <a href={SITE.url} class="text-brand-primary hover:text-brand-hover underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded">
+                {SITE.domain}
+              </a>
+            </p>
+          </div>
+          <p class="text-xs text-text-muted pt-2 border-t border-hairline">
+            We acknowledge all formal privacy grievances within 48 hours and aim to resolve them completely within thirty (30) days from receipt.
+          </p>
+        </div>
+      </section>
+
+      <!-- 12. Updates to Policy -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          12. Amendments to this Privacy Policy
+        </h2>
+        <p>
+          We may update this Privacy Policy periodically to reflect changes in our service offerings, technical architecture, or statutory requirements under the DPDP Act or international privacy laws. Any updates will be posted directly to this page with an updated &ldquo;Last Updated&rdquo; timestamp. We encourage visitors to review this notice periodically.
+        </p>
+      </section>
     </div>
 
-    <h1 class="text-4xl md:text-5xl font-extrabold text-text-primary tracking-tight mb-8">Privacy Policy</h1>
-    
-    <div class="space-y-6 text-lg leading-relaxed">
-      <h2 class="text-2xl font-bold text-text-primary mt-12 mb-4">Project Inquiries</h2>
-      <p>
-        If you use the inquiry form while no form endpoint is configured, your browser opens WhatsApp with the details you entered prefilled in a message. The message is not sent until you review and send it in WhatsApp. WhatsApp processes information according to its own terms and privacy policy.
-      </p>
-
-      <h2 class="text-2xl font-bold text-text-primary mt-12 mb-4">Other Contact Methods</h2>
-      <p>
-        If you contact us by email or choose to use another contact channel, the information you share may be processed by that service. If a third-party form provider is enabled in the future, this notice must be updated to identify it and explain its handling of submitted information.
-      </p>
-
-      <h2 class="text-2xl font-bold text-text-primary mt-12 mb-4">Data Deletion</h2>
-      <p>
-        You can request deletion of information you have sent to SKYON by emailing <strong>{SITE.email}</strong>. Information held by third-party services may also be subject to those providers' own policies and processes.
-      </p>
-
-      <h2 class="text-2xl font-bold text-text-primary mt-12 mb-4">Website Analytics</h2>
-      <p>
-        Please note that website analytics tracking will be added at a later date. This Privacy Policy will be updated to reflect analytics data collection practices once they are implemented.
-      </p>
+    <!-- Bottom Actions -->
+    <div class="mt-16 pt-8 border-t border-hairline flex flex-wrap items-center justify-between gap-4">
+      <a
+        href="/"
+        class="inline-flex min-h-[44px] items-center gap-2 text-xs font-semibold text-text-muted hover:text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded"
+      >
+        <span aria-hidden="true">&larr;</span> Return to Home
+      </a>
+      <a
+        href="/contact"
+        class="inline-flex min-h-[44px] items-center rounded-lg bg-button-fill text-button-text px-5 py-2 text-xs font-bold hover:bg-button-hover transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
+      >
+        Contact SKYON &rarr;
+      </a>
     </div>
   </article>
 </Layout>

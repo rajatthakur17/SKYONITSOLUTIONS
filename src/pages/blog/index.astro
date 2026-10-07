@@ -1,0 +1,268 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { BLOG_POSTS, BLOG_CATEGORIES } from '../../data/blog';
+
+const title = 'Blog & Insights | SKYON IT SOLUTIONS';
+const description = 'Practical guides, technical perspectives, and business strategies for web development, custom software, AI automation, and cloud systems.';
+
+const featuredPost = BLOG_POSTS.find((p) => p.featured) || BLOG_POSTS[0];
+const otherPosts = BLOG_POSTS.filter((p) => p.slug !== featuredPost.slug);
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="backdrop-10-insights px-4 pt-28 pb-12 md:px-8 md:pt-36 md:pb-16 border-b border-hairline">
+    <div class="mx-auto max-w-[72rem]">
+      <p class="mb-3 text-xs md:text-sm font-bold uppercase tracking-wider text-brand-primary">
+        Blog & Insights
+      </p>
+      <h1 class="max-w-[48rem] text-4xl font-extrabold leading-tight text-text-primary md:text-5xl">
+        Practical thinking for digital projects.
+      </h1>
+      <p class="mt-4 max-w-[42rem] text-base md:text-lg leading-relaxed text-text-body">
+        Engineering perspectives, architecture guides, and actionable strategies for building websites, scalable software, and automated workflows.
+      </p>
+
+      <!-- Category Filter Buttons -->
+      <div class="mt-8 flex flex-wrap gap-2.5 pt-2" aria-label="Filter articles by category" role="toolbar">
+        {BLOG_CATEGORIES.map((cat, idx) => (
+          <button
+            type="button"
+            data-category={cat}
+            class={`blog-filter-btn inline-flex min-h-[44px] items-center px-4 py-2 rounded-full text-xs font-semibold border transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary ${
+              idx === 0
+                ? 'bg-brand-primary/20 text-brand-primary border-brand-primary/60 font-bold shadow-sm'
+                : 'bg-surface-1 border-hairline text-text-body hover:border-brand-primary/40 hover:text-text-primary'
+            }`}
+            aria-pressed={idx === 0 ? "true" : "false"}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Section -->
+  <section class="px-4 py-12 md:px-8 md:py-16 bg-canvas">
+    <div class="mx-auto max-w-[72rem] space-y-12">
+      <!-- Featured Article Spotlight -->
+      {featuredPost && (
+        <div
+          id="featured-post-card"
+          data-category={featuredPost.category}
+          class="relative overflow-hidden rounded-2xl border border-hairline bg-surface-1 p-6 md:p-10 shadow-sm transition-all hover:border-brand-primary/50"
+        >
+          <div class="flex flex-wrap items-center gap-3 text-xs font-semibold text-text-muted">
+            <span class="rounded bg-brand-primary/15 text-brand-primary border border-brand-primary/30 px-2.5 py-1 font-bold uppercase tracking-wide">
+              {featuredPost.category}
+            </span>
+            <span class="font-bold text-brand-primary uppercase">★ Featured Guide</span>
+            <span>•</span>
+            <span>{featuredPost.date}</span>
+            <span>•</span>
+            <span>{featuredPost.readTime}</span>
+          </div>
+
+          <h2 class="mt-4 text-2xl font-bold leading-tight text-text-primary md:text-3xl">
+            <a href={`/blog/${featuredPost.slug}`} class="hover:text-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
+              {featuredPost.title}
+            </a>
+          </h2>
+
+          <p class="mt-3 max-w-[48rem] text-sm md:text-base leading-relaxed text-text-body">
+            {featuredPost.summary}
+          </p>
+
+          <div class="mt-6 flex items-center justify-between">
+            <a
+              href={`/blog/${featuredPost.slug}`}
+              class="inline-flex min-h-[44px] items-center gap-2 font-bold text-brand-primary hover:text-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded"
+            >
+              Read full guide <span aria-hidden="true">&rarr;</span>
+            </a>
+            <span class="text-xs text-text-muted">By {featuredPost.author}</span>
+          </div>
+        </div>
+      )}
+
+      <!-- Articles Grid -->
+      <div>
+        <h2 class="text-xl font-bold text-text-primary mb-6">Latest Articles & Guides</h2>
+        
+        <!-- Empty State Container -->
+        <div
+          id="blog-empty-state"
+          class="hidden rounded-xl border border-hairline bg-surface-1 p-12 text-center my-6"
+        >
+          <p class="text-text-muted text-sm">No articles found in this category.</p>
+          <button
+            type="button"
+            id="blog-reset-filter"
+            class="mt-4 inline-flex min-h-[44px] items-center px-4 py-2 text-xs font-bold text-brand-primary hover:text-brand-hover border border-brand-primary/30 rounded-lg hover:border-brand-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary cursor-pointer"
+          >
+            View all articles &rarr;
+          </button>
+        </div>
+
+        <div id="blog-grid" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {otherPosts.map((post) => (
+            <article
+              data-category={post.category}
+              class="blog-post-card flex flex-col justify-between rounded-xl border border-hairline bg-surface-1 p-6 shadow-sm transition-all hover:border-brand-primary/50 hover:shadow-md"
+            >
+              <div>
+                <div class="flex items-center justify-between text-xs text-text-muted mb-3">
+                  <span class="rounded bg-surface-2 border border-hairline px-2 py-0.5 font-bold uppercase text-brand-primary">
+                    {post.category}
+                  </span>
+                  <span>{post.readTime}</span>
+                </div>
+
+                <h3 class="text-lg font-bold leading-snug text-text-primary hover:text-brand-hover transition-colors">
+                  <a href={`/blog/${post.slug}`} class="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
+                    {post.title}
+                  </a>
+                </h3>
+
+                <p class="mt-2.5 text-xs md:text-sm leading-relaxed text-text-body line-clamp-3">
+                  {post.summary}
+                </p>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-hairline flex items-center justify-between">
+                <a
+                  href={`/blog/${post.slug}`}
+                  class="inline-flex min-h-[44px] items-center gap-1.5 text-xs font-bold text-brand-primary hover:text-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded"
+                >
+                  Read article <span aria-hidden="true">&rarr;</span>
+                </a>
+                <span class="text-[11px] text-text-muted">{post.date}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <!-- Quick Project CTA -->
+      <div class="rounded-2xl border border-hairline bg-surface-2 p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="max-w-[40rem]">
+          <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+            Need tailored software or an intelligent digital solution?
+          </h2>
+          <p class="mt-2 text-sm leading-relaxed text-text-body">
+            Let's discuss your project scope, requirements, and timeline. Get an honest technical perspective from our team.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a
+            href="/services"
+            class="inline-flex min-h-[44px] items-center rounded-lg border border-hairline px-4 py-2 text-xs font-semibold text-text-primary hover:border-brand-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
+          >
+            Explore Services
+          </a>
+          <a
+            href="/contact"
+            class="inline-flex min-h-[44px] items-center rounded-lg bg-button-fill text-button-text px-5 py-2 text-xs font-bold hover:bg-button-hover transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
+          >
+            Start a Project &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  function initBlogFilters() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.blog-filter-btn');
+    const cards = document.querySelectorAll<HTMLElement>('.blog-post-card');
+    const featured = document.getElementById('featured-post-card') as HTMLElement | null;
+    const emptyState = document.getElementById('blog-empty-state') as HTMLElement | null;
+    const resetBtn = document.getElementById('blog-reset-filter') as HTMLButtonElement | null;
+
+    if (buttons.length === 0) return;
+
+    function applyFilter(category: string, updateUrl = true) {
+      let visibleCount = 0;
+
+      buttons.forEach((btn) => {
+        const matches = btn.dataset.category === category;
+        btn.setAttribute('aria-pressed', matches ? 'true' : 'false');
+        if (matches) {
+          btn.classList.add('bg-brand-primary/20', 'text-brand-primary', 'border-brand-primary/60', 'font-bold', 'shadow-sm');
+          btn.classList.remove('bg-surface-1', 'border-hairline', 'text-text-body');
+        } else {
+          btn.classList.remove('bg-brand-primary/20', 'text-brand-primary', 'border-brand-primary/60', 'font-bold', 'shadow-sm');
+          btn.classList.add('bg-surface-1', 'border-hairline', 'text-text-body');
+        }
+      });
+
+      // Handle featured card
+      if (featured) {
+        const featCat = featured.dataset.category;
+        if (category === 'All' || featCat === category) {
+          featured.style.display = '';
+          visibleCount++;
+        } else {
+          featured.style.display = 'none';
+        }
+      }
+
+      // Handle article cards
+      cards.forEach((card) => {
+        const cardCat = card.dataset.category;
+        if (category === 'All' || cardCat === category) {
+          card.style.display = '';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Handle empty state
+      if (emptyState) {
+        emptyState.classList.toggle('hidden', visibleCount > 0);
+      }
+
+      // Update URL search param
+      if (updateUrl && window.history && window.history.replaceState) {
+        const url = new URL(window.location.href);
+        if (category === 'All') {
+          url.searchParams.delete('category');
+        } else {
+          url.searchParams.set('category', category);
+        }
+        window.history.replaceState({}, '', url.toString());
+      }
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const cat = btn.dataset.category || 'All';
+        applyFilter(cat, true);
+      });
+    });
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        applyFilter('All', true);
+      });
+    }
+
+    // Check query param on initial load
+    const params = new URLSearchParams(window.location.search);
+    const initialCat = params.get('category');
+    if (initialCat) {
+      const matchingBtn = Array.from(buttons).find(
+        (b) => b.dataset.category?.toLowerCase() === initialCat.toLowerCase()
+      );
+      if (matchingBtn && matchingBtn.dataset.category) {
+        applyFilter(matchingBtn.dataset.category, false);
+      }
+    }
+  }
+
+  initBlogFilters();
+  document.addEventListener('astro:page-load', initBlogFilters);
+</script>

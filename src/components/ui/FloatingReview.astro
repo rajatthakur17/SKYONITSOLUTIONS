@@ -1,0 +1,472 @@
+---
+// FloatingReview.astro — Floating client review & rating trust badge
+const initialQuotes = [
+  {
+    author: "R4Realty Leadership",
+    role: "Property Development",
+    rating: 5,
+    quote: "SKYON built our platform with speed & precision. Property inquiries started week one."
+  },
+  {
+    author: "Clinical Operations Director",
+    role: "Healthcare Practice",
+    rating: 5,
+    quote: "Clear patient inquiry workflows. Technical clarity and WhatsApp support are outstanding."
+  },
+  {
+    author: "Product Strategy Team",
+    role: "Digital SaaS & Web Apps",
+    rating: 5,
+    quote: "Modern Astro & React islands. Handles high daily traffic with zero downtime."
+  }
+];
+---
+
+<div
+  id="floating-review-widget"
+  class="floating-review-container"
+  role="region"
+  aria-label="Client reviews and trust badge"
+>
+  <!-- Full Expanded Card -->
+  <div
+    id="floating-review-card"
+    class="floating-review-card"
+    aria-hidden="false"
+  >
+    <!-- Top Header -->
+    <div class="flex items-center justify-between gap-2 pb-2.5 mb-2 border-b border-hairline">
+      <div class="flex items-center gap-1.5">
+        <div class="flex items-center text-amber-400 text-xs tracking-tight" aria-label="5 star rating">
+          ★★★★★
+        </div>
+        <span class="text-xs font-bold text-text-primary">5.0</span>
+        <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[10px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+          <span class="w-1 h-1 rounded-full bg-emerald-400"></span>
+          Verified
+        </span>
+      </div>
+
+      <button
+        type="button"
+        id="floating-review-minimize-btn"
+        class="w-6 h-6 flex items-center justify-center rounded text-text-muted hover:text-text-primary hover:bg-surface-2 transition-colors text-xs leading-none cursor-pointer"
+        aria-label="Minimize review widget"
+        title="Minimize"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Rotating Quote Body -->
+    <div class="relative min-h-[54px] flex flex-col justify-center">
+      <div id="floating-review-content" class="transition-opacity duration-300 opacity-100">
+        <p id="floating-review-quote" class="text-xs text-text-primary leading-snug line-clamp-2 italic font-medium">
+          &ldquo;{initialQuotes[0].quote}&rdquo;
+        </p>
+        <div class="flex items-center justify-between mt-1.5 text-[11px] text-text-muted">
+          <span id="floating-review-author" class="font-semibold text-text-primary truncate max-w-[130px]">
+            {initialQuotes[0].author}
+          </span>
+          <span id="floating-review-role" class="truncate max-w-[110px] text-brand-primary text-[10px] font-mono">
+            {initialQuotes[0].role}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex items-center gap-1.5 pt-2.5 mt-2 border-t border-hairline/80">
+      <a
+        href="/#testimonials"
+        id="floating-review-read-btn"
+        class="flex-1 min-h-[30px] flex items-center justify-center gap-1 bg-surface-2/70 hover:bg-surface-2 border border-hairline/80 hover:border-brand-primary text-text-primary hover:text-brand-primary text-[11px] font-semibold rounded-lg px-2 py-1 transition-colors backdrop-blur-xs"
+      >
+        <span>Read Reviews</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-brand-primary" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </a>
+
+      <button
+        type="button"
+        id="floating-review-write-btn"
+        data-open-feedback="true"
+        class="open-feedback-trigger flex-1 min-h-[30px] flex items-center justify-center gap-1 bg-brand-primary/15 hover:bg-brand-primary/25 border border-brand-primary/30 hover:border-brand-primary/50 text-brand-primary text-[11px] font-semibold rounded-lg px-2 py-1 transition-colors cursor-pointer backdrop-blur-xs"
+      >
+        <span class="text-amber-400">★</span>
+        <span>+ Review</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Collapsed Mini Pill Button -->
+  <button
+    type="button"
+    id="floating-review-pill-btn"
+    class="floating-review-pill hidden"
+    aria-label="Expand client reviews"
+    title="View client reviews & ratings"
+  >
+    <span class="text-amber-400 text-xs">★</span>
+    <span class="font-bold text-text-primary text-xs">5.0</span>
+    <span class="text-text-muted text-[11px] font-medium hidden sm:inline">• Reviews</span>
+  </button>
+</div>
+
+<script is:inline define:vars={{ defaultQuotes: initialQuotes }}>
+  (function() {
+    function initFloatingReview() {
+      var widget = document.getElementById('floating-review-widget');
+      var card = document.getElementById('floating-review-card');
+      var pill = document.getElementById('floating-review-pill-btn');
+      var minimizeBtn = document.getElementById('floating-review-minimize-btn');
+      var readBtn = document.getElementById('floating-review-read-btn');
+      var writeBtn = document.getElementById('floating-review-write-btn');
+
+      var quoteEl = document.getElementById('floating-review-quote');
+      var authorEl = document.getElementById('floating-review-author');
+      var roleEl = document.getElementById('floating-review-role');
+      var contentEl = document.getElementById('floating-review-content');
+
+      if (!widget || !card || !pill) return;
+
+      var quotesList = [];
+
+      function refreshQuotesList() {
+        quotesList = Array.isArray(defaultQuotes) ? defaultQuotes.slice() : [];
+        try {
+          var rawStored = localStorage.getItem('skyon_client_reviews');
+          if (rawStored) {
+            var userReviews = JSON.parse(rawStored);
+            if (Array.isArray(userReviews) && userReviews.length > 0) {
+              userReviews.slice(0, 3).forEach(function(ur) {
+                quotesList.unshift({
+                  author: ur.author || 'Verified Client',
+                  role: ur.role || ur.category || 'Client Review',
+                  rating: ur.rating || 5,
+                  quote: ur.quote || ur.comment || ''
+                });
+              });
+            }
+          }
+        } catch (err) {}
+      }
+
+      refreshQuotesList();
+
+      var currentIndex = 0;
+      var rotationTimer = null;
+
+      function renderCurrentQuote() {
+        if (!quotesList.length || !quoteEl || !authorEl || !roleEl || !contentEl) return;
+        var item = quotesList[currentIndex % quotesList.length];
+
+        contentEl.classList.remove('opacity-100');
+        contentEl.classList.add('opacity-0');
+
+        setTimeout(function() {
+          quoteEl.innerHTML = '&ldquo;' + (item.quote || '') + '&rdquo;';
+          authorEl.textContent = item.author || 'Verified Client';
+          roleEl.textContent = item.role || 'Client Review';
+
+          contentEl.classList.remove('opacity-0');
+          contentEl.classList.add('opacity-100');
+        }, 200);
+      }
+
+      function startRotation() {
+        stopRotation();
+        rotationTimer = setInterval(function() {
+          currentIndex = (currentIndex + 1) % quotesList.length;
+          renderCurrentQuote();
+        }, 5500);
+      }
+
+      function stopRotation() {
+        if (rotationTimer) {
+          clearInterval(rotationTimer);
+          rotationTimer = null;
+        }
+      }
+
+      startRotation();
+
+      // Minimize / Collapse
+      function minimizeWidget() {
+        card.classList.add('hidden');
+        pill.classList.remove('hidden');
+        stopRotation();
+        try {
+          sessionStorage.setItem('skyon_review_minimized', 'true');
+        } catch (e) {}
+      }
+
+      function expandWidget() {
+        pill.classList.add('hidden');
+        card.classList.remove('hidden');
+        startRotation();
+        try {
+          sessionStorage.removeItem('skyon_review_minimized');
+        } catch (e) {}
+      }
+
+      if (minimizeBtn) minimizeBtn.addEventListener('click', minimizeWidget);
+      if (pill) pill.addEventListener('click', expandWidget);
+
+      // Restore session minimized state if any
+      try {
+        if (sessionStorage.getItem('skyon_review_minimized') === 'true') {
+          minimizeWidget();
+        }
+      } catch (e) {}
+
+      // Handle Read Reviews smooth scroll
+      if (readBtn) {
+        readBtn.addEventListener('click', function(e) {
+          var isHome = window.location.pathname === '/' || window.location.pathname === '';
+          var testimonialsEl = document.getElementById('testimonials');
+          if (isHome && testimonialsEl) {
+            e.preventDefault();
+            testimonialsEl.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
+
+      // Handle Write Review button
+      if (writeBtn) {
+        writeBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.dispatchEvent(new CustomEvent('skyon:open-feedback'));
+        });
+      }
+
+      // Listen for newly posted review
+      window.addEventListener('skyon:review-posted', function(e) {
+        var newRev = e.detail;
+        if (!newRev) return;
+
+        quotesList.unshift({
+          author: newRev.author || 'Verified Client',
+          role: newRev.role || newRev.category || 'Client Review',
+          rating: newRev.rating || 5,
+          quote: newRev.quote || newRev.comment || ''
+        });
+
+        currentIndex = 0;
+        expandWidget();
+        renderCurrentQuote();
+      });
+
+      // Listen for reviews updated / deleted
+      window.addEventListener('skyon:reviews-updated', function() {
+        refreshQuotesList();
+        currentIndex = 0;
+        renderCurrentQuote();
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initFloatingReview);
+    } else {
+      initFloatingReview();
+    }
+  })();
+</script>
+
+<style>
+  .floating-review-container {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 40;
+    font-family: inherit;
+    perspective: 1000px;
+  }
+
+  /* Frosted Glass Panel Card */
+  .floating-review-card {
+    position: relative;
+    width: 295px;
+    max-width: calc(100vw - 32px);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.10) 0%,
+      rgba(92, 194, 255, 0.04) 40%,
+      rgba(13, 29, 45, 0.68) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 18px;
+    padding: 13px 15px;
+    box-shadow:
+      0 20px 48px rgba(0, 0, 0, 0.42),
+      0 0 24px rgba(92, 194, 255, 0.10),
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.25),
+      inset 0 -1px 1px 0 rgba(0, 0, 0, 0.30);
+    backdrop-filter: blur(22px) saturate(190%);
+    -webkit-backdrop-filter: blur(22px) saturate(190%);
+    overflow: hidden;
+    animation: glassFloat 6s ease-in-out infinite;
+    transition:
+      transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 0.35s ease,
+      border-color 0.35s ease,
+      opacity 0.25s ease;
+  }
+
+  /* Specular top glare line for authentic glass bevel */
+  .floating-review-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+    pointer-events: none;
+  }
+
+  /* Diagonal glass light sweep reflection */
+  .floating-review-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.16),
+      transparent
+    );
+    transform: skewX(-25deg);
+    transition: left 0.8s ease;
+    pointer-events: none;
+  }
+
+  .floating-review-card:hover::after {
+    left: 140%;
+  }
+
+  /* Glass float levitation motion */
+  @keyframes glassFloat {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  /* Interactive Hover Lift */
+  .floating-review-card:hover {
+    animation-play-state: paused;
+    transform: translateY(-12px) scale(1.02);
+    box-shadow:
+      0 28px 60px rgba(0, 0, 0, 0.52),
+      0 0 35px rgba(92, 194, 255, 0.20),
+      inset 0 1px 1px rgba(255, 255, 255, 0.35);
+    border-color: rgba(92, 194, 255, 0.45);
+  }
+
+  /* Light Theme Glass Override */
+  :root[data-theme="light"] .floating-review-card,
+  html[data-theme="light"] .floating-review-card {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.90) 0%,
+      rgba(214, 236, 250, 0.78) 100%
+    );
+    border: 1px solid rgba(7, 20, 31, 0.14);
+    box-shadow:
+      0 20px 45px rgba(7, 20, 31, 0.12),
+      0 0 20px rgba(92, 194, 255, 0.18),
+      inset 0 1px 1px rgba(255, 255, 255, 0.95);
+  }
+
+  :root[data-theme="light"] .floating-review-card::before,
+  html[data-theme="light"] .floating-review-card::before {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+  }
+
+  /* Frosted Glass Collapsed Mini Pill */
+  .floating-review-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(13, 29, 45, 0.70) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    border-radius: 9999px;
+    box-shadow:
+      0 10px 28px rgba(0, 0, 0, 0.35),
+      inset 0 1px 1px rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    animation: pillFloat 4.5s ease-in-out infinite;
+    transition:
+      transform 0.25s ease,
+      background 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.25s ease;
+  }
+
+  @keyframes pillFloat {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .floating-review-pill:hover {
+    animation-play-state: paused;
+    transform: translateY(-4px) scale(1.03);
+    border-color: var(--color-brand-primary);
+    box-shadow:
+      0 14px 32px rgba(0, 0, 0, 0.4),
+      0 0 20px rgba(92, 194, 255, 0.2);
+  }
+
+  :root[data-theme="light"] .floating-review-pill,
+  html[data-theme="light"] .floating-review-pill {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.90) 0%,
+      rgba(214, 236, 250, 0.80) 100%
+    );
+    border-color: rgba(7, 20, 31, 0.15);
+    box-shadow:
+      0 10px 25px rgba(7, 20, 31, 0.12),
+      inset 0 1px 1px rgba(255, 255, 255, 0.90);
+  }
+
+  @media (max-width: 640px) {
+    .floating-review-container {
+      bottom: 20px;
+      left: 16px;
+    }
+
+    .floating-review-card {
+      width: 265px;
+      padding: 10px 12px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .floating-review-card,
+    .floating-review-pill {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>

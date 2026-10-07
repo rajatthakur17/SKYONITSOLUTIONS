@@ -1,26 +1,308 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { SITE } from '../config/site';
 
 const title = "Terms of Service | SKYON IT SOLUTIONS";
-const description = "Terms of Service for SKYON IT SOLUTIONS.";
+const description = "Terms of Service for SKYON IT SOLUTIONS. Governs website usage, professional service engagements, intellectual property rights, and commercial terms.";
+const lastUpdated = "October 2024";
 ---
 
 <Layout title={title} description={description}>
-  <article class="pt-32 pb-24 px-4 md:px-8 max-w-[48rem] mx-auto text-text-body">
-    <div class="mb-8 p-4 bg-brand-primary/10 border border-brand-primary text-brand-primary rounded-md font-medium text-center">
-      Draft pending legal review
+  <article class="pt-28 pb-20 px-4 md:px-8 max-w-[48rem] mx-auto text-text-body">
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="mb-8 text-xs text-text-muted">
+      <ol class="flex flex-wrap items-center gap-2">
+        <li>
+          <a href="/" class="hover:text-brand-hover transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded">
+            Home
+          </a>
+        </li>
+        <li aria-hidden="true">/</li>
+        <li aria-current="page" class="text-text-primary font-semibold">
+          Terms of Service
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Header -->
+    <header class="border-b border-hairline pb-8 mb-10">
+      <p class="text-xs font-bold uppercase tracking-wider text-brand-primary mb-2">
+        Commercial & Legal Agreement
+      </p>
+      <h1 class="text-3xl md:text-5xl font-extrabold text-text-primary tracking-tight">
+        Terms of Service
+      </h1>
+      <div class="mt-4 flex flex-wrap items-center gap-4 text-xs text-text-muted">
+        <span>Last Updated: <strong class="text-text-primary">{lastUpdated}</strong></span>
+        <span>•</span>
+        <span>Entity: <strong class="text-text-primary">SKYON IT SOLUTIONS</strong></span>
+      </div>
+      <p class="mt-5 text-sm md:text-base leading-relaxed text-text-body">
+        Please read these Terms of Service (&ldquo;Terms&rdquo;) carefully before browsing our website or engaging our services. These Terms constitute a legally binding agreement between you (&ldquo;Client&rdquo;, &ldquo;User&rdquo;, or &ldquo;you&rdquo;) and <strong>SKYON IT SOLUTIONS</strong> (&ldquo;SKYON&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) governing your access to our website, communication channels, and any subsequent technology service engagements.
+      </p>
+    </header>
+
+    <div class="space-y-10 text-sm md:text-base leading-relaxed">
+      <!-- 1. Acceptance & Pre-contractual Nature -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          1. Acceptance of Terms & Pre-Contractual Status
+        </h2>
+        <p>
+          By accessing <a href={SITE.url} class="text-brand-primary hover:text-brand-hover underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded">{SITE.domain}</a>, submitting an inquiry, utilizing our project cost estimator, or interacting with our automated assistant, you confirm your acceptance of and agreement to be bound by these Terms.
+        </p>
+        <div class="rounded-lg border border-hairline bg-surface-2 p-4 text-xs md:text-sm text-text-primary font-medium">
+          <strong>Important Notice:</strong> Content, portfolio showcases, technical articles, and automated estimates provided on this website are for general informational purposes only and do <strong>not</strong> constitute a binding commercial offer. A binding contract for professional IT services is formed strictly upon the bilateral execution of a written Statement of Work (&ldquo;SOW&rdquo;) or Master Services Agreement (&ldquo;MSA&rdquo;) signed by an authorized representative of SKYON and the receipt of the initial advance deposit.
+        </div>
+      </section>
+
+      <!-- 2. Services & Scope Management -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          2. Scope of Services & Change Order Process
+        </h2>
+        <p>
+          SKYON delivers custom web development, bespoke software engineering, cloud infrastructure architecture, artificial intelligence & workflow automation, UI/UX design, search engine optimization (SEO), digital marketing, and IT consulting services.
+        </p>
+        <p>
+          The precise scope, deliverables, timeline, milestones, and technical parameters for any client engagement shall be strictly defined in the applicable SOW. Any features, alterations, third-party integrations, design revisions, or expansions requested outside the approved SOW constitute &ldquo;Scope Changes&rdquo; and require a formal, written Change Order detailing additional billable fees and schedule adjustments prior to commencement.
+        </p>
+      </section>
+
+      <!-- 3. Client Obligations & Deemed Acceptance -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          3. Client Cooperation & Deemed Acceptance Window
+        </h2>
+        <p>
+          Timely project delivery requires active client cooperation. Clients agree to provide required content, branding assets, API keys, staging access, and feedback within the timelines established in the SOW.
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-text-body">
+          <li>
+            <strong class="text-text-primary">Schedule Adjustments for Client Delays:</strong> Any delivery schedule or milestone is contingent on timely client inputs. Delays caused by the client (such as delayed content delivery, missing third-party access, or prolonged feedback cycles) shall automatically extend SKYON&rsquo;s delivery deadlines by an equivalent duration and shall not give rise to any claim for delay damages, penalties, or fee reductions.
+          </li>
+          <li>
+            <strong class="text-text-primary">Seven-Day Deemed Acceptance:</strong> Upon delivery of any milestone, prototype, or completed project for client acceptance review, the client shall have seven (7) business days to inspect and test the deliverable. If the client does not provide a specific, itemized written notice of non-conformance within seven (7) business days, or if the client deploys the deliverable to a production environment, the deliverable shall be <strong>conclusively deemed fully accepted, approved, and billable in full</strong>.
+          </li>
+        </ul>
+      </section>
+
+      <!-- 4. Intellectual Property & Code Retention -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          4. Intellectual Property Rights & Background Code Retention
+        </h2>
+        <p>
+          Intellectual property rights are structured to provide full protection to SKYON while ensuring client utility:
+        </p>
+        <div class="space-y-3 pt-2">
+          <div class="rounded-lg border border-hairline bg-surface-1 p-4">
+            <h3 class="text-sm font-bold text-brand-primary mb-1">
+              Payment Condition Precedent to Assignment
+            </h3>
+            <p class="text-xs md:text-sm text-text-body">
+              All right, title, and copyright in bespoke deliverables created specifically for the client shall transfer to the client <strong>only upon 100% full, final, and cleared payment</strong> of all invoices and fees related to the project. Until full payment is received by SKYON, all intellectual property remains the exclusive proprietary property of SKYON.
+            </p>
+          </div>
+          <div class="rounded-lg border border-hairline bg-surface-1 p-4">
+            <h3 class="text-sm font-bold text-brand-primary mb-1">
+              Retention of SKYON Background Technology
+            </h3>
+            <p class="text-xs md:text-sm text-text-body">
+              SKYON expressly retains all right, title, and interest in and to all pre-existing software, developer frameworks, code libraries, boilerplate repositories, workflows, algorithms, reusable components, and AI prompt engineering architectures (&ldquo;Background Technology&rdquo;) utilized during project construction. Clients are granted a non-exclusive, perpetual, royalty-free license to use such Background Technology solely as integrated into the final deliverable.
+            </p>
+          </div>
+          <div class="rounded-lg border border-hairline bg-surface-1 p-4">
+            <h3 class="text-sm font-bold text-brand-primary mb-1">
+              Portfolio & Promotional Showcase License
+            </h3>
+            <p class="text-xs md:text-sm text-text-body">
+              Unless explicitly restricted by a separate, bilateral non-disclosure agreement, SKYON reserves the irrevocable, perpetual, royalty-free right to display the completed project, client logo, screenshots, and an overview of services rendered in SKYON&rsquo;s portfolio, case studies, and marketing presentations.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Payment Terms & Remedies -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          5. Fees, Invoicing & Work Suspension Remedies
+        </h2>
+        <p>
+          Services are billed according to the fee structure, hourly rates, or milestone payments agreed in the SOW.
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-text-body">
+          <li>
+            <strong class="text-text-primary">Payment Due Date:</strong> Invoices are payable upon receipt or within seven (7) calendar days of invoice date, without deduction, set-off, or withholding.
+          </li>
+          <li>
+            <strong class="text-text-primary">Non-Refundable Deposits:</strong> Upfront advance payments and completed milestone disbursements represent committed developer allocation and are strictly non-refundable.
+          </li>
+          <li>
+            <strong class="text-text-primary">Right to Suspend & Freeze Work:</strong> If any payment is overdue by more than seven (7) days, SKYON reserves the absolute right, without liability, to immediately suspend ongoing development, pause staging environments, postpone deployment schedules, and revoke access credentials until all outstanding balances are settled in full.
+          </li>
+          <li>
+            <strong class="text-text-primary">Late Payment Interest:</strong> Overdue balances accrue finance interest at the rate of 1.5% per month (18% per annum) or the maximum legal rate permissible under Indian law, calculated from the due date until paid in full, alongside all reasonable legal and debt-collection recovery costs incurred by SKYON.
+          </li>
+        </ul>
+      </section>
+
+      <!-- 6. Disclaimers of Warranties -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          6. Disclaimers of Warranties & Business Outcomes
+        </h2>
+        <p>
+          This website, its materials, and all interim deliverables are provided on an &ldquo;AS IS&rdquo; and &ldquo;AS AVAILABLE&rdquo; basis without warranties of any kind, whether express, statutory, or implied.
+        </p>
+        <div class="rounded-lg border border-hairline bg-surface-1 p-4 space-y-2 text-xs md:text-sm text-text-body">
+          <p>
+            <strong class="text-text-primary">No Guarantee of Commercial Results:</strong> While SKYON employs industry-standard software engineering and digital marketing best practices, we make no guarantees, warranties, or representations regarding specific commercial outcomes, sales conversions, revenue gains, or search engine ranking positions (SEO), as these depend on market dynamics, search algorithm updates, and third-party platform policies beyond our control.
+          </p>
+          <p>
+            <strong class="text-text-primary">Third-Party Platforms & APIs:</strong> SKYON shall bear zero liability for service interruptions, API rate limits, deprecations, policy alterations, account suspensions, or pricing changes imposed by third-party providers (including, without limitation, WhatsApp, Meta, Google, Cloudflare, Amazon Web Services, payment processors, or web hosting vendors).
+          </p>
+        </div>
+      </section>
+
+      <!-- 7. Limitation of Liability -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          7. Strict Limitation of Liability
+        </h2>
+        <p>
+          To the maximum extent permissible under applicable law:
+        </p>
+        <div class="rounded-xl border border-brand-primary/30 bg-surface-2 p-5 space-y-3 text-xs md:text-sm">
+          <p class="font-bold text-text-primary text-sm md:text-base">
+            Total Aggregate Liability Cap
+          </p>
+          <p class="text-text-body leading-relaxed">
+            In no event shall the total aggregate liability of SKYON IT SOLUTIONS, its founders, directors, employees, or subcontractors arising out of or relating to your use of this website, breach of contract, negligence, or any professional service engagement exceed the lesser of:
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-text-primary font-semibold">
+            <li>The total service fees actually received by SKYON from the client for the specific project deliverable giving rise to the claim during the three (3) months preceding the incident; or</li>
+            <li>Fifty Thousand Indian Rupees (&#8377;50,000 INR) / Five Hundred US Dollars ($500 USD).</li>
+          </ul>
+          <p class="text-text-muted text-xs pt-1 border-t border-hairline">
+            Under no circumstances shall SKYON be liable for indirect, incidental, special, exemplary, punitive, or consequential damages, including loss of profits, business revenue, goodwill, business interruption, or loss of proprietary data, even if advised of the possibility of such damages.
+          </p>
+        </div>
+      </section>
+
+      <!-- 8. Client Indemnification -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          8. Client Indemnification of SKYON
+        </h2>
+        <p>
+          The client agrees to defend, indemnify, and hold harmless SKYON IT SOLUTIONS, its officers, employees, and agents from and against all third-party claims, liabilities, damages, losses, or legal expenses (including reasonable attorneys&rsquo; fees) arising out of or related to:
+        </p>
+        <ul class="list-disc pl-5 space-y-1 text-text-body">
+          <li>Any client-supplied content, branding, data, text, or images that infringe upon any patent, trademark, copyright, or trade secret of any third party;</li>
+          <li>Client&rsquo;s violation of applicable laws, including privacy and consumer protection statutes;</li>
+          <li>Client&rsquo;s deployment or commercial operation of the software deliverables.</li>
+        </ul>
+      </section>
+
+      <!-- 9. Non-Solicitation of Personnel -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          9. Non-Solicitation of SKYON Personnel
+        </h2>
+        <p>
+          The client acknowledges that SKYON invests substantial resources in assembling and training its technical talent. The client agrees that during the term of any engagement and for a period of twelve (12) months following project completion or termination, the client shall not directly or indirectly solicit, recruit, employ, or engage as an independent contractor any employee, developer, or specialist of SKYON without the prior written consent of SKYON.
+        </p>
+      </section>
+
+      <!-- 10. Termination -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          10. Termination & Consequences
+        </h2>
+        <p>
+          Either party may terminate an SOW for material breach upon fourteen (14) days written notice if the breaching party fails to cure the breach within that window.
+        </p>
+        <p>
+          SKYON reserves the right to terminate any active engagement immediately if the client fails to pay invoices when due, becomes insolvent, or engages in unlawful or abusive conduct toward SKYON personnel. Upon termination, the client shall immediately pay SKYON for all billable work completed, developer time accrued, and non-cancellable expenses incurred up to the date of termination.
+        </p>
+      </section>
+
+      <!-- 11. Governing Law & Exclusive Jurisdiction -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          11. Governing Law & Exclusive Jurisdiction
+        </h2>
+        <p>
+          These Terms and any non-contractual obligations or disputes arising out of them shall be governed by, construed, and enforced in accordance with the <strong>laws of India</strong>, including the Indian Contract Act, 1872 and the Information Technology Act, 2000, without regard to conflict of law principles.
+        </p>
+        <div class="rounded-lg border border-hairline bg-surface-1 p-4 text-xs md:text-sm text-text-body">
+          <p>
+            Any dispute, controversy, or claim arising out of or in connection with these Terms, website access, or our professional services shall be subject to the <strong>exclusive jurisdiction of the competent commercial courts located in Jaipur, Rajasthan, India</strong>. Both parties hereby irrevocably submit to the personal and subject-matter jurisdiction of such courts and waive any objection regarding inconvenient forum.
+          </p>
+        </div>
+      </section>
+
+      <!-- 12. Contact & Notices -->
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-bold text-text-primary">
+          12. Official Inquiries & Notices
+        </h2>
+        <p>
+          For questions regarding these Terms or formal legal notices, please reach out to our legal and management team:
+        </p>
+
+        <div class="rounded-xl border border-hairline bg-surface-1 p-6 space-y-3 shadow-sm">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider text-brand-primary">Management & Legal Operations</p>
+            <p class="text-base font-bold text-text-primary mt-1">SKYON IT SOLUTIONS</p>
+          </div>
+          <div class="text-xs md:text-sm space-y-1 text-text-body">
+            <p>
+              <strong class="text-text-primary">Email:</strong>{' '}
+              <a href={`mailto:${SITE.email}`} class="text-brand-primary hover:text-brand-hover underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded">
+                {SITE.email}
+              </a>
+            </p>
+            <p>
+              <strong class="text-text-primary">Phone / WhatsApp:</strong>{' '}
+              <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer" class="text-brand-primary hover:text-brand-hover underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded">
+                {SITE.phone}
+              </a>
+            </p>
+            <p>
+              <strong class="text-text-primary">Official Website:</strong>{' '}
+              <a href={SITE.url} class="text-brand-primary hover:text-brand-hover underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded">
+                {SITE.domain}
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
 
-    <h1 class="text-4xl md:text-5xl font-extrabold text-text-primary tracking-tight mb-8">Terms of Service</h1>
-    
-    <div class="space-y-6 text-lg leading-relaxed">
-      <p>
-        The content provided on this website is for general informational purposes regarding our website development, SEO, digital marketing, and social media management services.
-      </p>
-      
-      <p>
-        Submitting a project inquiry through our contact form does not create a binding contract for services. Projects are agreed separately in writing through a dedicated proposal or contract tailored to your specific requirements.
-      </p>
+    <!-- Bottom Actions -->
+    <div class="mt-16 pt-8 border-t border-hairline flex flex-wrap items-center justify-between gap-4">
+      <a
+        href="/"
+        class="inline-flex min-h-[44px] items-center gap-2 text-xs font-semibold text-text-muted hover:text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded"
+      >
+        <span aria-hidden="true">&larr;</span> Return to Home
+      </a>
+      <div class="flex items-center gap-3">
+        <a
+          href="/privacy"
+          class="inline-flex min-h-[44px] items-center text-xs font-semibold text-brand-primary hover:text-brand-hover transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded"
+        >
+          View Privacy Policy &rarr;
+        </a>
+        <a
+          href="/contact"
+          class="inline-flex min-h-[44px] items-center rounded-lg bg-button-fill text-button-text px-5 py-2 text-xs font-bold hover:bg-button-hover transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
+        >
+          Contact Us &rarr;
+        </a>
+      </div>
     </div>
   </article>
 </Layout>

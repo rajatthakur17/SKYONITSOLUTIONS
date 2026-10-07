@@ -1,0 +1,366 @@
+---
+import { SITE } from '../../config/site';
+---
+
+<div
+  id="feedback-modal-overlay"
+  class="feedback-overlay fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 transition-opacity duration-200 hidden opacity-0"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="feedback-dialog-title"
+  aria-describedby="feedback-dialog-desc"
+>
+  <div
+    id="feedback-modal-card"
+    class="w-full max-w-[32rem] bg-surface-1 border border-hairline rounded-xl shadow-xl overflow-hidden flex flex-col max-h-[90vh] transition-transform duration-200 scale-95"
+  >
+    <!-- Header -->
+    <div class="px-6 py-4 bg-surface-2 border-b border-hairline flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-full bg-brand-primary/10 border border-brand-primary/20 flex items-center justify-center text-brand-primary shrink-0">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+          </svg>
+        </div>
+        <div>
+          <h3 id="feedback-dialog-title" class="text-sm font-bold text-text-primary">
+            Share Your Feedback &amp; Review
+          </h3>
+          <p id="feedback-dialog-desc" class="text-[11px] text-text-muted">
+            Posts to Client Feedback &amp; Trust and helps us continuously improve
+          </p>
+        </div>
+      </div>
+      <button
+        type="button"
+        id="close-feedback-modal-btn"
+        class="w-9 h-9 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-1 transition-colors text-xl leading-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
+        aria-label="Close feedback dialog"
+      >
+        &times;
+      </button>
+    </div>
+
+    <!-- Form Body -->
+    <form id="feedback-form" class="p-6 overflow-y-auto space-y-5 text-xs text-text-body">
+      <!-- Experience Rating -->
+      <div>
+        <label class="block text-xs font-bold text-text-primary uppercase tracking-wider mb-2">
+          Experience Rating
+        </label>
+        <div class="flex items-center gap-1.5" id="feedback-rating-group">
+          <button
+            type="button"
+            data-star="1"
+            class="star-btn w-9 h-9 min-w-[36px] min-h-[36px] rounded-lg border border-hairline bg-canvas hover:border-brand-primary flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
+            aria-label="Rate 1 star"
+          >
+            <span class="star-icon text-brand-primary text-base">★</span>
+          </button>
+          <button
+            type="button"
+            data-star="2"
+            class="star-btn w-9 h-9 min-w-[36px] min-h-[36px] rounded-lg border border-hairline bg-canvas hover:border-brand-primary flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
+            aria-label="Rate 2 stars"
+          >
+            <span class="star-icon text-brand-primary text-base">★</span>
+          </button>
+          <button
+            type="button"
+            data-star="3"
+            class="star-btn w-9 h-9 min-w-[36px] min-h-[36px] rounded-lg border border-hairline bg-canvas hover:border-brand-primary flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
+            aria-label="Rate 3 stars"
+          >
+            <span class="star-icon text-brand-primary text-base">★</span>
+          </button>
+          <button
+            type="button"
+            data-star="4"
+            class="star-btn w-9 h-9 min-w-[36px] min-h-[36px] rounded-lg border border-hairline bg-canvas hover:border-brand-primary flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
+            aria-label="Rate 4 stars"
+          >
+            <span class="star-icon text-brand-primary text-base">★</span>
+          </button>
+          <button
+            type="button"
+            data-star="5"
+            class="star-btn w-9 h-9 min-w-[36px] min-h-[36px] rounded-lg border border-hairline bg-canvas hover:border-brand-primary flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
+            aria-label="Rate 5 stars"
+          >
+            <span class="star-icon text-brand-primary text-base">★</span>
+          </button>
+          <span id="rating-label" class="text-xs font-mono text-brand-primary font-semibold ml-2">
+            5 of 5 Stars (Excellent)
+          </span>
+        </div>
+      </div>
+
+      <!-- Feedback Category -->
+      <div>
+        <label for="feedback-category" class="block text-xs font-bold text-text-primary uppercase tracking-wider mb-1.5">
+          Category / Project Sector
+        </label>
+        <select
+          id="feedback-category"
+          class="w-full bg-canvas border border-hairline rounded-lg px-3 py-2.5 text-xs text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary"
+        >
+          <option value="Website Experience & Usability">Website Experience &amp; Usability</option>
+          <option value="Custom Software & Engineering">Custom Software &amp; Engineering</option>
+          <option value="Cloud & Infrastructure Solutions">Cloud &amp; Infrastructure Solutions</option>
+          <option value="AI & Automation Integration">AI &amp; Automation Integration</option>
+          <option value="UI/UX Product Design">UI/UX Product Design</option>
+          <option value="Client Consultation & Advisory">Client Consultation &amp; Advisory</option>
+          <option value="Technical Bug / Issue Report">Technical Bug / Issue Report</option>
+          <option value="General Suggestion">General Suggestion</option>
+        </select>
+      </div>
+
+      <!-- Feedback Message -->
+      <div>
+        <label for="feedback-message" class="block text-xs font-bold text-text-primary uppercase tracking-wider mb-1.5">
+          Your Review or Feedback Comments <span class="text-brand-primary">*</span>
+        </label>
+        <textarea
+          id="feedback-message"
+          rows="3"
+          required
+          placeholder="Tell us about your experience, project feedback, or suggestions..."
+          class="w-full bg-canvas border border-hairline rounded-lg p-3 text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-brand-primary resize-none leading-relaxed"
+        ></textarea>
+      </div>
+
+      <!-- Optional Contact Info -->
+      <div>
+        <label for="feedback-contact" class="block text-xs font-bold text-text-primary uppercase tracking-wider mb-1.5">
+          Your Name or Company / Role <span class="text-text-muted font-normal">(Displayed on review card)</span>
+        </label>
+        <input
+          type="text"
+          id="feedback-contact"
+          placeholder="e.g. Rahul Sharma / Tech Lead, Delhi"
+          class="w-full bg-canvas border border-hairline rounded-lg px-3 py-2 text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-brand-primary"
+        />
+      </div>
+
+      <!-- Error / Validation Note -->
+      <p id="feedback-validation-error" class="text-xs text-red-500 font-medium hidden">
+        Please enter your review comments before submitting.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="pt-2 border-t border-hairline flex flex-col sm:flex-row gap-2.5">
+        <button
+          type="button"
+          id="send-feedback-wa-btn"
+          class="flex-1 bg-brand-primary text-white hover:bg-brand-hover transition-colors font-bold py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 min-h-[44px] shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary cursor-pointer"
+        >
+          <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2Z" />
+          </svg>
+          Post &amp; Send on WhatsApp
+        </button>
+        <button
+          type="button"
+          id="send-feedback-email-btn"
+          class="flex-1 bg-surface-2 text-text-primary hover:bg-surface-1 border border-hairline transition-colors font-bold py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary cursor-pointer"
+        >
+          <svg class="w-4 h-4 fill-none stroke-current shrink-0" stroke-width="2" viewBox="0 0 24 24">
+            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+          </svg>
+          Post &amp; Send via Email
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script is:inline define:vars={{ whatsappPhone: '917014865202', siteEmail: SITE.email }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('feedback-modal-overlay');
+    const card = document.getElementById('feedback-modal-card');
+    const closeBtn = document.getElementById('close-feedback-modal-btn');
+    const ratingGroup = document.getElementById('feedback-rating-group');
+    const ratingLabel = document.getElementById('rating-label');
+    const messageInput = document.getElementById('feedback-message');
+    const categorySelect = document.getElementById('feedback-category');
+    const contactInput = document.getElementById('feedback-contact');
+    const validationError = document.getElementById('feedback-validation-error');
+    const sendWaBtn = document.getElementById('send-feedback-wa-btn');
+    const sendEmailBtn = document.getElementById('send-feedback-email-btn');
+
+    if (!overlay) return;
+
+    let currentRating = 5;
+
+    const ratingDescriptions = {
+      1: '1 of 5 Stars (Needs Work)',
+      2: '2 of 5 Stars (Fair)',
+      3: '3 of 5 Stars (Average)',
+      4: '4 of 5 Stars (Good)',
+      5: '5 of 5 Stars (Excellent)'
+    };
+
+    function updateStars(rating) {
+      currentRating = rating;
+      const starBtns = ratingGroup.querySelectorAll('.star-btn');
+      starBtns.forEach((btn) => {
+        const starVal = parseInt(btn.getAttribute('data-star') || '0', 10);
+        const starIcon = btn.querySelector('.star-icon');
+        if (starVal <= rating) {
+          starIcon.classList.remove('text-text-muted');
+          starIcon.classList.add('text-brand-primary');
+        } else {
+          starIcon.classList.remove('text-brand-primary');
+          starIcon.classList.add('text-text-muted');
+        }
+      });
+      if (ratingLabel) {
+        ratingLabel.textContent = ratingDescriptions[rating] || `${rating} of 5 Stars`;
+      }
+    }
+
+    if (ratingGroup) {
+      const starBtns = ratingGroup.querySelectorAll('.star-btn');
+      starBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const rating = parseInt(btn.getAttribute('data-star') || '5', 10);
+          updateStars(rating);
+        });
+      });
+    }
+
+    function openModal() {
+      overlay.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        overlay.classList.remove('opacity-0');
+        overlay.classList.add('opacity-100');
+        card.classList.remove('scale-95');
+        card.classList.add('scale-100');
+      });
+      if (messageInput) messageInput.focus();
+    }
+
+    function closeModal() {
+      overlay.classList.remove('opacity-100');
+      overlay.classList.add('opacity-0');
+      card.classList.remove('scale-100');
+      card.classList.add('scale-95');
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+      }, 200);
+    }
+
+    // Attach to triggers with #open-feedback-btn or data-open-feedback="true"
+    document.querySelectorAll('#open-feedback-btn, [data-open-feedback="true"], .open-feedback-trigger').forEach((btn) => {
+      btn.addEventListener('click', openModal);
+    });
+
+    window.addEventListener('skyon:open-feedback', openModal);
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !overlay.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+
+    function saveAndDispatchReview(msg, cat, contact) {
+      const newReview = {
+        id: 'rev_' + Date.now(),
+        author: contact || 'Verified Client Reviewer',
+        role: cat,
+        industry: cat,
+        quote: msg,
+        rating: currentRating,
+        timestamp: 'Just now'
+      };
+
+      try {
+        const stored = JSON.parse(localStorage.getItem('skyon_client_reviews') || '[]');
+        stored.unshift(newReview);
+        localStorage.setItem('skyon_client_reviews', JSON.stringify(stored));
+      } catch (err) {
+        console.error('Error saving review to localStorage', err);
+      }
+
+      // Notify page components (Testimonials and Floating Review)
+      window.dispatchEvent(new CustomEvent('skyon:review-posted', { detail: newReview }));
+
+      // Smooth scroll to testimonials section if on page
+      const testimonialsSec = document.getElementById('testimonials');
+      if (testimonialsSec) {
+        setTimeout(() => {
+          testimonialsSec.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+      }
+    }
+
+    function getFormattedFeedback() {
+      const msg = messageInput.value.trim();
+      if (!msg) {
+        if (validationError) validationError.classList.remove('hidden');
+        messageInput.focus();
+        return null;
+      }
+      if (validationError) validationError.classList.add('hidden');
+
+      const cat = categorySelect.value;
+      const contact = contactInput.value.trim() || 'Verified Client';
+      const ratingStars = '★'.repeat(currentRating) + '☆'.repeat(5 - currentRating);
+
+      // Save locally and dispatch event
+      saveAndDispatchReview(msg, cat, contact);
+
+      return {
+        rating: `${currentRating}/5 (${ratingStars})`,
+        category: cat,
+        comment: msg,
+        contact: contact
+      };
+    }
+
+    if (sendWaBtn) {
+      sendWaBtn.addEventListener('click', () => {
+        const data = getFormattedFeedback();
+        if (!data) return;
+
+        const text = `*New Client Review & Feedback for SKYON IT SOLUTIONS*\n\n` +
+          `• *Rating:* ${data.rating}\n` +
+          `• *Category:* ${data.category}\n` +
+          `• *Review:* "${data.comment}"\n` +
+          `• *Author:* ${data.contact}\n\n` +
+          `_Posted to Client Feedback & Trust on website._`;
+
+        const url = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(text)}`;
+        window.open(url, '_blank');
+        closeModal();
+      });
+    }
+
+    if (sendEmailBtn) {
+      sendEmailBtn.addEventListener('click', () => {
+        const data = getFormattedFeedback();
+        if (!data) return;
+
+        const subject = `New Client Review [${data.category}]: ${currentRating}/5 Stars`;
+        const body = `Hi SKYON IT SOLUTIONS Team,\n\n` +
+          `A new review was posted on skyonitsolutions.com:\n\n` +
+          `Rating: ${data.rating}\n` +
+          `Category: ${data.category}\n` +
+          `Review: "${data.comment}"\n` +
+          `Author: ${data.contact}\n\n` +
+          `Best regards.`;
+
+        const mailtoUrl = `mailto:${siteEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoUrl;
+        closeModal();
+      });
+    }
+  });
+</script>

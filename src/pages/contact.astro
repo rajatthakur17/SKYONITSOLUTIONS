@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { SITE } from '../config/site';
+import { BUDGET_RANGES } from '../data/budget';
 
 const title = "Contact | SKYON IT SOLUTIONS";
 const description = "Contact SKYON IT SOLUTIONS about software, web, cloud, AI, design, consulting, or digital growth services.";
@@ -100,12 +101,9 @@ const isConnected = endpoint.trim() !== '';
             <label for="budget" class="block font-medium text-text-primary">Estimated Budget (Optional)</label>
             <select id="budget" name="budget" class="w-full bg-surface-2 border border-border-strong rounded-md px-4 py-3 min-h-[44px] text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary appearance-none">
               <option value="" disabled selected>Select budget range...</option>
-              <option value="₹25k – ₹50k INR">₹25k – ₹50k INR</option>
-              <option value="₹50k – ₹1.5L INR">₹50k – ₹1.5L INR</option>
-              <option value="₹1.5L – ₹5L+ INR">₹1.5L – ₹5L+ INR</option>
-              <option value="$1,000 – $3,000 USD">$1,000 – $3,000 USD</option>
-              <option value="$3,000 – $10,000+ USD">$3,000 – $10,000+ USD</option>
-              <option value="Flexible / Discussion needed">Flexible / Discussion needed</option>
+              {BUDGET_RANGES.map((range) => (
+                <option value={range}>{range}</option>
+              ))}
             </select>
           </div>
           <div class="space-y-2">

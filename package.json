@@ -10,6 +10,7 @@
     "check": "astro check",
     "build": "astro build",
     "preview": "astro preview",
+    "postinstall": "node scripts/ensure_wasm_compiler.cjs",
     "restore:cta": "node scripts/restore_cta.js",
     "astro": "astro"
   },

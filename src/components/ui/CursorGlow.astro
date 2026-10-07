@@ -1,5 +1,7 @@
 ---
 // CursorGlow.astro — Ambient fluid smoky wave tracking and flowing with cursor
+// Active exclusively on the Home page (/) and pages containing the CallToAction section (.skyon-cta)
+// Dynamically fades to completely invisible when cursor is motionless
 ---
 
 <canvas id="ambient-smoke-canvas" class="cursor-smoke-canvas" aria-hidden="true"></canvas>
@@ -13,7 +15,7 @@
     pointer-events: none;
     z-index: 5;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.3s ease;
   }
 
   .cursor-smoke-canvas.is-active {
@@ -28,9 +30,36 @@
 </style>
 
 <script>
+  let cleanupFn: (() => void) | null = null;
+
   function setupSmokeWave() {
+    // Tear down any previous listener/animation state
+    if (cleanupFn) {
+      cleanupFn();
+      cleanupFn = null;
+    }
+
     const canvas = document.getElementById('ambient-smoke-canvas') as HTMLCanvasElement | null;
-    if (!canvas || window.matchMedia('(pointer: coarse)').matches) return;
+    if (!canvas) return;
+
+    // Disable on touch devices or prefers-reduced-motion
+    if (window.matchMedia('(pointer: coarse)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      canvas.style.display = 'none';
+      return;
+    }
+
+    // Page check: ONLY Home page ('/') or pages containing the CallToAction section (.skyon-cta)
+    const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+    const hasCtaSection = document.querySelector('.skyon-cta') !== null;
+    const isAllowed = currentPath === '/' || hasCtaSection;
+
+    if (!isAllowed) {
+      canvas.style.display = 'none';
+      canvas.classList.remove('is-active');
+      return;
+    }
+
+    canvas.style.display = '';
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -64,6 +93,7 @@
     let prevMouseX = -500;
     let prevMouseY = -500;
     let lastMoveTime = 0;
+    let movementAlpha = 0;
     let hueBase = 0;
 
     for (let i = 0; i < NODE_COUNT; i++) {
@@ -109,34 +139,65 @@
     }
 
     function onMouseLeave() {
+      movementAlpha = 0;
+      puffs.length = 0;
       canvas!.classList.remove('is-active');
+      ctx!.clearRect(0, 0, width, height);
+      if (animId !== null) {
+        cancelAnimationFrame(animId);
+        animId = null;
+      }
     }
 
     window.addEventListener('pointermove', onPointerMove, { passive: true });
     document.addEventListener('mouseleave', onMouseLeave);
 
     function render(now: number) {
+      const idleDuration = now - lastMoveTime;
+
+      // When cursor stops moving (no pointer events for > 60ms):
+      // Rapidly fade movementAlpha down to 0 over 180ms
+      const IDLE_THRESHOLD = 60; // ms
+      const FADE_DURATION = 180; // ms
+
+      if (idleDuration < IDLE_THRESHOLD) {
+        // Actively moving: smooth rapid ramp-up to 1
+        movementAlpha = Math.min(1, movementAlpha + 0.18);
+      } else {
+        // Stationary / stopped moving: smooth rapid fade out
+        const fadeRatio = (idleDuration - IDLE_THRESHOLD) / FADE_DURATION;
+        movementAlpha = Math.max(0, 1 - fadeRatio);
+      }
+
+      // If fully faded out and all lingering puffs have vanished:
+      // Clear canvas and sleep to eliminate stationary glow and conserve CPU
+      if (movementAlpha <= 0 && puffs.length === 0) {
+        ctx!.clearRect(0, 0, width, height);
+        canvas!.classList.remove('is-active');
+        animId = null;
+        return;
+      }
+
       ctx!.clearRect(0, 0, width, height);
 
       // Color cycle for spectral iridescent smoke
       hueBase = (hueBase + 0.6) % 360;
 
-      const idleDuration = now - lastMoveTime;
       const speed = Math.hypot(mouseX - prevMouseX, mouseY - prevMouseY);
       prevMouseX = mouseX;
       prevMouseY = mouseY;
 
-      // Spawn soft smoke puffs along the cursor path when moving
-      if (speed > 1.2 && puffs.length < 32) {
+      // Spawn soft smoke puffs along the cursor path ONLY when actively moving and visible
+      if (speed > 1.2 && puffs.length < 32 && movementAlpha > 0.15) {
         puffs.push({
           x: mouseX + (Math.random() - 0.5) * 6,
           y: mouseY + (Math.random() - 0.5) * 6,
           vx: (Math.random() - 0.5) * 0.7,
-          vy: (Math.random() - 0.5) * 0.7 - 0.35, // soft upward drift like smoke
+          vy: (Math.random() - 0.5) * 0.7 - 0.35,
           radius: 12 + Math.random() * 8,
           maxRadius: 45 + Math.random() * 25,
-          alpha: 0.22,
-          decay: 0.006 + Math.random() * 0.004,
+          alpha: 0.22 * movementAlpha,
+          decay: 0.008 + Math.random() * 0.005,
           hue: (hueBase + Math.random() * 40) % 360,
         });
       }
@@ -154,9 +215,12 @@
           continue;
         }
 
+        const effectiveAlpha = p.alpha * movementAlpha;
+        if (effectiveAlpha <= 0.005) continue;
+
         const grad = ctx!.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius);
-        grad.addColorStop(0, `hsla(${p.hue}, 90%, 65%, ${p.alpha.toFixed(3)})`);
-        grad.addColorStop(0.45, `hsla(${(p.hue + 25) % 360}, 85%, 60%, ${(p.alpha * 0.6).toFixed(3)})`);
+        grad.addColorStop(0, `hsla(${p.hue}, 90%, 65%, ${effectiveAlpha.toFixed(3)})`);
+        grad.addColorStop(0.45, `hsla(${(p.hue + 25) % 360}, 85%, 60%, ${(effectiveAlpha * 0.6).toFixed(3)})`);
         grad.addColorStop(1, 'transparent');
 
         ctx!.fillStyle = grad;
@@ -200,9 +264,8 @@
         });
       }
 
-      // Draw flowing smoky ribbon segments
-      if (nodes[0].x > -200) {
-        // Multi-pass smoky wave: Outer soft glow & inner flowing filament
+      // Draw flowing smoky ribbon segments ONLY when movementAlpha > 0
+      if (nodes[0].x > -200 && movementAlpha > 0.01) {
         const passes = [
           { widthScale: 38, alphaScale: 0.10 },
           { widthScale: 20, alphaScale: 0.18 },
@@ -215,8 +278,10 @@
             const p2 = waveCoords[i + 1];
             const progress = i / NODE_COUNT;
             const tWidth = Math.max(1.5, pass.widthScale * (1 - progress * 0.85));
-            const tAlpha = pass.alphaScale * (1 - progress * 0.7);
+            const tAlpha = pass.alphaScale * (1 - progress * 0.7) * movementAlpha;
             const segHue = (hueBase + i * 14) % 360;
+
+            if (tAlpha <= 0.005) continue;
 
             ctx!.strokeStyle = `hsla(${segHue}, 90%, 65%, ${tAlpha.toFixed(3)})`;
             ctx!.lineWidth = tWidth;
@@ -231,14 +296,19 @@
         }
       }
 
-      // If idle for over 2.5 seconds and no active puffs, stop animation loop to conserve battery
-      if (idleDuration > 2500 && puffs.length === 0) {
-        animId = null;
-        return;
-      }
-
       animId = requestAnimationFrame(render);
     }
+
+    cleanupFn = () => {
+      window.removeEventListener('resize', resize);
+      window.removeEventListener('pointermove', onPointerMove);
+      document.removeEventListener('mouseleave', onMouseLeave);
+      if (animId !== null) {
+        cancelAnimationFrame(animId);
+        animId = null;
+      }
+      ctx.clearRect(0, 0, width, height);
+    };
   }
 
   setupSmokeWave();

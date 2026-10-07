@@ -1,86 +1,146 @@
 ---
-// WhatsAppFloat.astro — High-converting floating WhatsApp Quick-Chat Island
+// WhatsAppFloat.astro — Rule-based automated chat assistant
 import { SITE } from '../../config/site';
+import {
+  CHAT_DISCLAIMER,
+  CHAT_FREE_TEXT_FALLBACK,
+  QUICK_ANSWERS,
+  FLOW_B_SERVICES,
+  FLOW_B_BUDGETS,
+  FLOW_B_TIMELINES,
+} from '../../data/chatbot';
 
 interface Props {
   phone?: string;
-  defaultMessage?: string;
 }
 
 const {
   phone = SITE.whatsapp.replace(/\D/g, '') || '917014865202',
-  defaultMessage = 'Hi SKYON IT SOLUTIONS, I would like to enquire about your services.'
 } = Astro.props;
 
-const baseWhatsAppUrl = `https://wa.me/${phone}`;
+const chatConfig = {
+  phone,
+  email: SITE.email,
+  disclaimer: CHAT_DISCLAIMER,
+  freeTextFallback: CHAT_FREE_TEXT_FALLBACK,
+  quickAnswers: QUICK_ANSWERS,
+  services: FLOW_B_SERVICES,
+  budgets: FLOW_B_BUDGETS,
+  timelines: FLOW_B_TIMELINES,
+};
 ---
 
-<div id="whatsapp-float-widget" class="wa-float-container" aria-label="WhatsApp live chat widget">
-  <!-- Expanded Mini-Chat Popup -->
-  <div id="wa-chat-popup" class="wa-popup" role="dialog" aria-modal="false" aria-labelledby="wa-popup-title" hidden>
+<div id="whatsapp-float-widget" class="wa-float-container" aria-label="Chat assistant widget">
+  <!-- Automated Assistant Popup Panel -->
+  <div
+    id="wa-chat-popup"
+    class="wa-popup"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Chat assistant"
+    hidden
+  >
     <!-- Header -->
     <div class="wa-popup-header">
-      <div class="wa-avatar-wrap">
-        <div class="wa-avatar">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2Z" />
+      <div class="flex items-center gap-2.5 min-w-0">
+        <div class="wa-bot-icon shrink-0" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <rect width="18" height="12" x="3" y="6" rx="2"></rect>
+            <circle cx="9" cy="12" r="1"></circle>
+            <circle cx="15" cy="12" r="1"></circle>
+            <path d="M12 2v4m-4 16v-2m8 2v-2"></path>
           </svg>
-          <span class="wa-status-beacon" title="Online now"></span>
         </div>
-        <div>
-          <h3 id="wa-popup-title" class="wa-agent-name">SKYON IT SOLUTIONS</h3>
-          <p class="wa-agent-status">
-            <span class="wa-online-dot"></span> Online • Fast WhatsApp Reply
+        <div class="min-w-0">
+          <div class="flex items-center gap-2">
+            <h3 id="wa-popup-title" class="text-xs font-bold text-text-primary tracking-wide uppercase truncate">
+              SKYON Assistant
+            </h3>
+            <span
+              id="wa-step-badge"
+              class="hidden text-[10px] font-semibold bg-brand-primary/15 text-brand-primary border border-brand-primary/30 px-1.5 py-0.5 rounded"
+            ></span>
+          </div>
+          <p class="text-[11px] text-text-muted flex items-center gap-1.5 mt-0.5 truncate">
+            <span class="w-1.5 h-1.5 rounded-full bg-success inline-block shrink-0"></span>
+            Automated • Rule-based
           </p>
         </div>
       </div>
-      <button type="button" id="wa-close-btn" class="wa-close-btn" aria-label="Close chat bubble">
-        &times;
-      </button>
-    </div>
 
-    <!-- Body / Chat Message -->
-    <div class="wa-popup-body">
-      <div class="wa-bubble">
-        <p class="wa-bubble-text">
-          👋 Hi there! Looking to build, automate, or scale your software and digital presence?
-        </p>
-        <span class="wa-bubble-time">Just now</span>
-      </div>
+      <div class="flex items-center gap-1 shrink-0">
+        <!-- Restart Conversation Button -->
+        <button
+          type="button"
+          id="wa-reset-btn"
+          class="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-text-muted hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary transition-colors"
+          aria-label="Restart conversation"
+          title="Restart conversation"
+        >
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+            <path d="M3 3v5h5"></path>
+          </svg>
+        </button>
 
-      <p class="wa-prompt-label">Select a quick topic to start:</p>
-      
-      <div class="wa-quick-chips">
-        <a href={`${baseWhatsAppUrl}?text=${encodeURIComponent("Hi SKYON, I would like to get a quote for a new Website or Web Application.")}`}
-           target="_blank" rel="noopener noreferrer" class="wa-chip">
-          🌐 Web & App Development
-        </a>
-        <a href={`${baseWhatsAppUrl}?text=${encodeURIComponent("Hi SKYON, I would like to learn about AI & Workflow Automation solutions.")}`}
-           target="_blank" rel="noopener noreferrer" class="wa-chip">
-          🤖 AI & Workflow Automation
-        </a>
-        <a href={`${baseWhatsAppUrl}?text=${encodeURIComponent("Hi SKYON, I want to grow our organic leads via SEO & Digital Marketing.")}`}
-           target="_blank" rel="noopener noreferrer" class="wa-chip">
-          📈 SEO & Digital Growth
-        </a>
+        <!-- Close Dialog Button -->
+        <button
+          type="button"
+          id="wa-close-btn"
+          class="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-text-muted hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary transition-colors text-xl leading-none"
+          aria-label="Close chat assistant"
+          title="Close chat assistant"
+        >
+          &times;
+        </button>
       </div>
     </div>
 
-    <!-- Footer Action -->
-    <div class="wa-popup-footer">
-      <a href={`${baseWhatsAppUrl}?text=${encodeURIComponent(defaultMessage)}`}
-         target="_blank" rel="noopener noreferrer" class="wa-start-btn">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2Z" />
+    <!-- Messages Container with polite live region -->
+    <div
+      id="chat-messages"
+      class="wa-popup-body overflow-y-auto space-y-3 flex-1"
+      aria-live="polite"
+      aria-atomic="false"
+      tabindex="-1"
+    >
+      <!-- In-memory messages rendered dynamically -->
+    </div>
+
+    <!-- Interactive Actions / Choices -->
+    <div id="chat-actions" class="p-3 bg-surface-1 border-t border-hairline flex flex-col gap-2 max-h-[220px] overflow-y-auto shrink-0">
+      <!-- Options rendered dynamically -->
+    </div>
+
+    <!-- Free-text input row -->
+    <form id="chat-freetext-form" class="p-2.5 bg-surface-2 border-t border-hairline flex items-center gap-2 shrink-0">
+      <input
+        type="text"
+        id="chat-freetext-input"
+        placeholder="Choose an option or type a question..."
+        class="flex-1 bg-surface-1 border border-border-strong text-text-primary text-xs px-3 py-2 min-h-[44px] rounded focus:outline-none focus:ring-2 focus:ring-brand-primary placeholder:text-text-muted"
+        aria-label="Type message"
+      />
+      <button
+        type="submit"
+        class="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center bg-surface-1 border border-hairline hover:border-brand-primary text-brand-primary hover:text-brand-hover rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary transition-colors shrink-0"
+        aria-label="Send message"
+      >
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path>
         </svg>
-        <span>Open WhatsApp Chat</span>
-        <span>&rarr;</span>
-      </a>
-    </div>
+      </button>
+    </form>
   </div>
 
-  <!-- Collapsed Floating Button -->
-  <button type="button" id="wa-toggle-btn" class="wa-float-btn" aria-label="Chat with SKYON on WhatsApp" aria-expanded="false">
+  <!-- Collapsed Floating Button (Unchanged look & position) -->
+  <button
+    type="button"
+    id="wa-toggle-btn"
+    class="wa-float-btn"
+    aria-label="Chat with SKYON on WhatsApp"
+    aria-expanded="false"
+  >
     <span class="wa-btn-beacon" aria-hidden="true"></span>
     <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" class="wa-btn-icon" aria-hidden="true">
       <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2Z" />
@@ -88,6 +148,9 @@ const baseWhatsAppUrl = `https://wa.me/${phone}`;
     <span class="wa-pill-label">Chat with Us</span>
   </button>
 </div>
+
+<!-- Embedded Configuration for Lazy Initialization -->
+<script id="chat-assistant-config" type="application/json" set:html={JSON.stringify(chatConfig)} />
 
 <style>
   .wa-float-container {
@@ -98,7 +161,6 @@ const baseWhatsAppUrl = `https://wa.me/${phone}`;
     font-family: inherit;
   }
 
-  /* Floating Trigger Button */
   .wa-float-btn {
     position: relative;
     display: inline-flex;
@@ -136,7 +198,6 @@ const baseWhatsAppUrl = `https://wa.me/${phone}`;
     white-space: nowrap;
   }
 
-  /* Pulsing live beacon on button */
   .wa-btn-beacon {
     position: absolute;
     top: 2px;
@@ -160,27 +221,45 @@ const baseWhatsAppUrl = `https://wa.me/${phone}`;
     }
   }
 
-  /* Mini-Chat Popup */
+  .wa-bot-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--color-surface-1);
+    border: 1px solid var(--color-hairline);
+    color: var(--color-brand-primary);
+    display: grid;
+    place-items: center;
+  }
+
+  /* Assistant Dialog Popup */
   .wa-popup {
     position: absolute;
     bottom: calc(100% + 14px);
     right: 0;
-    width: 320px;
+    width: 380px;
     max-width: calc(100vw - 32px);
-    border-radius: 20px;
+    height: 540px;
+    max-height: calc(100vh - 110px);
+    border-radius: 16px;
     background: var(--color-surface-1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--color-hairline);
-    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(92, 194, 255, 0.1);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 24px rgba(92, 194, 255, 0.08);
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
-    animation: waFadeIn 0.25s ease-out forwards;
   }
 
-  @keyframes waFadeIn {
+  @media (prefers-reduced-motion: no-preference) {
+    .wa-popup:not([hidden]) {
+      animation: waPopupIn 0.22s ease-out forwards;
+    }
+  }
+
+  @keyframes waPopupIn {
     from {
       opacity: 0;
-      transform: translateY(10px) scale(0.96);
+      transform: translateY(8px) scale(0.98);
     }
     to {
       opacity: 1;
@@ -192,170 +271,16 @@ const baseWhatsAppUrl = `https://wa.me/${phone}`;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 16px;
+    padding: 10px 14px;
     background: var(--color-surface-2);
     border-bottom: 1px solid var(--color-hairline);
-  }
-
-  .wa-avatar-wrap {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .wa-avatar {
-    position: relative;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: var(--color-whatsapp);
-    color: var(--color-whatsapp-text);
-    display: grid;
-    place-items: center;
-    box-shadow: 0 4px 12px rgba(14, 122, 62, 0.4);
-  }
-
-  .wa-status-beacon {
-    position: absolute;
-    bottom: -1px;
-    right: -1px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--color-success);
-    border: 2px solid var(--color-canvas);
-  }
-
-  .wa-agent-name {
-    margin: 0;
-    font-size: 13px;
-    font-weight: 800;
-    color: var(--color-text-primary);
-    letter-spacing: -0.01em;
-  }
-
-  .wa-agent-status {
-    margin: 2px 0 0;
-    font-size: 11px;
-    color: var(--color-text-body);
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .wa-online-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-success);
-    display: inline-block;
-  }
-
-  .wa-close-btn {
-    background: transparent;
-    border: none;
-    color: var(--color-text-muted);
-    font-size: 22px;
-    line-height: 1;
-    cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 6px;
-    transition: color 0.15s ease;
-  }
-
-  .wa-close-btn:hover {
-    color: var(--color-text-primary);
+    flex-shrink: 0;
   }
 
   .wa-popup-body {
-    padding: 16px;
+    padding: 14px;
   }
 
-  .wa-bubble {
-    background: var(--color-surface-2);
-    border: 1px solid var(--color-hairline);
-    border-radius: 12px 12px 12px 2px;
-    padding: 12px 14px;
-    margin-bottom: 14px;
-  }
-
-  .wa-bubble-text {
-    margin: 0;
-    font-size: 13px;
-    line-height: 1.45;
-    color: var(--color-text-primary);
-  }
-
-  .wa-bubble-time {
-    display: block;
-    margin-top: 6px;
-    font-size: 10px;
-    color: var(--color-text-muted);
-    text-align: right;
-  }
-
-  .wa-prompt-label {
-    margin: 0 0 10px;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--color-brand-primary);
-  }
-
-  .wa-quick-chips {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .wa-chip {
-    padding: 9px 12px;
-    border-radius: 8px;
-    background: var(--color-surface-2);
-    border: 1px solid var(--color-hairline);
-    color: var(--color-text-body);
-    font-size: 12px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    display: block;
-  }
-
-  .wa-chip:hover {
-    background: rgba(92, 194, 255, 0.1);
-    border-color: var(--color-brand-primary);
-    color: var(--color-text-primary);
-    transform: translateX(4px);
-  }
-
-  .wa-popup-footer {
-    padding: 12px 16px 16px;
-    border-top: 1px solid var(--color-hairline);
-  }
-
-  .wa-start-btn {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 11px 16px;
-    border-radius: 10px;
-    background: var(--color-whatsapp);
-    color: var(--color-whatsapp-text);
-    font-size: 13px;
-    font-weight: 800;
-    text-decoration: none;
-    transition: background-color 0.2s ease, transform 0.15s ease;
-  }
-
-  .wa-start-btn:hover {
-    background: rgba(14, 122, 62, 0.9);
-    transform: translateY(-2px);
-  }
-
-  /* Mobile responsiveness */
   @media (max-width: 640px) {
     .wa-float-container {
       bottom: 20px;
@@ -372,55 +297,608 @@ const baseWhatsAppUrl = `https://wa.me/${phone}`;
 
     .wa-popup {
       right: -6px;
-      width: calc(100vw - 32px);
+      width: calc(100vw - 28px);
+      height: 490px;
     }
   }
 </style>
 
 <script>
-  function setupWhatsAppFloat() {
-    const toggleBtn = document.getElementById('wa-toggle-btn');
-    const closeBtn = document.getElementById('wa-close-btn');
-    const popup = document.getElementById('wa-chat-popup');
+  // Lazy-initialized rule-based assistant
+  function setupChatAssistant() {
+    const toggleBtn = document.getElementById('wa-toggle-btn') as HTMLButtonElement | null;
+    const popup = document.getElementById('wa-chat-popup') as HTMLDivElement | null;
+    const closeBtn = document.getElementById('wa-close-btn') as HTMLButtonElement | null;
+    const resetBtn = document.getElementById('wa-reset-btn') as HTMLButtonElement | null;
+    const stepBadge = document.getElementById('wa-step-badge') as HTMLSpanElement | null;
+    const configEl = document.getElementById('chat-assistant-config') as HTMLScriptElement | null;
 
-    if (!toggleBtn || !popup || !closeBtn) return;
+    if (!toggleBtn || !popup || !closeBtn || !configEl) return;
 
-    function openPopup() {
+    let isInitialized = false;
+    let previouslyFocused: HTMLElement | null = null;
+    let config: any = null;
+
+    // In-memory state only
+    const state: {
+      step: 'ROOT' | 'A_DETAIL' | 'B_SERVICE' | 'B_BUDGET' | 'B_TIMELINE' | 'B_DETAILS' | 'B_SUMMARY';
+      lead: {
+        service: string;
+        budget: string;
+        timeline: string;
+        name: string;
+        details: string;
+      };
+    } = {
+      step: 'ROOT',
+      lead: {
+        service: '',
+        budget: '',
+        timeline: '',
+        name: '',
+        details: '',
+      },
+    };
+
+    function sanitizeText(str: string): string {
+      return (str || '').replace(/[\x00-\x1F\x7F]/g, ' ').trim();
+    }
+
+    function updateStepBadge(stepText: string | null) {
+      if (!stepBadge) return;
+      if (stepText) {
+        stepBadge.textContent = stepText;
+        stepBadge.classList.remove('hidden');
+      } else {
+        stepBadge.textContent = '';
+        stepBadge.classList.add('hidden');
+      }
+    }
+
+    function initAssistant() {
+      if (isInitialized) return;
+      isInitialized = true;
+      try {
+        config = JSON.parse(configEl!.textContent || '{}');
+      } catch {
+        config = {};
+      }
+
+      renderInitialWelcome();
+      setupFocusTrap();
+      setupFreeTextForm();
+    }
+
+    function openAssistant() {
+      initAssistant();
+      previouslyFocused = document.activeElement as HTMLElement | null;
       popup!.hidden = false;
       toggleBtn!.setAttribute('aria-expanded', 'true');
+      closeBtn!.focus();
     }
 
-    function closePopup() {
+    function closeAssistant() {
       popup!.hidden = true;
       toggleBtn!.setAttribute('aria-expanded', 'false');
+      if (previouslyFocused) {
+        previouslyFocused.focus();
+      }
     }
 
-    toggleBtn.addEventListener('click', () => {
-      if (popup.hidden) {
-        openPopup();
+    // Toggle button handler
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (popup!.hidden) {
+        openAssistant();
       } else {
-        closePopup();
+        closeAssistant();
       }
     });
 
-    closeBtn.addEventListener('click', closePopup);
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeAssistant();
+    });
 
-    // Close on outside click
+    if (resetBtn) {
+      resetBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        renderInitialWelcome();
+      });
+    }
+
+    // Stop propagation within popup to avoid false outside click triggers
+    popup.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+
+    // Close on outside click using composedPath
     document.addEventListener('click', (e) => {
-      const widget = document.getElementById('whatsapp-float-widget');
-      if (widget && !widget.contains(e.target as Node) && !popup.hidden) {
-        closePopup();
+      if (popup!.hidden) return;
+      const path = e.composedPath();
+      if (!path.includes(popup!) && !path.includes(toggleBtn)) {
+        closeAssistant();
       }
     });
 
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !popup.hidden) {
-        closePopup();
+    function setupFocusTrap() {
+      popup!.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          closeAssistant();
+          return;
+        }
+
+        if (e.key === 'Tab') {
+          const focusables = popup!.querySelectorAll<HTMLElement>(
+            'button:not([disabled]), [href], input:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+          );
+          if (focusables.length === 0) return;
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      });
+    }
+
+    function scrollMessagesToBottom() {
+      const container = document.getElementById('chat-messages');
+      if (container) {
+        container.scrollTop = container.scrollHeight;
       }
-    });
+    }
+
+    function appendMessage(sender: 'bot' | 'user', text: string, links?: { label: string; url: string }[]) {
+      const container = document.getElementById('chat-messages');
+      if (!container) return;
+
+      const bubble = document.createElement('div');
+      bubble.className =
+        sender === 'bot'
+          ? 'bg-surface-2 border border-hairline text-text-primary rounded-2xl rounded-bl-sm p-3.5 text-xs leading-relaxed max-w-[90%]'
+          : 'bg-surface-1 border border-brand-primary/40 text-text-primary rounded-2xl rounded-br-sm p-3.5 text-xs leading-relaxed max-w-[85%] ml-auto text-right';
+
+      const p = document.createElement('p');
+      p.textContent = text;
+      bubble.appendChild(p);
+
+      if (links && links.length > 0) {
+        const linkList = document.createElement('ul');
+        linkList.className = 'mt-2 space-y-1 pt-2 border-t border-hairline';
+        links.forEach((l) => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = l.url;
+          a.textContent = `→ ${l.label}`;
+          a.className =
+            'text-brand-primary hover:text-brand-hover underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded block py-0.5';
+          li.appendChild(a);
+          linkList.appendChild(li);
+        });
+        bubble.appendChild(linkList);
+      }
+
+      container.appendChild(bubble);
+      scrollMessagesToBottom();
+    }
+
+    function createChip(
+      label: string,
+      onClick: () => void,
+      isPrimary = false
+    ): HTMLButtonElement {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      if (isPrimary) {
+        btn.className =
+          'min-h-[44px] w-full text-left bg-button-fill text-button-text hover:bg-button-hover text-xs font-bold px-3 py-2.5 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary flex items-center justify-between shadow-sm';
+        btn.innerHTML = `<span>${label}</span><span aria-hidden="true" class="ml-2 font-bold">&rarr;</span>`;
+      } else {
+        btn.className =
+          'min-h-[44px] w-full text-left bg-surface-2 hover:bg-surface-1 border border-border-strong text-text-primary hover:text-brand-hover hover:border-brand-primary text-xs font-semibold px-3 py-2 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary flex items-center justify-between';
+        btn.innerHTML = `<span>${label}</span><span aria-hidden="true" class="text-brand-primary ml-2">&rarr;</span>`;
+      }
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        onClick();
+      });
+      return btn;
+    }
+
+    function createGridChip(label: string, onClick: () => void): HTMLButtonElement {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className =
+        'min-h-[44px] w-full text-center bg-surface-2 hover:bg-surface-1 border border-border-strong text-text-primary hover:text-brand-hover hover:border-brand-primary text-xs font-medium px-2 py-2 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary flex items-center justify-center';
+      btn.textContent = label;
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        onClick();
+      });
+      return btn;
+    }
+
+    function setActions(elements: HTMLElement[]) {
+      const actions = document.getElementById('chat-actions');
+      if (!actions) return;
+      actions.innerHTML = '';
+      elements.forEach((el) => actions.appendChild(el));
+      scrollMessagesToBottom();
+    }
+
+    function renderInitialWelcome() {
+      const container = document.getElementById('chat-messages');
+      if (container) container.innerHTML = '';
+      state.step = 'ROOT';
+      state.lead = {
+        service: '',
+        budget: '',
+        timeline: '',
+        name: '',
+        details: '',
+      };
+      updateStepBadge(null);
+      appendMessage('bot', config.disclaimer);
+      renderRootChips();
+    }
+
+    function renderRootChips() {
+      updateStepBadge(null);
+      const startProjectBtn = createChip('🚀 Start a project', () => startFlowB(), true);
+
+      const quickQuestions = [
+        createChip('What do you offer?', () => handleQuickAnswer('offerings')),
+        createChip('How much does a project cost?', () => handleQuickAnswer('cost')),
+        createChip('How long does a project take?', () => handleQuickAnswer('timeline')),
+        createChip('Do you work with small businesses?', () => handleQuickAnswer('small_biz')),
+        createChip('How do I contact you?', () => handleQuickAnswer('contact')),
+        createChip('About SKYON', () => handleQuickAnswer('about')),
+      ];
+
+      setActions([startProjectBtn, ...quickQuestions]);
+    }
+
+    function handleQuickAnswer(key: string) {
+      updateStepBadge(null);
+      const item = config.quickAnswers[key];
+      if (!item) return;
+
+      appendMessage('user', item.question);
+      appendMessage('bot', item.answer, item.links);
+
+      const actions = [
+        createChip('🚀 Start a project', () => startFlowB(), true),
+        createChip('← Back to menu', () => renderInitialWelcome()),
+      ];
+      setActions(actions);
+    }
+
+    function startFlowB() {
+      state.step = 'B_SERVICE';
+      updateStepBadge('Step 1/5');
+      appendMessage('user', 'Start a project');
+      appendMessage('bot', 'Step 1 of 5: What do you need?');
+
+      const grid = document.createElement('div');
+      grid.className = 'grid grid-cols-2 gap-2 w-full';
+
+      config.services.forEach((svc: string) => {
+        grid.appendChild(
+          createGridChip(svc, () => {
+            state.lead.service = svc;
+            appendMessage('user', svc);
+            goToBudget();
+          })
+        );
+      });
+
+      const navRow = document.createElement('div');
+      navRow.className = 'flex gap-2 w-full mt-1';
+
+      const skipBtn = document.createElement('button');
+      skipBtn.type = 'button';
+      skipBtn.className =
+        'min-h-[44px] flex-1 bg-surface-2 border border-border-strong text-text-muted hover:text-text-primary text-xs rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary';
+      skipBtn.textContent = 'Skip';
+      skipBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        state.lead.service = 'Not specified';
+        appendMessage('user', 'Skip');
+        goToBudget();
+      });
+
+      const startOverBtn = document.createElement('button');
+      startOverBtn.type = 'button';
+      startOverBtn.className =
+        'min-h-[44px] px-3 bg-surface-2 border border-border-strong text-text-muted hover:text-text-primary text-xs rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary';
+      startOverBtn.textContent = '← Menu';
+      startOverBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        renderInitialWelcome();
+      });
+
+      navRow.appendChild(startOverBtn);
+      navRow.appendChild(skipBtn);
+
+      setActions([grid, navRow]);
+    }
+
+    function goToBudget() {
+      state.step = 'B_BUDGET';
+      updateStepBadge('Step 2/5');
+      appendMessage('bot', 'Step 2 of 5: Estimated budget (optional)');
+
+      const grid = document.createElement('div');
+      grid.className = 'grid grid-cols-2 gap-2 w-full';
+
+      config.budgets.forEach((b: string) => {
+        grid.appendChild(
+          createGridChip(b, () => {
+            state.lead.budget = b;
+            appendMessage('user', b);
+            goToTimeline();
+          })
+        );
+      });
+
+      const navRow = document.createElement('div');
+      navRow.className = 'flex gap-2 w-full mt-1';
+
+      const backBtn = document.createElement('button');
+      backBtn.type = 'button';
+      backBtn.className =
+        'min-h-[44px] px-3 bg-surface-2 border border-border-strong text-text-muted hover:text-text-primary text-xs rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary';
+      backBtn.textContent = '← Back';
+      backBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        startFlowB();
+      });
+
+      const skipBtn = document.createElement('button');
+      skipBtn.type = 'button';
+      skipBtn.className =
+        'min-h-[44px] flex-1 bg-surface-2 border border-border-strong text-text-muted hover:text-text-primary text-xs rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary';
+      skipBtn.textContent = 'Skip';
+      skipBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        state.lead.budget = 'Not specified';
+        appendMessage('user', 'Skip');
+        goToTimeline();
+      });
+
+      navRow.appendChild(backBtn);
+      navRow.appendChild(skipBtn);
+
+      setActions([grid, navRow]);
+    }
+
+    function goToTimeline() {
+      state.step = 'B_TIMELINE';
+      updateStepBadge('Step 3/5');
+      appendMessage('bot', 'Step 3 of 5: Timeline (optional)');
+
+      const grid = document.createElement('div');
+      grid.className = 'grid grid-cols-2 gap-2 w-full';
+
+      config.timelines.forEach((t: string) => {
+        grid.appendChild(
+          createGridChip(t, () => {
+            state.lead.timeline = t;
+            appendMessage('user', t);
+            goToDetails();
+          })
+        );
+      });
+
+      const navRow = document.createElement('div');
+      navRow.className = 'flex gap-2 w-full mt-1';
+
+      const backBtn = document.createElement('button');
+      backBtn.type = 'button';
+      backBtn.className =
+        'min-h-[44px] px-3 bg-surface-2 border border-border-strong text-text-muted hover:text-text-primary text-xs rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary';
+      backBtn.textContent = '← Back';
+      backBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        goToBudget();
+      });
+
+      const skipBtn = document.createElement('button');
+      skipBtn.type = 'button';
+      skipBtn.className =
+        'min-h-[44px] flex-1 bg-surface-2 border border-border-strong text-text-muted hover:text-text-primary text-xs rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary';
+      skipBtn.textContent = 'Skip';
+      skipBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        state.lead.timeline = 'Not specified';
+        appendMessage('user', 'Skip');
+        goToDetails();
+      });
+
+      navRow.appendChild(backBtn);
+      navRow.appendChild(skipBtn);
+
+      setActions([grid, navRow]);
+    }
+
+    function goToDetails() {
+      state.step = 'B_DETAILS';
+      updateStepBadge('Step 4/5');
+      appendMessage('bot', 'Step 4 of 5: Your details (optional)');
+
+      const formWrap = document.createElement('div');
+      formWrap.className = 'flex flex-col gap-2.5 w-full';
+
+      const nameInput = document.createElement('input');
+      nameInput.type = 'text';
+      nameInput.placeholder = 'Your name (optional)';
+      nameInput.className =
+        'min-h-[44px] w-full bg-surface-2 border border-border-strong text-text-primary px-3 py-2 text-xs rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary placeholder:text-text-muted';
+      nameInput.value = state.lead.name;
+
+      const descInput = document.createElement('textarea');
+      descInput.placeholder = 'One-line project description (optional, max 300 chars)';
+      descInput.maxLength = 300;
+      descInput.rows = 2;
+      descInput.className =
+        'w-full bg-surface-2 border border-border-strong text-text-primary p-2.5 text-xs rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary placeholder:text-text-muted resize-none';
+      descInput.value = state.lead.details;
+
+      const counter = document.createElement('div');
+      counter.className = 'text-[10px] text-text-muted text-right';
+      counter.textContent = `${descInput.value.length}/300`;
+      descInput.addEventListener('input', () => {
+        counter.textContent = `${descInput.value.length}/300`;
+      });
+
+      const btnRow = document.createElement('div');
+      btnRow.className = 'flex gap-2';
+
+      const continueBtn = document.createElement('button');
+      continueBtn.type = 'button';
+      continueBtn.className =
+        'min-h-[44px] flex-1 bg-surface-2 border border-border-strong text-brand-primary hover:text-brand-hover font-bold text-xs rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary';
+      continueBtn.textContent = 'Continue →';
+      continueBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        state.lead.name = sanitizeText(nameInput.value);
+        state.lead.details = sanitizeText(descInput.value);
+        appendMessage('user', state.lead.name ? `Name: ${state.lead.name}` : 'Details submitted');
+        goToSummary();
+      });
+
+      const skipBtn = document.createElement('button');
+      skipBtn.type = 'button';
+      skipBtn.className =
+        'min-h-[44px] px-4 bg-surface-2 border border-border-strong text-text-muted hover:text-text-primary text-xs rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary';
+      skipBtn.textContent = 'Skip';
+      skipBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        state.lead.name = '';
+        state.lead.details = '';
+        appendMessage('user', 'Skip');
+        goToSummary();
+      });
+
+      btnRow.appendChild(continueBtn);
+      btnRow.appendChild(skipBtn);
+
+      const backBtn = document.createElement('button');
+      backBtn.type = 'button';
+      backBtn.className =
+        'min-h-[44px] w-full text-center bg-surface-2 border border-border-strong text-text-muted hover:text-text-primary text-xs rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary';
+      backBtn.textContent = '← Back';
+      backBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        goToTimeline();
+      });
+
+      formWrap.appendChild(nameInput);
+      formWrap.appendChild(descInput);
+      formWrap.appendChild(counter);
+      formWrap.appendChild(btnRow);
+      formWrap.appendChild(backBtn);
+
+      setActions([formWrap]);
+      nameInput.focus();
+    }
+
+    function goToSummary() {
+      state.step = 'B_SUMMARY';
+      updateStepBadge('Step 5/5');
+      appendMessage('bot', 'Step 5 of 5: Project Summary');
+
+      const service = state.lead.service || 'Not specified';
+      const budget = state.lead.budget || 'Not specified';
+      const timeline = state.lead.timeline || 'Not specified';
+      const name = state.lead.name || 'Not specified';
+      const details = state.lead.details || 'Not specified';
+
+      const summaryText = `Service: ${service}\nBudget: ${budget}\nTimeline: ${timeline}\nName: ${name}\nDetails: ${details}`;
+      appendMessage('bot', summaryText);
+      appendMessage('bot', 'Nothing is sent anywhere until you click Send on WhatsApp.');
+
+      // Build sanitized WhatsApp message
+      const msgLines = [
+        'Hi SKYON, I would like to enquire about a project:',
+        `- Service: ${service}`,
+        `- Budget: ${budget}`,
+        `- Timeline: ${timeline}`,
+      ];
+      if (name !== 'Not specified') msgLines.push(`- Name: ${name}`);
+      if (details !== 'Not specified') msgLines.push(`- Details: ${details}`);
+
+      const cleanMessage = sanitizeText(msgLines.join('\n')).slice(0, 500);
+      const waUrl = `https://wa.me/${config.phone}?text=${encodeURIComponent(cleanMessage)}`;
+
+      const wrap = document.createElement('div');
+      wrap.className = 'flex flex-col gap-2 w-full';
+
+      // Primary WhatsApp button
+      const sendWa = document.createElement('a');
+      sendWa.href = waUrl;
+      sendWa.target = '_blank';
+      sendWa.rel = 'noopener noreferrer';
+      sendWa.className =
+        'min-h-[44px] w-full bg-button-fill text-button-text font-bold text-xs rounded-lg flex items-center justify-center gap-2 hover:bg-button-hover transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary';
+      sendWa.innerHTML = `<span>Send on WhatsApp</span><span aria-hidden="true">&rarr;</span>`;
+
+      // Secondary Contact form link
+      const formLink = document.createElement('a');
+      formLink.href = '/contact';
+      formLink.className =
+        'min-h-[44px] text-center text-xs font-semibold text-brand-primary hover:text-brand-hover underline flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded-lg';
+      formLink.textContent = 'Use the full form (/contact)';
+
+      // Direct email link
+      const mailLink = document.createElement('a');
+      mailLink.href = `mailto:${config.email}?subject=${encodeURIComponent('Project Inquiry')}&body=${encodeURIComponent(cleanMessage)}`;
+      mailLink.className =
+        'text-center text-[11px] text-text-muted hover:text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded py-1';
+      mailLink.textContent = `Or email: ${config.email}`;
+
+      const startOverBtn = createChip('← Start over', () => renderInitialWelcome());
+
+      wrap.appendChild(sendWa);
+      wrap.appendChild(formLink);
+      wrap.appendChild(mailLink);
+      wrap.appendChild(startOverBtn);
+
+      setActions([wrap]);
+    }
+
+    function setupFreeTextForm() {
+      const form = document.getElementById('chat-freetext-form');
+      const input = document.getElementById('chat-freetext-input') as HTMLInputElement | null;
+      if (!form || !input) return;
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const text = sanitizeText(input.value);
+        if (!text) return;
+        input.value = '';
+
+        appendMessage('user', text);
+        appendMessage('bot', config.freeTextFallback);
+
+        const actions = [
+          createChip('🚀 Start a project', () => startFlowB(), true),
+          createChip('← Back to menu', () => renderInitialWelcome()),
+        ];
+        setActions(actions);
+      });
+    }
   }
 
-  setupWhatsAppFloat();
-  document.addEventListener('astro:page-load', setupWhatsAppFloat);
+  // Setup listener
+  setupChatAssistant();
+  document.addEventListener('astro:page-load', setupChatAssistant);
 </script>

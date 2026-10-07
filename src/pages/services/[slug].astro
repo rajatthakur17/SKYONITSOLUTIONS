@@ -67,17 +67,129 @@ const otherServices = SERVICES.filter((s) => s.slug !== service.slug);
     </nav>
 
     <!-- Header & Badge -->
-    <div class="mb-8">
+    <header class="mb-10">
       <span class="inline-block px-3 py-1 bg-brand-primary/10 text-brand-primary text-xs font-bold tracking-widest uppercase rounded mb-4">
         {service.badge}
       </span>
-      <h1 class="text-4xl md:text-5xl font-extrabold text-text-primary tracking-tight leading-tight mb-6">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-text-primary tracking-tight leading-tight mb-5">
         {service.title}
       </h1>
-      <p class="text-lg md:text-xl text-text-body leading-relaxed">
+      <p class="text-base md:text-lg text-text-body leading-relaxed">
         {service.longDescription}
       </p>
-    </div>
+    </header>
+
+    <!-- Visual Media Showcase & Image Upload Slot -->
+    <section aria-label="Service Visual Architecture & Media" class="mb-14">
+      {service.image ? (
+        <div class="relative rounded-lg border border-hairline overflow-hidden bg-surface-1 shadow-xs">
+          <img
+            src={service.image}
+            alt={service.imageAlt || `${service.title} Architecture Overview`}
+            loading="lazy"
+            decoding="async"
+            class="w-full aspect-16/9 object-cover"
+          />
+          {service.imageAlt && (
+            <p class="p-3 text-xs text-text-muted bg-surface-1/90 border-t border-hairline text-center">
+              {service.imageAlt}
+            </p>
+          )}
+        </div>
+      ) : (
+        <div class="relative rounded-lg border border-hairline bg-surface-1 p-6 md:p-8 shadow-xs overflow-hidden">
+          <div class="flex items-center justify-between border-b border-hairline pb-4 mb-6">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-brand-primary animate-pulse" aria-hidden="true"></span>
+              <span class="text-xs font-mono font-bold uppercase tracking-wider text-text-primary">Architecture &amp; Media Asset Slot</span>
+            </div>
+            <span class="text-[11px] font-mono text-brand-primary bg-brand-primary/10 px-2.5 py-0.5 rounded font-semibold uppercase">
+              {service.shortTitle}
+            </span>
+          </div>
+
+          <!-- Turn-key Upload Drop-in Box -->
+          <div class="border-2 border-dashed border-hairline hover:border-brand-primary/50 transition-colors bg-canvas/70 rounded-lg p-6 md:p-8 text-center flex flex-col items-center justify-center">
+            <div class="w-12 h-12 rounded-full bg-surface-2 border border-hairline flex items-center justify-center text-brand-primary mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <p class="font-bold text-text-primary text-sm md:text-base mb-1">
+              Relative Architecture / Feature Preview Slot
+            </p>
+            <p class="text-xs text-text-muted max-w-[32rem] leading-relaxed mb-4">
+              {service.imagePlaceholderNote}
+            </p>
+            <div class="inline-flex flex-wrap items-center justify-center gap-2 px-3 py-1.5 rounded bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-xs font-mono">
+              <span>Drop asset to:</span>
+              <strong class="text-text-primary">public/images/services/{service.slug}.webp</strong>
+              <span class="text-text-muted">(1200×675 recommended)</span>
+            </div>
+          </div>
+
+          <!-- Structured Pipeline Flow Preview -->
+          <div class="mt-6 pt-5 border-t border-hairline">
+            <p class="text-[11px] font-mono uppercase tracking-wider text-text-muted mb-3">
+              Core Technical Pipeline
+            </p>
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center font-mono text-xs">
+              {service.process.map((step) => (
+                <div class="p-2 rounded bg-canvas border border-hairline flex flex-col items-center justify-center">
+                  <span class="text-brand-primary font-bold">{step.step}</span>
+                  <span class="text-[11px] text-text-primary truncate w-full mt-0.5">{step.title}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+
+    <!-- Live Data Benchmarks & Performance Metrics -->
+    <section aria-label="Performance Benchmarks" class="mb-14">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xs font-bold text-brand-primary uppercase tracking-widest">
+          Empirical Data &amp; Industry Benchmarks
+        </h2>
+        <span class="text-[11px] font-mono text-text-muted">2025/2026 Standards</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {service.keyMetrics.map((metric) => (
+          <div class="p-5 bg-surface-1 border border-hairline rounded-lg flex flex-col justify-between">
+            <div>
+              <span class="font-mono text-3xl md:text-4xl font-extrabold text-brand-primary tracking-tight">
+                {metric.value}
+              </span>
+              <h3 class="text-xs font-bold text-text-primary uppercase tracking-wider mt-2">
+                {metric.label}
+              </h3>
+            </div>
+            <p class="text-xs text-text-muted mt-2 leading-relaxed border-t border-hairline pt-2">
+              {metric.context}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Measurable Business Outcomes -->
+    <section aria-label="Business Outcomes" class="mb-14 p-6 bg-surface-1 border border-hairline rounded-lg">
+      <h2 class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-4">
+        Measurable Commercial Outcomes
+      </h2>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-text-body">
+        {service.businessOutcomes.map((outcome) => (
+          <li class="flex items-start gap-2.5">
+            <svg class="h-4 w-4 text-brand-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="leading-snug">{outcome}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
 
     <!-- Target Audiences -->
     <div class="mb-14 p-6 bg-surface-1 border border-hairline rounded-lg">
@@ -93,14 +205,16 @@ const otherServices = SERVICES.filter((s) => s.slug !== service.slug);
 
     <!-- Deliverables -->
     <div class="mb-16">
-      <h2 class="text-2xl font-bold text-text-primary mb-2">Scope &amp; Deliverables</h2>
+      <h2 class="text-2xl font-bold text-text-primary mb-2">Scope &amp; Engineered Deliverables</h2>
       <p class="text-text-body mb-8">What we specifically plan, engineer, and deliver for this service area.</p>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {service.deliverables.map((item) => (
-          <div class="bg-surface-1 border border-hairline rounded-lg p-6 hover:border-brand-primary/40 transition-colors">
-            <h3 class="text-lg font-bold text-text-primary mb-2">{item.title}</h3>
-            <p class="text-text-body text-sm leading-relaxed">{item.description}</p>
+          <div class="bg-surface-1 border border-hairline rounded-lg p-6 hover:border-brand-primary/40 transition-colors flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-text-primary mb-2">{item.title}</h3>
+              <p class="text-text-body text-sm leading-relaxed">{item.description}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -108,8 +222,8 @@ const otherServices = SERVICES.filter((s) => s.slug !== service.slug);
 
     <!-- Process -->
     <div class="mb-16">
-      <h2 class="text-2xl font-bold text-text-primary mb-2">Engagement Process</h2>
-      <p class="text-text-body mb-8">Our structured approach from initial scope to verified execution.</p>
+      <h2 class="text-2xl font-bold text-text-primary mb-2">Structured Execution Process</h2>
+      <p class="text-text-body mb-8">Our phased engineering approach from requirements diagnostic to verified rollout.</p>
 
       <div class="space-y-4">
         {service.process.map((step) => (
@@ -126,7 +240,7 @@ const otherServices = SERVICES.filter((s) => s.slug !== service.slug);
 
     <!-- Tech Stack / Tools -->
     <div class="mb-16 p-6 bg-canvas border border-hairline rounded-lg">
-      <h2 class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-4">Technologies &amp; Standards</h2>
+      <h2 class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-4">Technologies &amp; Architecture Standards</h2>
       <div class="flex flex-wrap gap-2">
         {service.techStack.map((tech) => (
           <span class="px-3 py-1.5 bg-surface-1 border border-hairline text-text-body font-mono text-xs rounded">
@@ -164,7 +278,7 @@ const otherServices = SERVICES.filter((s) => s.slug !== service.slug);
     <div class="mt-16 pt-8 border-t border-hairline flex flex-col sm:flex-row items-center justify-between gap-6 bg-surface-1/50 p-8 rounded-lg border">
       <div>
         <h3 class="text-xl font-bold text-text-primary mb-2">Ready to discuss your {service.shortTitle} project?</h3>
-        <p class="text-text-body text-sm">We provide clear consultations and realistic timelines tailored to your budget.</p>
+        <p class="text-text-body text-sm">We provide clear consultations, data-backed architecture recommendations, and realistic timelines.</p>
       </div>
       <div class="flex items-center gap-3 shrink-0 w-full sm:w-auto">
         <a href="/contact" class="w-full sm:w-auto text-center bg-button-fill text-button-text px-6 py-3 rounded-full font-bold hover:bg-button-hover transition-colors shadow-sm min-h-[44px] flex items-center justify-center">

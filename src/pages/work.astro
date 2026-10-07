@@ -4,8 +4,8 @@ import workspaceBackground from '../../backgoundim/Neon Blue Digital Workspace P
 import Layout from '../layouts/Layout.astro';
 import InternalProduct from '../components/sections/InternalProduct.astro';
 
-const title = 'Selected Work | SKYON IT SOLUTIONS';
-const description = 'View SKYON IT SOLUTIONS approved project proof and internal digital products.';
+const title = 'Our Work & Case Proof | SKYON IT SOLUTIONS';
+const description = 'Explore real-world engineering case studies, verified client web platforms, and internal digital products built by SKYON IT SOLUTIONS.';
 ---
 
 <Layout title={title} description={description}>
@@ -18,9 +18,24 @@ const description = 'View SKYON IT SOLUTIONS approved project proof and internal
       loading="eager"
     />
     <div class="relative z-1 mx-auto max-w-[72rem]">
-      <p class="mb-3 text-sm font-bold uppercase text-brand-primary">Selected work</p>
-      <h1 class="max-w-[48rem] text-4xl font-extrabold leading-tight text-text-primary md:text-5xl">Projects and products built by SKYON.</h1>
-      <p class="mt-5 max-w-[42rem] text-lg leading-relaxed text-text-body">Explore an approved client project and an internal product. Client results and project details are included only when confirmed for publication.</p>
+      <!-- Breadcrumbs -->
+      <nav aria-label="Breadcrumb" class="mb-6 text-xs text-text-muted">
+        <ol class="flex items-center gap-2 flex-wrap">
+          <li><a href="/" class="hover:text-brand-hover transition-colors">Home</a></li>
+          <li><span aria-hidden="true">/</span></li>
+          <li class="text-text-primary font-medium" aria-current="page">Our Work</li>
+        </ol>
+      </nav>
+
+      <p class="mb-3 text-xs md:text-sm font-bold uppercase tracking-wider text-brand-primary">
+        Portfolio &amp; Engineering Case Proof
+      </p>
+      <h1 class="max-w-[48rem] text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-text-primary tracking-tight">
+        Engineered web platforms, custom applications, and digital products.
+      </h1>
+      <p class="mt-5 max-w-[42rem] text-base md:text-lg leading-relaxed text-text-body">
+        Explore verified commercial client delivery and internal digital utilities built by SKYON IT SOLUTIONS. Every system is engineered for sub-second performance, strict data privacy, and measurable business ROI.
+      </p>
     </div>
   </section>
   <InternalProduct isPage={true} />

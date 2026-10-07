@@ -15,8 +15,7 @@ import { SERVICES } from '../../data/services';
   />
   <div class="hero-layout">
     <div class="hero-copy">
-      <p class="hero-eyebrow"><span aria-hidden="true"></span> IT services for business</p>
-      <h1>Build your digital presence.<br /><span>Grow online.</span></h1>
+      <h1>Build your digital presence &amp; <br /><span class="hero-highlight">Grow online.</span></h1>
       <p class="hero-description">
         Websites, SEO, digital marketing and social media to help your business build a stronger online presence.
       </p>
@@ -103,10 +102,15 @@ import { SERVICES } from '../../data/services';
     position: absolute;
     z-index: -1;
     inset: 0;
-    background: linear-gradient(90deg, rgba(244, 248, 252, 0.93) 0%, rgba(244, 248, 252, 0.87) 45%, rgba(244, 248, 252, 0.68) 100%);
+    background: var(--overlay-hero);
     content: '';
     pointer-events: none;
   }
+
+  .hero-highlight {
+    color: var(--color-brand-primary);
+  }
+
 
   .hero-background {
     position: absolute;
@@ -136,14 +140,17 @@ import { SERVICES } from '../../data/services';
     min-width: 0;
   }
 
-  .hero-eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin: 0 0 1.15rem;
-    color: var(--color-brand-primary);
-    font-weight: 700;
-    line-height: 1.4;
+  .hero-copy h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px;
+  }
+
+  .hero-description {
+    margin: 0 0 32px;
+    line-height: 1.6;
   }
 
   .hero-actions {
@@ -173,7 +180,7 @@ import { SERVICES } from '../../data/services';
   }
 
   .hero-button-secondary {
-    border: 1px solid var(--color-hairline);
+    border: 1px solid var(--color-border-strong);
     background: var(--color-surface-1);
     color: var(--color-text-primary);
   }
@@ -276,9 +283,9 @@ import { SERVICES } from '../../data/services';
     min-width: 0;
     min-height: 2.65rem;
     padding: 0.55rem 1.8rem 0.55rem 0.65rem;
-    border: 1px solid rgba(16, 42, 67, 0.22);
+    border: 1px solid var(--color-border-strong);
     border-radius: 5px;
-    background: rgba(255, 255, 255, 0.78);
+    background: var(--color-surface-2);
     backdrop-filter: blur(5px);
     color: var(--color-text-primary);
     font: inherit;
@@ -354,7 +361,7 @@ import { SERVICES } from '../../data/services';
     height: 0.35rem;
     margin: 0 0.5rem 0.08rem 0;
     border-radius: 50%;
-    background: var(--color-accent-warm);
+    background: var(--color-brand-primary);
   }
 
   @media (min-width: 64rem) {
@@ -387,8 +394,6 @@ import { SERVICES } from '../../data/services';
     }
 
     .hero-description {
-      margin-top: 0.75rem;
-      margin-bottom: 1rem;
       font-size: 0.95rem;
     }
 

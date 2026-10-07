@@ -22,7 +22,7 @@ const isConnected = endpoint.trim() !== '';
         </span>
       </div>
 
-      <div id="form-success" class="hidden mb-8 p-6 bg-green-500/10 border border-green-500 text-green-700 dark:text-green-400 rounded-md" role="status" aria-live="polite" aria-atomic="true">
+      <div id="form-success" class="hidden mb-8 p-6 bg-[var(--color-success)]/10 border border-[var(--color-success)] text-[var(--color-success)] rounded-md" role="status" aria-live="polite" aria-atomic="true">
         <h3 class="font-bold text-lg mb-2">Message sent successfully!</h3>
         <p>Thank you for reaching out. We appreciate your inquiry.</p>
       </div>
@@ -42,29 +42,29 @@ const isConnected = endpoint.trim() !== '';
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="space-y-2">
             <label for="name" class="block font-medium text-text-primary">Name <span class="text-error">*</span></label>
-            <input type="text" id="name" name="name" required class="w-full bg-canvas border border-hairline rounded-md px-4 py-3 min-h-[44px] text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary" />
+            <input type="text" id="name" name="name" required class="w-full bg-surface-2 border border-border-strong rounded-md px-4 py-3 min-h-[44px] text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary" />
           </div>
           <div class="space-y-2">
             <label for="email" class="block font-medium text-text-primary">Email <span class="text-error">*</span></label>
-            <input type="email" id="email" name="email" required class="w-full bg-canvas border border-hairline rounded-md px-4 py-3 min-h-[44px] text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary" />
+            <input type="email" id="email" name="email" required class="w-full bg-surface-2 border border-border-strong rounded-md px-4 py-3 min-h-[44px] text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary" />
           </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="space-y-2">
             <label for="company" class="block font-medium text-text-primary">Company / Business / Clinic</label>
-            <input type="text" id="company" name="company" placeholder="e.g. Apex Dental, Royal Jewellers" class="w-full bg-canvas border border-hairline rounded-md px-4 py-3 min-h-[44px] text-text-primary placeholder:text-text-disabled focus:outline-none focus:ring-2 focus:ring-brand-primary" />
+            <input type="text" id="company" name="company" placeholder="e.g. Apex Dental, Royal Jewellers" class="w-full bg-surface-2 border border-border-strong rounded-md px-4 py-3 min-h-[44px] text-text-primary placeholder:text-text-disabled focus:outline-none focus:ring-2 focus:ring-brand-primary" />
           </div>
           <div class="space-y-2">
             <label for="phone" class="block font-medium text-text-primary">Phone / WhatsApp <span class="text-error">*</span></label>
-            <input type="tel" id="phone" name="phone" required placeholder="+91 ... or international" class="w-full bg-canvas border border-hairline rounded-md px-4 py-3 min-h-[44px] text-text-primary placeholder:text-text-disabled focus:outline-none focus:ring-2 focus:ring-brand-primary" />
+            <input type="tel" id="phone" name="phone" required placeholder="+91 ... or international" class="w-full bg-surface-2 border border-border-strong rounded-md px-4 py-3 min-h-[44px] text-text-primary placeholder:text-text-disabled focus:outline-none focus:ring-2 focus:ring-brand-primary" />
           </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="space-y-2">
             <label for="service" class="block font-medium text-text-primary">What do you need? <span class="text-error">*</span></label>
-            <select id="service" name="service" required class="w-full bg-canvas border border-hairline rounded-md px-4 py-3 min-h-[44px] text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary appearance-none">
+            <select id="service" name="service" required class="w-full bg-surface-2 border border-border-strong rounded-md px-4 py-3 min-h-[44px] text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary appearance-none">
               <option value="" disabled selected>Select a service...</option>
               <option value="Website Development">Website Development</option>
               <option value="Custom Software Development">Custom Software Development</option>
@@ -81,7 +81,7 @@ const isConnected = endpoint.trim() !== '';
 
           <div class="space-y-2">
             <label for="industry" class="block font-medium text-text-primary">Industry / Segment</label>
-            <select id="industry" name="industry" class="w-full bg-canvas border border-hairline rounded-md px-4 py-3 min-h-[44px] text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary appearance-none">
+            <select id="industry" name="industry" class="w-full bg-surface-2 border border-border-strong rounded-md px-4 py-3 min-h-[44px] text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary appearance-none">
               <option value="" selected>Select industry (optional)...</option>
               <option value="Healthcare & Clinics">Healthcare & Clinics</option>
               <option value="Real Estate & Property">Real Estate & Property</option>
@@ -98,7 +98,7 @@ const isConnected = endpoint.trim() !== '';
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="space-y-2">
             <label for="budget" class="block font-medium text-text-primary">Estimated Budget (Optional)</label>
-            <select id="budget" name="budget" class="w-full bg-canvas border border-hairline rounded-md px-4 py-3 min-h-[44px] text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary appearance-none">
+            <select id="budget" name="budget" class="w-full bg-surface-2 border border-border-strong rounded-md px-4 py-3 min-h-[44px] text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary appearance-none">
               <option value="" disabled selected>Select budget range...</option>
               <option value="₹25k – ₹50k INR">₹25k – ₹50k INR</option>
               <option value="₹50k – ₹1.5L INR">₹50k – ₹1.5L INR</option>
@@ -110,7 +110,7 @@ const isConnected = endpoint.trim() !== '';
           </div>
           <div class="space-y-2">
             <label for="timeline" class="block font-medium text-text-primary">Timeline (Optional)</label>
-            <select id="timeline" name="timeline" class="w-full bg-canvas border border-hairline rounded-md px-4 py-3 min-h-[44px] text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary appearance-none">
+            <select id="timeline" name="timeline" class="w-full bg-surface-2 border border-border-strong rounded-md px-4 py-3 min-h-[44px] text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary appearance-none">
               <option value="" disabled selected>Select timeline...</option>
               <option value="Immediate / ASAP">Immediate / ASAP</option>
               <option value="Within 1 month">Within 1 month</option>
@@ -122,7 +122,7 @@ const isConnected = endpoint.trim() !== '';
 
         <div class="space-y-2">
           <label for="details" class="block font-medium text-text-primary">Project Details <span class="text-error">*</span></label>
-          <textarea id="details" name="details" required rows="4" placeholder="Tell us about your requirements, existing site/app, or key objectives..." class="w-full bg-canvas border border-hairline rounded-md px-4 py-3 min-h-[44px] text-text-primary placeholder:text-text-disabled focus:outline-none focus:ring-2 focus:ring-brand-primary"></textarea>
+          <textarea id="details" name="details" required rows="4" placeholder="Tell us about your requirements, existing site/app, or key objectives..." class="w-full bg-surface-2 border border-border-strong rounded-md px-4 py-3 min-h-[44px] text-text-primary placeholder:text-text-disabled focus:outline-none focus:ring-2 focus:ring-brand-primary"></textarea>
         </div>
 
         <div class="flex flex-col sm:flex-row items-center gap-4">

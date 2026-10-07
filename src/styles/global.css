@@ -3,94 +3,235 @@
 @source not "../../reference";
 
 @theme {
-  --color-canvas: #F4F8FC;
-  --color-surface-1: #FFFFFF;
-  --color-surface-2: #EAF2F9;
+  --color-canvas: #07141F;
+  --color-surface-1: #0D1D2D;
+  --color-surface-2: #122739;
 
-  --color-text-primary: #102A43;
-  --color-text-body: #334E68;
-  --color-text-muted: #486581;
-  --color-text-disabled: #526C84;
-  --color-text-inverse: #F4F8FC;
-  --color-text-inverse-body: #C7D4E1;
-  --color-surface-inverse: #102A43;
+  --color-text-primary: #FFFFFF;
+  --color-text-body: #A9B8CC;
+  --color-text-muted: #8497B0;
+  --color-text-disabled: #6F819B;
 
-  --color-brand-primary: #1769AA;
-  --color-brand-hover: #0E527F;
-  --color-button-fill: #1268D3;
-  --color-button-text: #FFFFFF;
-  --color-button-hover: #0E55AD;
-  --color-accent-warm: #B54736;
-  --color-accent-inverse: #F0A18F;
-  --color-whatsapp: #00834F;
-  --color-error: #B42318;
+  /* Deprecated inverse aliases for backwards compatibility */
+  --color-text-inverse: #FFFFFF;
+  --color-text-inverse-body: #A9B8CC;
+  --color-surface-inverse: #0D1D2D;
 
-  --color-hairline: rgba(16, 42, 67, 0.14);
+  --color-brand-primary: #5CC2FF;
+  --color-brand-hover: #8AD6FF;
+
+  /* Primary button fill - LIME EXCLUSIVE */
+  --color-button-fill: #B8F04D;
+  --color-button-text: #0A1A05;
+  --color-button-hover: #CBF76F;
+
+  /* Deprecated warm accent aliases */
+  --color-accent-warm: #5CC2FF;
+  --color-accent-inverse: #5CC2FF;
+
+  --color-whatsapp: #0E7A3E;
+  --color-whatsapp-text: #FFFFFF;
+  --color-error: #FF7A7A;
+
+  --color-hairline: rgba(255, 255, 255, 0.12);
+  --color-border-strong: #6F819B;
+
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
 
   --font-sans: 'Manrope Variable', system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+
+  /* Background Image Overlays - Verbatim Dark Values */
+  --overlay-hero: linear-gradient(90deg, rgba(7, 20, 31, 0.95) 0%, rgba(7, 20, 31, 0.88) 50%, rgba(7, 20, 31, 0.70) 100%);
+  --overlay-services: linear-gradient(180deg, rgba(7, 20, 31, 0.95) 0%, rgba(13, 29, 45, 0.88) 50%, rgba(7, 20, 31, 0.95) 100%);
+  --overlay-why: linear-gradient(105deg, rgba(7, 20, 31, 0.95) 0%, rgba(13, 29, 45, 0.90) 55%, rgba(7, 20, 31, 0.82) 100%);
+  --overlay-process: linear-gradient(180deg, rgba(7, 20, 31, 0.95) 0%, rgba(13, 29, 45, 0.88) 50%, rgba(7, 20, 31, 0.95) 100%);
+  --overlay-work: linear-gradient(105deg, rgba(7, 20, 31, 0.95) 0%, rgba(13, 29, 45, 0.90) 55%, rgba(7, 20, 31, 0.82) 100%);
+  --overlay-cta: linear-gradient(90deg, rgba(7, 20, 31, 0.92) 0%, rgba(7, 20, 31, 0.80) 40%, rgba(7, 20, 31, 0.45) 72%, rgba(7, 20, 31, 0.20) 100%);
+  --overlay-cta-mobile: linear-gradient(180deg, rgba(7, 20, 31, 0.94) 0%, rgba(7, 20, 31, 0.88) 60%, rgba(7, 20, 31, 0.96) 100%);
+  --overlay-about: linear-gradient(90deg, rgba(7, 20, 31, 0.96) 0%, rgba(13, 29, 45, 0.88) 52%, rgba(7, 20, 31, 0.72) 100%);
+  --overlay-why-hero: linear-gradient(105deg, rgba(7, 20, 31, 0.96) 0%, rgba(13, 29, 45, 0.91) 50%, rgba(7, 20, 31, 0.82) 100%);
+}
+
+:root[data-theme="light"],
+html[data-theme="light"] {
+  color-scheme: light;
+
+  --color-canvas: #EAF6FF;
+  --color-surface-1: #FFFFFF;
+  --color-surface-2: #D9ECFA;
+
+  --color-text-primary: #0B1F3A;
+  --color-text-body: #334E68;
+  --color-text-muted: #52667A;
+  --color-text-disabled: #7A8CA3;
+
+  /* Inverse Aliases in Light Theme */
+  --color-text-inverse: #0B1F3A;
+  --color-text-inverse-body: #334E68;
+  --color-surface-inverse: #FFFFFF;
+
+  --color-brand-primary: #1769AA;
+  --color-brand-hover: #0F4F86;
+
+  /* Primary Button in Light Theme */
+  --color-button-fill: #B8F04D;
+  --color-button-text: #0A1A05;
+  --color-button-hover: #A4DC3A;
+
+  /* Deprecated Aliases */
+  --color-accent-warm: #1769AA;
+  --color-accent-inverse: #1769AA;
+
+  --color-whatsapp: #0E7A3E;
+  --color-whatsapp-text: #FFFFFF;
+  --color-error: #B42318;
+
+  --color-hairline: rgba(11, 31, 58, 0.14);
+  --color-border-strong: #6B7F97;
+
+  /* Light Status Tokens (Amendment 2) */
+  --color-success: #166534;
+  --color-warning: #92400E;
+
+  /* Overlays in Light Theme (Same angles and stops, light tints) */
+  --overlay-hero: linear-gradient(90deg, rgba(234, 246, 255, 0.95) 0%, rgba(234, 246, 255, 0.88) 50%, rgba(234, 246, 255, 0.70) 100%);
+  --overlay-services: linear-gradient(180deg, rgba(234, 246, 255, 0.95) 0%, rgba(217, 236, 250, 0.88) 50%, rgba(234, 246, 255, 0.95) 100%);
+  --overlay-why: linear-gradient(105deg, rgba(234, 246, 255, 0.95) 0%, rgba(217, 236, 250, 0.90) 55%, rgba(234, 246, 255, 0.82) 100%);
+  --overlay-process: linear-gradient(180deg, rgba(234, 246, 255, 0.95) 0%, rgba(217, 236, 250, 0.88) 50%, rgba(234, 246, 255, 0.95) 100%);
+  --overlay-work: linear-gradient(105deg, rgba(234, 246, 255, 0.95) 0%, rgba(217, 236, 250, 0.90) 55%, rgba(234, 246, 255, 0.82) 100%);
+  --overlay-cta: linear-gradient(90deg, rgba(234, 246, 255, 0.94) 0%, rgba(234, 246, 255, 0.85) 45%, rgba(234, 246, 255, 0.78) 72%, rgba(234, 246, 255, 0.40) 86%, rgba(234, 246, 255, 0.20) 100%);
+  --overlay-cta-mobile: linear-gradient(180deg, rgba(234, 246, 255, 0.94) 0%, rgba(234, 246, 255, 0.88) 60%, rgba(234, 246, 255, 0.96) 100%);
+  --overlay-about: linear-gradient(90deg, rgba(234, 246, 255, 0.96) 0%, rgba(217, 236, 250, 0.88) 52%, rgba(234, 246, 255, 0.72) 100%);
+  --overlay-why-hero: linear-gradient(105deg, rgba(234, 246, 255, 0.96) 0%, rgba(217, 236, 250, 0.91) 50%, rgba(234, 246, 255, 0.82) 100%);
 }
 
 @layer components {
   .backdrop-01-hero {
     background-color: var(--color-canvas);
-    background-image: linear-gradient(115deg, rgba(244, 248, 252, 0.94), rgba(234, 242, 249, 0.76)), repeating-linear-gradient(158deg, transparent 0 80px, rgba(23, 105, 170, 0.06) 81px, transparent 82px 160px);
+    background-image: linear-gradient(115deg, rgba(7, 20, 31, 0.94), rgba(13, 29, 45, 0.85)), repeating-linear-gradient(158deg, transparent 0 80px, rgba(92, 194, 255, 0.04) 81px, transparent 82px 160px);
   }
 
   .backdrop-02-services {
     background-color: var(--color-surface-2);
-    background-image: linear-gradient(112deg, rgba(255, 255, 255, 0.74), transparent 58%), repeating-linear-gradient(164deg, transparent 0 72px, rgba(23, 105, 170, 0.045) 73px, transparent 74px 146px);
+    background-image: linear-gradient(112deg, rgba(13, 29, 45, 0.75), transparent 58%), repeating-linear-gradient(164deg, transparent 0 72px, rgba(92, 194, 255, 0.035) 73px, transparent 74px 146px);
   }
 
   .backdrop-03-about {
-    background-color: var(--color-surface-inverse);
-    background-image: linear-gradient(112deg, rgba(16, 42, 67, 0.94), rgba(11, 48, 82, 0.84)), repeating-radial-gradient(ellipse at 76% 44%, transparent 0 42px, rgba(199, 212, 225, 0.09) 43px, transparent 44px 84px);
+    background-color: var(--color-surface-1);
+    background-image: linear-gradient(112deg, rgba(7, 20, 31, 0.94), rgba(13, 29, 45, 0.84)), repeating-radial-gradient(ellipse at 76% 44%, transparent 0 42px, rgba(92, 194, 255, 0.05) 43px, transparent 44px 84px);
   }
 
   .backdrop-04-why {
     background-color: var(--color-surface-2);
-    background-image: linear-gradient(100deg, rgba(255, 255, 255, 0.92), rgba(234, 242, 249, 0.78)), repeating-linear-gradient(90deg, transparent 0 68px, rgba(23, 105, 170, 0.055) 69px, transparent 70px 138px), repeating-linear-gradient(0deg, transparent 0 52px, rgba(23, 105, 170, 0.035) 53px, transparent 54px 106px);
+    background-image: linear-gradient(100deg, rgba(13, 29, 45, 0.92), rgba(7, 20, 31, 0.78)), repeating-linear-gradient(90deg, transparent 0 68px, rgba(92, 194, 255, 0.04) 69px, transparent 70px 138px), repeating-linear-gradient(0deg, transparent 0 52px, rgba(92, 194, 255, 0.025) 53px, transparent 54px 106px);
   }
 
   .backdrop-05-process {
     background-color: var(--color-canvas);
-    background-image: radial-gradient(rgba(23, 105, 170, 0.13) 0.8px, transparent 0.8px);
+    background-image: radial-gradient(rgba(92, 194, 255, 0.12) 0.8px, transparent 0.8px);
     background-size: 22px 22px;
   }
 
   .backdrop-06-work {
     background-color: var(--color-surface-2);
-    background-image: linear-gradient(140deg, rgba(23, 105, 170, 0.06), transparent 52%), repeating-linear-gradient(0deg, transparent 0 88px, rgba(16, 42, 67, 0.025) 89px, transparent 90px 178px);
+    background-image: linear-gradient(140deg, rgba(92, 194, 255, 0.05), transparent 52%), repeating-linear-gradient(0deg, transparent 0 88px, rgba(255, 255, 255, 0.02) 89px, transparent 90px 178px);
   }
 
   .backdrop-07-testimonials {
     background-color: var(--color-surface-2);
-    background-image: linear-gradient(125deg, rgba(255, 255, 255, 0.82), rgba(23, 105, 170, 0.055)), repeating-linear-gradient(145deg, transparent 0 64px, rgba(23, 105, 170, 0.04) 65px, transparent 66px 130px);
+    background-image: linear-gradient(125deg, rgba(13, 29, 45, 0.82), rgba(92, 194, 255, 0.04)), repeating-linear-gradient(145deg, transparent 0 64px, rgba(92, 194, 255, 0.03) 65px, transparent 66px 130px);
   }
 
   .backdrop-08-pricing {
-    background-color: var(--color-surface-inverse);
-    background-image: linear-gradient(118deg, #102A43, #123E6C 72%, #1769AA), repeating-linear-gradient(155deg, transparent 0 54px, rgba(255, 255, 255, 0.07) 55px, transparent 56px 110px);
+    background-color: var(--color-surface-1);
+    background-image: linear-gradient(118deg, #07141F, #0D1D2D 72%, #122739), repeating-linear-gradient(155deg, transparent 0 54px, rgba(255, 255, 255, 0.04) 55px, transparent 56px 110px);
   }
 
   .backdrop-09-cta {
-    background-color: var(--color-surface-inverse);
-    background-image: linear-gradient(112deg, #102A43 0%, #123E6C 72%, #1769AA 100%), repeating-linear-gradient(158deg, transparent 0 56px, rgba(255, 255, 255, 0.055) 57px, transparent 58px 112px);
+    background-color: var(--color-surface-1);
+    background-image: linear-gradient(112deg, #07141F 0%, #0D1D2D 72%, #122739 100%), repeating-linear-gradient(158deg, transparent 0 56px, rgba(255, 255, 255, 0.035) 57px, transparent 58px 112px);
   }
 
   .backdrop-10-insights {
     background-color: var(--color-canvas);
-    background-image: linear-gradient(135deg, rgba(234, 242, 249, 0.72), rgba(255, 255, 255, 0.8)), repeating-linear-gradient(0deg, transparent 0 74px, rgba(16, 42, 67, 0.025) 75px, transparent 76px 150px);
+    background-image: linear-gradient(135deg, rgba(13, 29, 45, 0.72), rgba(7, 20, 31, 0.8)), repeating-linear-gradient(0deg, transparent 0 74px, rgba(255, 255, 255, 0.02) 75px, transparent 76px 150px);
   }
 
   .backdrop-11-contact {
     background-color: var(--color-surface-1);
-    background-image: linear-gradient(135deg, rgba(234, 242, 249, 0.64), rgba(255, 255, 255, 0.88)), repeating-linear-gradient(0deg, transparent 0 52px, rgba(23, 105, 170, 0.045) 53px, transparent 54px 106px), repeating-linear-gradient(90deg, transparent 0 52px, rgba(23, 105, 170, 0.045) 53px, transparent 54px 106px);
+    background-image: linear-gradient(135deg, rgba(13, 29, 45, 0.64), rgba(7, 20, 31, 0.88)), repeating-linear-gradient(0deg, transparent 0 52px, rgba(92, 194, 255, 0.03) 53px, transparent 54px 106px), repeating-linear-gradient(90deg, transparent 0 52px, rgba(92, 194, 255, 0.03) 53px, transparent 54px 106px);
   }
 
   .backdrop-12-footer {
-    background-color: var(--color-surface-inverse);
-    background-image: linear-gradient(180deg, rgba(16, 42, 67, 0.94), rgba(9, 28, 47, 0.99)), repeating-linear-gradient(166deg, transparent 0 68px, rgba(92, 171, 219, 0.08) 69px, transparent 70px 136px);
+    background-color: var(--color-surface-1);
+    background-image: linear-gradient(180deg, rgba(13, 29, 45, 0.94), rgba(7, 20, 31, 0.99)), repeating-linear-gradient(166deg, transparent 0 68px, rgba(92, 194, 255, 0.04) 69px, transparent 70px 136px);
   }
+}
+
+/* Light Mode Overrides for Backdrop Patterns */
+:root[data-theme="light"] .backdrop-01-hero,
+html[data-theme="light"] .backdrop-01-hero {
+  background-image: linear-gradient(115deg, rgba(234, 246, 255, 0.94), rgba(217, 236, 250, 0.85)), repeating-linear-gradient(158deg, transparent 0 80px, rgba(23, 105, 170, 0.04) 81px, transparent 82px 160px);
+}
+
+:root[data-theme="light"] .backdrop-02-services,
+html[data-theme="light"] .backdrop-02-services {
+  background-image: linear-gradient(112deg, rgba(255, 255, 255, 0.75), transparent 58%), repeating-linear-gradient(164deg, transparent 0 72px, rgba(23, 105, 170, 0.035) 73px, transparent 74px 146px);
+}
+
+:root[data-theme="light"] .backdrop-03-about,
+html[data-theme="light"] .backdrop-03-about {
+  background-image: linear-gradient(112deg, rgba(234, 246, 255, 0.94), rgba(217, 236, 250, 0.84)), repeating-radial-gradient(ellipse at 76% 44%, transparent 0 42px, rgba(23, 105, 170, 0.05) 43px, transparent 44px 84px);
+}
+
+:root[data-theme="light"] .backdrop-04-why,
+html[data-theme="light"] .backdrop-04-why {
+  background-image: linear-gradient(100deg, rgba(217, 236, 250, 0.92), rgba(234, 246, 255, 0.78)), repeating-linear-gradient(90deg, transparent 0 68px, rgba(23, 105, 170, 0.04) 69px, transparent 70px 138px), repeating-linear-gradient(0deg, transparent 0 52px, rgba(23, 105, 170, 0.025) 53px, transparent 54px 106px);
+}
+
+:root[data-theme="light"] .backdrop-05-process,
+html[data-theme="light"] .backdrop-05-process {
+  background-image: radial-gradient(rgba(23, 105, 170, 0.12) 0.8px, transparent 0.8px);
+}
+
+:root[data-theme="light"] .backdrop-06-work,
+html[data-theme="light"] .backdrop-06-work {
+  background-image: linear-gradient(140deg, rgba(23, 105, 170, 0.05), transparent 52%), repeating-linear-gradient(0deg, transparent 0 88px, rgba(11, 31, 58, 0.02) 89px, transparent 90px 178px);
+}
+
+:root[data-theme="light"] .backdrop-07-testimonials,
+html[data-theme="light"] .backdrop-07-testimonials {
+  background-image: linear-gradient(125deg, rgba(217, 236, 250, 0.82), rgba(23, 105, 170, 0.04)), repeating-linear-gradient(145deg, transparent 0 64px, rgba(23, 105, 170, 0.03) 65px, transparent 66px 130px);
+}
+
+:root[data-theme="light"] .backdrop-08-pricing,
+html[data-theme="light"] .backdrop-08-pricing {
+  background-image: linear-gradient(118deg, #EAF6FF, #FFFFFF 72%, #D9ECFA), repeating-linear-gradient(155deg, transparent 0 54px, rgba(11, 31, 58, 0.04) 55px, transparent 56px 110px);
+}
+
+:root[data-theme="light"] .backdrop-09-cta,
+html[data-theme="light"] .backdrop-09-cta {
+  background-image: linear-gradient(112deg, #EAF6FF 0%, #FFFFFF 72%, #D9ECFA 100%), repeating-linear-gradient(158deg, transparent 0 56px, rgba(11, 31, 58, 0.035) 57px, transparent 58px 112px);
+}
+
+:root[data-theme="light"] .backdrop-10-insights,
+html[data-theme="light"] .backdrop-10-insights {
+  background-image: linear-gradient(135deg, rgba(217, 236, 250, 0.72), rgba(234, 246, 255, 0.8)), repeating-linear-gradient(0deg, transparent 0 74px, rgba(11, 31, 58, 0.02) 75px, transparent 76px 150px);
+}
+
+:root[data-theme="light"] .backdrop-11-contact,
+html[data-theme="light"] .backdrop-11-contact {
+  background-image: linear-gradient(135deg, rgba(217, 236, 250, 0.64), rgba(234, 246, 255, 0.88)), repeating-linear-gradient(0deg, transparent 0 52px, rgba(23, 105, 170, 0.03) 53px, transparent 54px 106px), repeating-linear-gradient(90deg, transparent 0 52px, rgba(23, 105, 170, 0.03) 53px, transparent 54px 106px);
+}
+
+:root[data-theme="light"] .backdrop-12-footer,
+html[data-theme="light"] .backdrop-12-footer {
+  background-image: linear-gradient(180deg, rgba(217, 236, 250, 0.94), rgba(234, 246, 255, 0.99)), repeating-linear-gradient(166deg, transparent 0 68px, rgba(23, 105, 170, 0.04) 69px, transparent 70px 136px);
 }
 
 @layer base {
@@ -143,7 +284,7 @@
   pointer-events: none;
   z-index: 10;
   background: transparent;
-  border: 1.5px solid rgba(23, 105, 170, 0.55);
+  border: 1.5px solid rgba(92, 194, 255, 0.55);
   transform: translate(-50%, -50%) scale(1);
   opacity: 0.8;
   animation: click-ripple 0.45s cubic-bezier(0.2, 0, 0.4, 1) forwards;

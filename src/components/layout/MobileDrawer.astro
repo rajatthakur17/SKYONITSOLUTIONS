@@ -1,10 +1,11 @@
 ---
 import Logo from '../ui/Logo.astro';
+import { SERVICE_GROUPS } from '../../data/services';
 ---
 
 <div 
   id="mobile-drawer" 
-  class="fixed inset-0 z-50 invisible opacity-0 transition-opacity duration-200"
+  class="fixed inset-0 h-[100dvh] z-50 invisible opacity-0 transition-opacity duration-200"
   aria-hidden="true"
   role="dialog"
   aria-modal="true"
@@ -20,7 +21,7 @@ import Logo from '../ui/Logo.astro';
   <!-- Drawer content -->
   <div 
     id="drawer-panel" 
-    class="absolute right-0 top-0 bottom-0 w-[85vw] max-w-[24rem] bg-surface-1 border-l border-hairline shadow-2xl translate-x-full transition-transform duration-300 ease-out flex flex-col"
+    class="absolute right-0 top-0 bottom-0 h-[100dvh] w-[85vw] max-w-[24rem] bg-surface-1 border-l border-hairline shadow-2xl translate-x-full transition-transform duration-300 ease-out flex flex-col"
   >
     <div class="flex items-center justify-between h-16 px-4 sm:px-6 border-b border-hairline">
       <Logo />
@@ -48,29 +49,35 @@ import Logo from '../ui/Logo.astro';
           aria-controls="mobile-services-submenu"
         >
           <span>Services</span>
-          <svg id="mobile-services-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg id="mobile-services-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-200 motion-reduce:transition-none flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </button>
         
         <div 
           id="mobile-services-submenu" 
-          class="hidden flex-col gap-2 mt-3 pl-4 border-l border-hairline" 
+          class="hidden flex-col gap-5 sm:gap-6 mt-4 ml-4 pl-4 border-l-2 border-brand-primary/20" 
           role="region" 
           aria-label="Services Submenu"
         >
-          <a href="/services/website-development" class="text-base sm:text-lg font-medium text-text-body hover:text-brand-hover transition-colors drawer-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded py-1.5">
-            Website Development
+          <a href="/services" class="text-base sm:text-lg font-bold text-brand-primary hover:text-brand-hover transition-colors drawer-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded py-1.5 inline-flex items-center min-h-[44px]">
+            Explore all services <span aria-hidden="true" class="ml-1">&rarr;</span>
           </a>
-          <a href="/services/seo" class="text-base sm:text-lg font-medium text-text-body hover:text-brand-hover transition-colors drawer-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded py-1.5">
-            SEO
-          </a>
-          <a href="/services/digital-marketing" class="text-base sm:text-lg font-medium text-text-body hover:text-brand-hover transition-colors drawer-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded py-1.5">
-            Digital Marketing
-          </a>
-          <a href="/services/social-media" class="text-base sm:text-lg font-medium text-text-body hover:text-brand-hover transition-colors drawer-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded py-1.5">
-            Social Media Management
-          </a>
+          
+          {SERVICE_GROUPS.map((group) => (
+            <div class="flex flex-col gap-2">
+              <h3 class="text-xs font-bold text-text-muted tracking-widest uppercase mb-1">{group.title}</h3>
+              <ul class="flex flex-col">
+                {group.services.map((service) => (
+                  <li>
+                    <a href={`/services/${service.slug}`} class="flex items-center min-h-[44px] text-base sm:text-lg font-medium text-text-body hover:text-brand-hover transition-colors drawer-link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded py-1.5">
+                      {service.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
 

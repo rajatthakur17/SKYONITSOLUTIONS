@@ -10,6 +10,7 @@
     "check": "astro check",
     "build": "astro build",
     "preview": "astro preview",
+    "deploy": "astro build && wrangler pages deploy dist --project-name=skyon-it-solutions",
     "postinstall": "node scripts/ensure_wasm_compiler.cjs",
     "restore:cta": "node scripts/restore_cta.js",
     "astro": "astro"
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "wrangler": "^4.148.0"
   }
 }

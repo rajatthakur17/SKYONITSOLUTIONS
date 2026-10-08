@@ -4,48 +4,47 @@ import Layout from '../layouts/Layout.astro';
 import officeBackground from '../../backgoundim/Futuristic Blue Office with Digital Waves.png';
 
 const title = 'About SKYON IT SOLUTIONS';
-const description = 'Learn about SKYON IT SOLUTIONS, its services, audiences, and practical project approach.';
+const description = 'Learn about our mission, our values, and the team behind SKYON IT SOLUTIONS.';
 
-const solutionGroups = [
+const values = [
   {
-    title: 'Build',
-    items: ['Website Development', 'Web Applications', 'E-commerce', 'Mobile Apps', 'SaaS', 'UI/UX', 'Custom Software'],
+    title: 'Practical Innovation',
+    description: 'We don’t chase tech trends for the sake of it. We implement solutions that solve real business problems and deliver measurable ROI.',
   },
   {
-    title: 'Automate',
-    items: ['AI Solutions', 'AI Agents', 'Chatbots', 'Business Automation', 'CRM Automation', 'Workflow Automation', 'API Integrations'],
+    title: 'Transparent Collaboration',
+    description: 'We believe in clear communication, honest timelines, and no hidden surprises. You are always in the loop.',
   },
   {
-    title: 'Analyze',
-    items: ['Data Analytics', 'Business Intelligence', 'Dashboards', 'Data Visualization', 'Customer Analytics', 'Sales & Marketing Analytics', 'Reporting Automation'],
+    title: 'Data-Driven Decisions',
+    description: 'Gut feelings are good, but data is better. We build analytics and intelligence into everything we create.',
   },
   {
-    title: 'Grow',
-    items: ['SEO', 'Local SEO', 'Digital Marketing', 'Google & Meta Ads', 'Social Media Management', 'Content Marketing', 'Conversion Optimization'],
+    title: 'Long-Term Partnership',
+    description: 'We aren’t just a vendor. We aim to be your digital growth partner, scaling our solutions as your business evolves.',
   },
 ];
 
-const enterpriseSolutions = [
-  'Cloud Solutions', 'AWS / Azure', 'DevOps', 'Cybersecurity', 'CRM & ERP',
-  'Business Management Systems', 'IT Infrastructure', 'Website Maintenance & Support',
+const approach = [
+  { step: 'Understand', desc: 'Deep dive into your business goals, challenges, and current processes to find the root problems.' },
+  { step: 'Strategize', desc: 'Develop a clear, actionable digital roadmap tailored to your specific market and audience.' },
+  { step: 'Build', desc: 'Engineer robust web, mobile, and software solutions using modern, scalable tech stacks.' },
+  { step: 'Automate', desc: 'Streamline repetitive operations with AI, chatbots, and custom workflow integrations.' },
+  { step: 'Analyze', desc: 'Set up intelligent dashboards and tracking to measure performance and gather insights.' },
+  { step: 'Grow', desc: 'Scale your reach with targeted digital marketing, SEO, and conversion optimization.' },
 ];
-
-const industries = [
-  'Real Estate', 'Healthcare', 'Education', 'Retail & E-commerce',
-  'Manufacturing', 'Finance', 'Professional Services',
-];
-
-const approach = ['Understand', 'Strategize', 'Build', 'Automate', 'Analyze', 'Grow'];
 
 const founders = [
   {
     name: 'Rajveer Singh Shekhawat',
-    role: 'Co-founder & MD',
+    role: 'Co-founder & Managing Director',
+    bio: 'With a deep background in technology and business strategy, Rajveer leads the vision at SKYON. He is passionate about leveraging advanced tech and automation to create scalable business models that empower enterprises to grow faster and operate leaner.',
     linkedin: 'https://www.linkedin.com/in/rajveer-singh-shekhawat-403a5824a/',
   },
   {
     name: 'Rajat Kumar',
     role: 'Co-founder',
+    bio: 'Rajat brings extensive experience in software engineering, digital architecture, and product development. He oversees the technical delivery, ensuring every product we build is highly performant, secure, and ready for future scale.',
     linkedin: 'https://www.linkedin.com/in/rajat-kumarofficial/',
   },
 ];
@@ -55,88 +54,90 @@ const founders = [
   <section class="about-story backdrop-03-about px-4 pt-28 pb-16 text-text-primary md:px-8 md:pt-36 md:pb-20">
     <Image
       src={officeBackground}
-      alt=""
+      alt="Futuristic Blue Office"
       aria-hidden="true"
       class="about-story-background"
       loading="eager"
     />
     <div class="about-story-content mx-auto grid max-w-[72rem] gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
       <div>
-        <p class="mb-3 text-sm font-bold uppercase text-brand-primary">About SKYON</p>
-        <h1 class="max-w-[48rem] text-3xl sm:text-4xl font-extrabold leading-tight text-text-primary md:text-5xl">Technology should make business clearer, not more complicated.</h1>
+        <p class="mb-3 text-sm font-bold uppercase tracking-tight text-brand-primary">Our Mission</p>
+        <h1 class="max-w-[48rem] text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight text-text-primary md:text-6xl">Technology should make business clearer, not more complicated.</h1>
       </div>
       <div>
-        <p class="text-lg leading-relaxed text-text-body">SKYON IT SOLUTIONS is a technology and digital growth partner helping businesses build their digital foundation, automate operations, use data intelligently, and grow online.</p>
-        <p class="mt-4 leading-relaxed text-text-body">We combine technology, digital strategy, automation, analytics, and digital marketing to create practical solutions aligned with business goals.</p>
+        <p class="text-lg leading-relaxed text-text-body">SKYON IT SOLUTIONS is a digital growth and technology partner. We exist to help forward-thinking businesses build their digital foundation, automate complex operations, and use data intelligently.</p>
+        <p class="mt-4 text-lg leading-relaxed text-text-body">We bridge the gap between business strategy and technical execution, crafting digital experiences that drive actual revenue and operational efficiency.</p>
       </div>
     </div>
   </section>
 
-  <section class="backdrop-04-why border-y border-hairline px-4 py-16 md:px-8 md:py-20">
+  <section class="border-y border-hairline px-4 py-16 md:px-8 md:py-24 bg-surface-1">
     <div class="mx-auto max-w-[72rem]">
-      <p class="mb-3 text-sm font-bold uppercase text-brand-primary">What we do</p>
-      <h2 class="max-w-[44rem] text-3xl font-bold leading-tight text-text-primary md:text-4xl">Our Core Solutions</h2>
-      <div class="mt-8 grid grid-cols-1 gap-x-12 gap-y-8 md:grid-cols-2">
-        {solutionGroups.map((group) => (
-          <section class="border-t border-hairline pt-5">
-            <h3 class="text-xl font-extrabold uppercase text-brand-primary">{group.title}</h3>
-            <ul class="mt-3 grid grid-cols-1 gap-x-5 sm:grid-cols-2">
-              {group.items.map((item) => (
-                <li class="border-b border-hairline py-2 text-sm text-text-body">{item}</li>
-              ))}
-            </ul>
-          </section>
+      <div class="mb-12">
+        <p class="mb-3 text-sm font-bold uppercase tracking-tight text-brand-primary">Our Values</p>
+        <h2 class="text-3xl font-bold leading-tight text-text-primary md:text-4xl">What drives us forward</h2>
+      </div>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
+        {values.map((value, idx) => (
+          <div class="border-t border-hairline pt-6">
+            <span class="block text-xs font-mono font-bold text-brand-primary mb-2">0{idx + 1} // VALUE</span>
+            <h3 class="text-xl font-bold text-text-primary mb-3">{value.title}</h3>
+            <p class="text-text-body leading-relaxed">{value.description}</p>
+          </div>
         ))}
       </div>
-
-      <div class="mt-12 border-t border-hairline pt-8">
-        <h3 class="text-xl font-bold text-text-primary">Enterprise &amp; IT Solutions</h3>
-        <ul class="mt-4 flex flex-wrap gap-2">
-          {enterpriseSolutions.map((item) => (
-            <li class="border border-hairline bg-surface-1 px-3 py-2 text-sm text-text-body">{item}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div class="mt-12 border-t border-hairline pt-8">
-        <h3 class="text-xl font-bold text-text-primary">Industry Solutions</h3>
-        <ul class="mt-4 grid grid-cols-2 gap-x-3 sm:gap-x-5 sm:grid-cols-3 lg:grid-cols-4">
-          {industries.map((industry) => (
-            <li class="border-b border-hairline py-3 text-sm font-semibold text-text-body">{industry}</li>
-          ))}
-        </ul>
-      </div>
-
-      <a href="/services" class="mt-10 inline-flex min-h-11 items-center gap-2 rounded-md bg-button-fill px-5 py-3 font-bold text-button-text hover:bg-button-hover">Explore IT services <span aria-hidden="true">&rarr;</span></a>
     </div>
   </section>
 
-  <section class="backdrop-03-about border-b border-hairline px-4 py-16 text-text-primary md:px-8 md:py-20">
+  <section class="px-4 py-16 md:px-8 md:py-24">
     <div class="mx-auto max-w-[72rem]">
-      <p class="mb-3 text-sm font-bold uppercase text-brand-primary">Our Approach</p>
-      <h2 class="max-w-[44rem] text-3xl font-bold leading-tight text-text-primary md:text-4xl">Understand, then build toward the outcome.</h2>
-      <ol class="mt-8 grid grid-cols-2 gap-x-3 sm:gap-x-5 md:grid-cols-3 lg:grid-cols-6">
-        {approach.map((step, index) => (
-          <li class="border-t border-hairline py-4">
-            <span class="block text-xs font-bold text-brand-primary">0{index + 1}</span>
-            <span class="mt-2 block font-bold text-text-primary">{step}</span>
-          </li>
+      <div class="mb-12 max-w-[44rem]">
+        <p class="mb-3 text-sm font-bold uppercase tracking-tight text-brand-primary">Our Methodology</p>
+        <h2 class="text-3xl font-bold leading-tight text-text-primary md:text-4xl">We don't just write code. We solve problems.</h2>
+        <p class="mt-4 text-text-body">Our proven 6-step framework ensures that every project we undertake is aligned with your core business objectives from day one.</p>
+      </div>
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {approach.map((item, index) => (
+          <div class="group border border-hairline bg-surface-1 p-6 transition-colors hover:border-brand-primary">
+            <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-full border border-hairline bg-canvas text-sm font-bold text-brand-primary group-hover:bg-brand-primary group-hover:text-canvas transition-colors">
+              {index + 1}
+            </div>
+            <h3 class="text-lg font-bold text-text-primary mb-2">{item.step}</h3>
+            <p class="text-sm text-text-body leading-relaxed">{item.desc}</p>
+          </div>
         ))}
-      </ol>
-      <p class="mt-6 max-w-[54rem] text-base leading-relaxed text-text-body">We believe technology should not simply look impressive. It should solve real problems, improve efficiency, generate insight, and create measurable business value.</p>
+      </div>
+    </div>
+  </section>
 
-      <div class="mt-10 border-t border-hairline pt-8">
-        <h3 class="text-lg font-bold text-text-primary">SKYON IT SOLUTIONS</h3>
-        <p class="mt-1 text-sm text-text-body">Build. Automate. Analyze. Grow.</p>
-        <ul class="mt-5 flex flex-wrap gap-x-8 gap-y-4">
-          {founders.map((founder) => (
-            <li>
-              <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" class="font-semibold text-text-primary underline decoration-brand-primary underline-offset-4 hover:text-brand-hover">
-                {founder.name} <span class="font-normal text-text-body">· {founder.role}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
+  <section class="border-t border-hairline px-4 py-16 md:px-8 md:py-24 bg-canvas">
+    <div class="mx-auto max-w-[72rem]">
+      <div class="mb-12">
+        <p class="mb-3 text-sm font-bold uppercase tracking-tight text-brand-primary">Leadership</p>
+        <h2 class="text-3xl font-bold leading-tight text-text-primary md:text-4xl">Meet the Founders</h2>
+      </div>
+      <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+        {founders.map((founder) => (
+          <div class="flex flex-col">
+            <h3 class="text-2xl font-bold text-text-primary">{founder.name}</h3>
+            <p class="mb-4 text-sm font-mono font-medium text-brand-primary">{founder.role}</p>
+            <p class="mb-6 text-text-body leading-relaxed">{founder.bio}</p>
+            <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-bold text-text-primary hover:text-brand-primary transition-colors mt-auto">
+              Connect on LinkedIn <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-hairline px-4 py-16 md:px-8 md:py-24 text-center">
+    <div class="mx-auto max-w-[48rem]">
+      <h2 class="text-3xl font-bold leading-tight text-text-primary md:text-4xl">Ready to transform your business?</h2>
+      <p class="mt-4 text-lg text-text-body">Let's discuss how our technology solutions can help you build, automate, and grow.</p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <a href="/contact" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-button-fill px-6 py-3 font-bold text-button-text hover:bg-button-hover transition-colors">Start a Project</a>
+        <a href="/services" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-hairline bg-canvas px-6 py-3 font-bold text-text-primary hover:bg-surface-1 transition-colors">Explore our Services</a>
       </div>
     </div>
   </section>

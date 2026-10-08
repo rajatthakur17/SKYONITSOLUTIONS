@@ -216,9 +216,11 @@ const initialQuotes = [
       if (minimizeBtn) minimizeBtn.addEventListener('click', minimizeWidget);
       if (pill) pill.addEventListener('click', expandWidget);
 
-      // Restore session minimized state if any
+      // Restore session minimized state if any, defaulting to compact pill on mobile/tablet to avoid screen collision
       try {
-        if (sessionStorage.getItem('skyon_review_minimized') === 'true') {
+        var isSmallScreen = window.innerWidth < 768;
+        var storedPref = sessionStorage.getItem('skyon_review_minimized');
+        if (storedPref === 'true' || (storedPref === null && isSmallScreen)) {
           minimizeWidget();
         }
       } catch (e) {}
@@ -453,11 +455,13 @@ const initialQuotes = [
   @media (max-width: 640px) {
     .floating-review-container {
       bottom: 20px;
-      left: 16px;
+      left: 12px;
+      max-width: calc(100vw - 84px);
     }
 
     .floating-review-card {
-      width: 265px;
+      width: 250px;
+      max-width: calc(100vw - 88px);
       padding: 10px 12px;
     }
   }

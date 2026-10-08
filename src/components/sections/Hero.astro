@@ -197,7 +197,7 @@ import { SERVICES } from '../../data/services';
 
   .hero-stats {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1rem;
     margin: 2.25rem 0 0;
     padding-top: 1.25rem;
@@ -385,48 +385,52 @@ import { SERVICES } from '../../data/services';
 
   @media (max-width: 39.99rem) {
     .hero-layout {
-      gap: 1.25rem;
-      padding: 1.5rem 1rem 1rem;
+      gap: 1.5rem;
+      padding: 1.75rem 1rem 1.25rem;
     }
 
     .hero-copy h1 {
-      font-size: 2.25rem;
+      font-size: clamp(1.85rem, 6.5vw, 2.25rem);
     }
 
     .hero-description {
       font-size: 0.95rem;
+      margin-bottom: 24px;
     }
 
     .hero-actions {
-      flex-wrap: nowrap;
-      gap: 0.5rem;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 1.75rem;
     }
 
     .hero-button {
       min-width: 0;
-      flex: 1 1 0;
-      padding-inline: 0.55rem;
-      font-size: 0.78rem;
+      flex: 1 1 130px;
+      padding-inline: 0.75rem;
+      font-size: 0.82rem;
+      min-height: 44px;
+      justify-content: center;
     }
 
     .hero-stats {
-      gap: 0.6rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem 0.75rem;
       margin-top: 1.25rem;
+      padding-top: 1rem;
     }
 
     .hero-stats dt {
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
 
     .hero-stats dd {
-      font-size: 0.68rem;
+      font-size: 0.72rem;
     }
 
-    .hero-quick-form {
-      right: 0.5rem;
-      bottom: 2.8rem;
-      left: 0.5rem;
-      width: auto;
+    .hero-enquiry-stage {
+      padding: 1.25rem 1rem;
+      max-width: 100%;
     }
 
     .hero-form-title {
@@ -445,7 +449,7 @@ import { SERVICES } from '../../data/services';
 
     .hero-form-controls select,
     .hero-form-controls button {
-      min-height: 2.4rem;
+      min-height: 2.6rem;
     }
 
     .hero-background {
@@ -454,6 +458,15 @@ import { SERVICES } from '../../data/services';
 
     .hero-audiences {
       display: none;
+    }
+  }
+
+  @media (max-width: 22rem) {
+    .hero-actions {
+      flex-direction: column;
+    }
+    .hero-button {
+      width: 100%;
     }
   }
 </style>

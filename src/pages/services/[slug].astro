@@ -121,9 +121,9 @@ const otherServices = SERVICES.filter((s) => s.slug !== service.slug);
             <p class="text-xs text-text-muted max-w-[32rem] leading-relaxed mb-4">
               {service.imagePlaceholderNote}
             </p>
-            <div class="inline-flex flex-wrap items-center justify-center gap-2 px-3 py-1.5 rounded bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-xs font-mono">
+            <div class="inline-flex flex-wrap items-center justify-center gap-2 px-3 py-1.5 rounded bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-xs font-mono max-w-full">
               <span>Drop asset to:</span>
-              <strong class="text-text-primary">public/images/services/{service.slug}.webp</strong>
+              <strong class="text-text-primary break-all">public/images/services/{service.slug}.webp</strong>
               <span class="text-text-muted">(1200×675 recommended)</span>
             </div>
           </div>
@@ -134,8 +134,8 @@ const otherServices = SERVICES.filter((s) => s.slug !== service.slug);
               Core Technical Pipeline
             </p>
             <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center font-mono text-xs">
-              {service.process.map((step) => (
-                <div class="p-2 rounded bg-canvas border border-hairline flex flex-col items-center justify-center">
+              {service.process.map((step, idx) => (
+                <div class={`p-2 rounded bg-canvas border border-hairline flex flex-col items-center justify-center ${idx === 4 ? 'col-span-2 sm:col-span-1' : ''}`}>
                   <span class="text-brand-primary font-bold">{step.step}</span>
                   <span class="text-[11px] text-text-primary truncate w-full mt-0.5">{step.title}</span>
                 </div>

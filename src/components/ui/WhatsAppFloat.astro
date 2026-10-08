@@ -297,8 +297,10 @@ const chatConfig = {
 
     .wa-popup {
       right: -6px;
-      width: calc(100vw - 28px);
-      height: 490px;
+      width: calc(100vw - 24px);
+      max-width: 380px;
+      height: min(490px, calc(100dvh - 85px));
+      max-height: calc(100dvh - 85px);
     }
   }
 </style>

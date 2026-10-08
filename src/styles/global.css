@@ -240,15 +240,25 @@ html[data-theme="light"] .backdrop-12-footer {
     color: var(--color-text-body);
     font-family: var(--font-sans);
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
   
   body {
     min-height: 100vh;
-    overflow-x: hidden;
+    min-height: 100dvh;
+    overflow-x: clip;
+    width: 100%;
+    position: relative;
+  }
+  
+  img, svg, video {
+    max-width: 100%;
   }
   
   h1, h2, h3, h4, h5, h6 {
     color: var(--color-text-primary);
+    overflow-wrap: break-word;
   }
 
   /* Accessible focus states */

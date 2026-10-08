@@ -27,9 +27,9 @@ const steps = [
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-      {steps.map((step) => (
-        <div class="p-6 bg-surface-1/85 backdrop-blur-xs border border-hairline rounded-xl hover:border-brand-primary/50 hover:shadow-md transition-all flex flex-col justify-between">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 sm:gap-6">
+      {steps.map((step, idx) => (
+        <div class={`p-5 sm:p-6 bg-surface-1/85 backdrop-blur-xs border border-hairline rounded-xl hover:border-brand-primary/50 hover:shadow-md transition-all flex flex-col justify-between ${idx === 4 ? 'sm:col-span-2 lg:col-span-1' : ''}`}>
           <div>
             <div class="text-3xl font-black text-brand-primary mb-3">{step.num}</div>
             <h3 class="text-lg font-bold text-text-primary mb-2">{step.title}</h3>

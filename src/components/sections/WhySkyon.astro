@@ -219,13 +219,23 @@ const { isPage = false } = Astro.props;
 
   @media (max-width: 39.99rem) {
     .why-layout {
-      gap: 1.5rem;
-      padding: 3.5rem 1rem;
+      gap: 1.75rem;
+      padding: 3rem 1rem;
     }
 
     .why-intro h1,
     .why-intro h2 {
-      font-size: 1.9rem;
+      font-size: clamp(1.65rem, 6vw, 1.9rem);
+    }
+
+    .why-capabilities {
+      padding: 0.75rem 1rem;
+    }
+
+    .why-capability {
+      grid-template-columns: 2.25rem 1fr;
+      gap: 0.75rem;
+      padding: 1rem 0;
     }
 
     .why-background {

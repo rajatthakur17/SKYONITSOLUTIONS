@@ -29,23 +29,23 @@ const { phone = '917014865202' } = Astro.props;
       </p>
 
       <!-- Step Progress Bar -->
-      <div class="mt-8 flex items-center justify-center gap-2 sm:gap-3 text-xs font-semibold text-text-body">
-        <span class="flex items-center gap-1.5 text-brand-primary">
+      <div class="mt-8 flex items-center justify-center gap-1.5 sm:gap-3 text-[11px] sm:text-xs font-semibold text-text-body overflow-x-auto max-w-full pb-1">
+        <span class="flex items-center gap-1 sm:gap-1.5 text-brand-primary shrink-0">
           <span class="w-5 h-5 rounded-full bg-brand-primary/20 border border-brand-primary flex items-center justify-center text-[10px] font-bold">1</span>
           Category
         </span>
-        <span class="w-6 sm:w-8 h-[1px] bg-hairline"></span>
-        <span class="flex items-center gap-1.5 text-brand-primary">
+        <span class="w-3 sm:w-6 md:w-8 h-[1px] bg-hairline shrink-0"></span>
+        <span class="flex items-center gap-1 sm:gap-1.5 text-brand-primary shrink-0">
           <span class="w-5 h-5 rounded-full bg-brand-primary/20 border border-brand-primary flex items-center justify-center text-[10px] font-bold">2</span>
           Scale
         </span>
-        <span class="w-6 sm:w-8 h-[1px] bg-hairline"></span>
-        <span class="flex items-center gap-1.5 text-brand-primary">
+        <span class="w-3 sm:w-6 md:w-8 h-[1px] bg-hairline shrink-0"></span>
+        <span class="flex items-center gap-1 sm:gap-1.5 text-brand-primary shrink-0">
           <span class="w-5 h-5 rounded-full bg-brand-primary/20 border border-brand-primary flex items-center justify-center text-[10px] font-bold">3</span>
           Add-ons
         </span>
-        <span class="w-6 sm:w-8 h-[1px] bg-hairline"></span>
-        <span class="flex items-center gap-1 text-[var(--color-success)] font-bold">
+        <span class="w-3 sm:w-6 md:w-8 h-[1px] bg-hairline shrink-0"></span>
+        <span class="flex items-center gap-1 text-[var(--color-success)] font-bold shrink-0">
           <span class="w-5 h-5 rounded-full bg-[var(--color-success)]/20 border border-[var(--color-success)] flex items-center justify-center text-[10px]">✓</span>
           Quote
         </span>
@@ -59,7 +59,7 @@ const { phone = '917014865202' } = Astro.props;
       <div class="lg:col-span-7 flex flex-col gap-6">
         
         <!-- Step 1: Service Type -->
-        <div class="estimator-group p-6 rounded-2xl bg-surface-1/90 border border-hairline backdrop-blur-md shadow-lg">
+        <div class="estimator-group p-4 sm:p-6 rounded-2xl bg-surface-1/90 border border-hairline backdrop-blur-md shadow-lg">
           <div class="flex items-center justify-between mb-4">
             <label class="text-xs font-bold uppercase tracking-wider text-brand-primary flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
@@ -124,7 +124,7 @@ const { phone = '917014865202' } = Astro.props;
         </div>
 
         <!-- Step 2: Scale & Stage -->
-        <div class="estimator-group p-6 rounded-2xl bg-surface-1/90 border border-hairline backdrop-blur-md shadow-lg">
+        <div class="estimator-group p-4 sm:p-6 rounded-2xl bg-surface-1/90 border border-hairline backdrop-blur-md shadow-lg">
           <div class="flex items-center justify-between mb-4">
             <label class="text-xs font-bold uppercase tracking-wider text-brand-primary flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
@@ -170,7 +170,7 @@ const { phone = '917014865202' } = Astro.props;
         </div>
 
         <!-- Step 3: Add-ons & Integrations -->
-        <div class="estimator-group p-6 rounded-2xl bg-surface-1/90 border border-hairline backdrop-blur-md shadow-lg">
+        <div class="estimator-group p-4 sm:p-6 rounded-2xl bg-surface-1/90 border border-hairline backdrop-blur-md shadow-lg">
           <div class="flex items-center justify-between mb-4">
             <label class="text-xs font-bold uppercase tracking-wider text-brand-primary flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
@@ -229,7 +229,7 @@ const { phone = '917014865202' } = Astro.props;
 
       <!-- Right Column: Live Proposal Card (5 cols) -->
       <div class="lg:col-span-5 sticky top-24">
-        <div class="p-6 md:p-8 rounded-2xl bg-surface-1 border border-border-strong shadow-2xl backdrop-blur-xl relative overflow-hidden">
+        <div class="p-5 sm:p-6 md:p-8 rounded-2xl bg-surface-1 border border-border-strong shadow-2xl backdrop-blur-xl relative overflow-hidden">
           
           <!-- Glowing decorative accent -->
           <div class="absolute -top-12 -right-12 w-44 h-44 bg-brand-primary/10 rounded-full blur-2xl pointer-events-none"></div>
@@ -304,7 +304,7 @@ const { phone = '917014865202' } = Astro.props;
              href={`https://wa.me/${phone}?text=Hi%20SKYON%20IT%20SOLUTIONS%2C%20I%20configured%20a%20project%20scope.`}
              target="_blank"
              rel="noopener noreferrer"
-             class="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-extrabold text-sm shadow-xl shadow-black/40 hover:-translate-y-0.5 transition-all text-center">
+             class="w-full flex items-center justify-center gap-2 sm:gap-3 py-3.5 sm:py-4 px-3 sm:px-6 rounded-xl bg-whatsapp hover:bg-whatsapp/90 text-white font-extrabold text-xs sm:text-sm shadow-xl shadow-black/40 hover:-translate-y-0.5 transition-all text-center min-h-[44px]">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" class="flex-shrink-0">
               <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2Z" />
             </svg>

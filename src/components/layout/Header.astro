@@ -11,7 +11,7 @@ import { SERVICE_GROUPS } from '../../data/services';
       <Logo variant="header" />
     </div>
 
-    <nav class="hidden md:flex items-center gap-8" aria-label="Desktop Navigation">
+    <nav class="hidden lg:flex items-center gap-4 xl:gap-8" aria-label="Desktop Navigation">
       <!-- Services Dropdown -->
       <div class="relative">
         <button 
@@ -28,13 +28,13 @@ import { SERVICE_GROUPS } from '../../data/services';
 
         <div 
           id="desktop-services-dropdown"
-          class="absolute top-full left-1/2 -translate-x-1/2 mt-6 w-[640px] bg-surface-1 border border-hairline rounded-lg shadow-2xl opacity-0 invisible transform -translate-y-2 transition-all duration-200 z-50 cursor-default"
+          class="absolute top-full left-1/2 -translate-x-1/2 mt-6 w-[640px] max-w-[calc(100vw-2rem)] bg-surface-1 border border-hairline rounded-lg shadow-2xl opacity-0 invisible transform -translate-y-2 transition-all duration-200 z-50 cursor-default"
           role="region"
           aria-label="Services Menu"
         >
-          <div class="p-8">
+          <div class="p-6 md:p-8">
             <a href="/services" class="desktop-dropdown-link mb-6 inline-flex text-sm font-semibold text-brand-primary hover:text-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Explore all services <span aria-hidden="true" class="ml-1">&rarr;</span></a>
-            <div class="grid grid-cols-2 gap-10">
+            <div class="grid grid-cols-2 gap-6 md:gap-10">
               {SERVICE_GROUPS.map((group) => (
                 <div>
                   <h3 class="text-xs font-bold text-brand-primary tracking-widest uppercase mb-4">{group.title}</h3>
@@ -58,13 +58,13 @@ import { SERVICE_GROUPS } from '../../data/services';
       <a href="/about" class="text-sm font-medium text-text-body hover:text-brand-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">About</a>
       <a href="/why-choose-us" class="text-sm font-medium text-text-body hover:text-brand-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Why Us</a>
       <a href="/blog" class="text-sm font-medium text-text-body hover:text-brand-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">Blog & Insights</a>
-      <a href="/contact" class="text-sm font-semibold bg-button-fill text-button-text px-4 py-2 rounded-full hover:bg-button-hover transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary">
+      <a href="/contact" class="text-sm font-semibold bg-button-fill text-button-text px-4 py-2 rounded-full hover:bg-button-hover transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary whitespace-nowrap">
         Start a Project
       </a>
       <ThemeToggle id="header-theme-toggle" />
     </nav>
 
-    <div class="md:hidden flex items-center">
+    <div class="lg:hidden flex items-center">
       <button 
         id="mobile-menu-trigger" 
         class="text-text-primary p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded"

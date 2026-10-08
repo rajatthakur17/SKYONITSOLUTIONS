@@ -2,18 +2,18 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Page Not Found | SKYON IT SOLUTIONS" description="The page you are looking for cannot be found." noindex={true}>
+<Layout title="Something Went Wrong | SKYON IT SOLUTIONS" description="An unexpected error occurred. Please try again later." noindex={true}>
   <section class="min-h-[70vh] flex items-center justify-center px-4 py-20 md:py-28 text-center">
     <div class="max-w-[40rem] mx-auto flex flex-col items-center">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-hairline bg-surface-1 text-brand-primary text-xs font-mono tracking-widest uppercase mb-6">
-        <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse" aria-hidden="true"></span>
-        404 Error
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-hairline bg-surface-1 text-error text-xs font-mono tracking-widest uppercase mb-6">
+        <span class="w-2 h-2 rounded-full bg-error animate-pulse" aria-hidden="true"></span>
+        500 Error
       </div>
       <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-text-primary tracking-tight mb-4">
-        Page Not Found
+        Something went wrong
       </h1>
       <p class="text-base sm:text-lg text-text-body max-w-[32rem] mb-8 leading-relaxed">
-        The page you are looking for doesn't exist, may have been moved, or is temporarily unavailable.
+        We encountered an unexpected server error while processing your request. Please try again or head back to our homepage.
       </p>
       <div class="flex flex-wrap items-center justify-center gap-4">
         <a 
@@ -26,7 +26,7 @@ import Layout from '../layouts/Layout.astro';
           href="/contact" 
           class="inline-flex items-center justify-center min-h-[44px] border border-hairline bg-surface-1 text-text-primary hover:text-brand-hover hover:border-brand-primary px-6 py-3 rounded-full font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
         >
-          Contact Us
+          Contact Support
         </a>
       </div>
     </div>

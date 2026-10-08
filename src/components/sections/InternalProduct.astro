@@ -31,9 +31,9 @@ const { isPage = false } = Astro.props;
       </div>
     ) : (
       <div class="mb-16">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 bg-surface-1 border border-hairline rounded-lg">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 p-3.5 sm:p-6 bg-surface-1 border border-hairline rounded-lg">
           {CUMULATIVE_WORK_STATS.map((stat) => (
-            <div class="p-4 flex flex-col justify-between">
+            <div class="p-2 sm:p-4 flex flex-col justify-between">
               <span class="font-mono text-3xl md:text-4xl font-extrabold text-brand-primary tracking-tight">
                 {stat.value}
               </span>
@@ -87,7 +87,7 @@ const { isPage = false } = Astro.props;
           data-category={item.category}
         >
           <div class="grid grid-cols-1 lg:grid-cols-12">
-            <div class="lg:col-span-6 bg-canvas border-b lg:border-b-0 lg:border-r border-hairline p-6 md:p-8 flex flex-col justify-center">
+            <div class="lg:col-span-6 bg-canvas border-b lg:border-b-0 lg:border-r border-hairline p-4 sm:p-6 md:p-8 flex flex-col justify-center">
               <div class="rounded-lg border border-hairline bg-surface-1 overflow-hidden shadow-sm">
                 <div class="bg-surface-2 px-4 py-2.5 border-b border-hairline flex items-center gap-3">
                   <div class="flex items-center gap-1.5" aria-hidden="true">
@@ -150,7 +150,7 @@ const { isPage = false } = Astro.props;
               </div>
             </div>
 
-            <div class="lg:col-span-6 p-5 sm:p-6 md:p-10 flex flex-col justify-between">
+            <div class="lg:col-span-6 p-4 sm:p-6 md:p-10 flex flex-col justify-between">
               <div>
                 <div class="flex flex-wrap items-center gap-2 mb-4">
                   <span class="px-2.5 py-0.5 bg-brand-primary/10 text-brand-primary text-xs font-bold tracking-widest uppercase rounded">

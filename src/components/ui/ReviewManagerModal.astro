@@ -14,7 +14,7 @@
     class="w-full max-w-[36rem] bg-surface-1 border border-hairline rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh] transition-transform duration-200 scale-95"
   >
     <!-- Header -->
-    <div class="px-6 py-4 bg-surface-2 border-b border-hairline flex items-center justify-between shrink-0">
+    <div class="px-4 sm:px-6 py-3.5 sm:py-4 bg-surface-2 border-b border-hairline flex items-center justify-between shrink-0">
       <div class="flex items-center gap-3">
         <div class="w-8 h-8 rounded-lg bg-brand-primary/10 border border-brand-primary/20 flex items-center justify-center text-brand-primary shrink-0">
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -33,7 +33,7 @@
       <button
         type="button"
         id="close-review-manager-btn"
-        class="w-8 h-8 flex items-center justify-center rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-1 transition-colors text-xl leading-none cursor-pointer"
+        class="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-1 transition-colors text-2xl leading-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
         aria-label="Close manager dialog"
       >
         &times;
@@ -41,7 +41,7 @@
     </div>
 
     <!-- Review List Body -->
-    <div id="manager-reviews-list" class="p-5 overflow-y-auto space-y-3 flex-1 min-h-[160px]">
+    <div id="manager-reviews-list" class="p-4 sm:p-5 overflow-y-auto space-y-3 flex-1 min-h-[160px]">
       <!-- Dynamically rendered review items -->
     </div>
 

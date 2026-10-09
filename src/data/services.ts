@@ -51,6 +51,7 @@ export const SERVICES: ServiceItem[] = [
     description: 'High-performance websites engineered with modern static/SSR architecture, passing Core Web Vitals with zero plugin bloat.',
     longDescription: 'Your digital presence is the primary driver of commercial credibility. While traditional monolithic CMS sites struggle with plugin bloat, sluggish database queries, and frequent security vulnerabilities, we engineer custom web architectures utilizing Astro Islands and React. Every build ships near-zero JavaScript by default, passes Google\'s 2025/2026 Core Web Vitals thresholds in field data, and transforms visitors into qualified inquiries with sub-second page transitions.',
     icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4',
+    image: '/images/services/website-development.webp',
     imageAlt: 'Astro and modern web development architecture performance scorecard and responsive viewport previews',
     imagePlaceholderNote: 'Upload a 1200×675 WebP/PNG preview showcasing site mockups, component structure, or Lighthouse performance scores.',
     keyMetrics: [
@@ -119,6 +120,7 @@ export const SERVICES: ServiceItem[] = [
     description: 'Purpose-built web applications, internal operational dashboards, and modular monolith systems that eliminate manual bottlenecks and SaaS bloat.',
     longDescription: 'When off-the-shelf software forces your business into rigid workflows and expensive per-seat subscription models, custom software provides an unassailable competitive moat. In 2025/2026, engineering teams favor disciplined "modular monolith" architectures that eliminate the multi-hundred-thousand-dollar DevOps overhead of premature microservices. We engineer scalable, secure, and maintainable systems tailored to your proprietary business logic, data models, and integration ecosystems.',
     icon: 'M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
+    image: '/images/services/custom-software.webp',
     imageAlt: 'Modular monolith system architecture and bespoke web application operational dashboard',
     imagePlaceholderNote: 'Upload a 1200×675 WebP/PNG preview showcasing database architecture schemas, operational portal interfaces, or system dataflow diagrams.',
     keyMetrics: [
@@ -187,6 +189,7 @@ export const SERVICES: ServiceItem[] = [
     description: 'Edge CDN hosting, automated CI/CD pipelines, FinOps cloud cost optimization, and enterprise infrastructure security.',
     longDescription: 'Unmanaged cloud deployments quickly devolve into runaway egress bills, security vulnerabilities, and unpredictable downtime. In 2025/2026, progressive cloud engineering embraces FinOps unit economics and edge-first routing—offloading egress-heavy static traffic and API routing to Cloudflare Edge while maintaining stateful backends on AWS or GCP. We design resilient, cost-predictable infrastructure that guarantees 99.99% availability, automates deployments, and eliminates cloud waste.',
     icon: 'M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z',
+    image: '/images/services/cloud-solutions.webp',
     imageAlt: 'High availability multi-region cloud infrastructure and automated edge delivery topology',
     imagePlaceholderNote: 'Upload a 1200×675 WebP/PNG preview displaying cloud network topology diagrams, CI/CD pipeline triggers, or latency heatmaps.',
     keyMetrics: [
@@ -255,6 +258,7 @@ export const SERVICES: ServiceItem[] = [
     description: 'Pragmatic workflow automation, WhatsApp Business lead capture, and domain-governed AI assistants that eliminate manual tasks.',
     longDescription: 'Artificial intelligence delivers true enterprise value only when tethered to concrete operational pipelines. In 2025/2026, business success depends heavily on the "5-minute rule"—where leads contacted within five minutes are 21 times more likely to enter sales qualification than those delayed by 30 minutes. We engineer pragmatic automation: automated webhook routing, instant WhatsApp lead follow-ups, document data extraction, and AI assistants grounded strictly in your proprietary business knowledge.',
     icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+    image: '/images/services/ai-automation.webp',
     imageAlt: 'Real-time workflow automation pipeline and WhatsApp Business conversational intelligence flow',
     imagePlaceholderNote: 'Upload a 1200×675 WebP/PNG preview illustrating lead qualification webhook flows, WhatsApp conversation funnels, or document parsing architecture.',
     keyMetrics: [
@@ -323,6 +327,7 @@ export const SERVICES: ServiceItem[] = [
     description: 'User-centered interface design, interactive Figma prototypes, and design systems engineered for conversion and WCAG 2.2 accessibility.',
     longDescription: 'Exceptional visual design is a commercial asset, not mere decoration. Research from Forrester demonstrates that every $1 invested in strategic UX yields up to $100 in return, while resolving usability defects during the design phase costs up to 100 times less than refactoring production code post-launch. We design high-converting, intuitive digital interfaces grounded in cognitive psychology, responsive design tokens, and rigorous WCAG 2.2 AA accessibility standards.',
     icon: 'M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01',
+    image: '/images/services/ui-ux-design.webp',
     imageAlt: 'Figma component tokens design system and responsive mobile interface prototypes',
     imagePlaceholderNote: 'Upload a 1200×675 WebP/PNG preview showcasing Figma design system tokens, responsive mobile/desktop screen flows, or interactive prototype frames.',
     keyMetrics: [
@@ -391,6 +396,7 @@ export const SERVICES: ServiceItem[] = [
     description: 'Objective technology advisory, codebase architecture audits, legacy refactoring roadmaps, and vendor governance.',
     longDescription: 'Uninformed technology investments quickly lead to crippling technical debt, failed digital transformations, and exorbitant vendor invoices. Industry research from Gartner and McKinsey reveals that 20% to 40% of standard enterprise IT budgets are consumed simply by servicing legacy technical debt, while 70% of digital transformation initiatives fail to meet their original objectives. We provide independent, senior-level technology consulting to help you evaluate build-vs-buy decisions, eliminate hidden technical liabilities, and modernize your digital infrastructure with zero business disruption.',
     icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+    image: '/images/services/it-consulting.webp',
     imageAlt: 'Enterprise IT architecture modernization strategy and vendor governance roadmap',
     imagePlaceholderNote: 'Upload a 1200×675 WebP/PNG preview featuring architectural modernization roadmaps, technical audit scorecards, or vendor evaluation matrices.',
     keyMetrics: [
@@ -459,6 +465,7 @@ export const SERVICES: ServiceItem[] = [
     description: 'Technical SEO, JSON-LD structured data, Core Web Vitals optimization, and Google Business Profile local 3-pack dominance.',
     longDescription: 'SEO in 2025/2026 is no longer about superficial keyword stuffing; it is defined by machine-readable semantic architectures and local commercial intent. With Google AI Overviews and modern SERP features reshaping search behavior, high-ranking businesses rely on two undeniable pillars: structured JSON-LD Schema markup (which delivers a 20–30% higher organic CTR) and the Google Local 3-Pack (which captures 42% of local search clicks). We engineer technical SEO from the code up, ensuring search engines crawl, index, and cite your business with absolute authority.',
     icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
+    image: '/images/services/seo.webp',
     imageAlt: 'Technical SEO audit performance scorecard and Google Local 3-Pack search presence',
     imagePlaceholderNote: 'Upload a 1200×675 WebP/PNG preview displaying Google Search Console index coverage charts, Lighthouse SEO scores, or Local 3-Pack rank tracking.',
     keyMetrics: [
@@ -527,6 +534,7 @@ export const SERVICES: ServiceItem[] = [
     description: 'High-ROI Google Ads campaigns, Click-to-WhatsApp conversion funnels, and transparent customer acquisition tracking.',
     longDescription: 'Paid advertising should function as an accountable revenue engine, not an ambiguous marketing expense. While traditional web forms often convert at a modest 2% to 4%, modern Click-to-WhatsApp (CTWA) ad funnels achieve 12% to 22% conversion rates from ad click to active prospect conversation, backed by 20% to 60% chat reply rates. We engineer targeted Google Search and Meta advertising campaigns, pairing high-intent search terms with conversion-engineered landing pages and direct WhatsApp inquiry pipelines to maximize return on ad spend (ROAS).',
     icon: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6',
+    image: '/images/services/digital-marketing.webp',
     imageAlt: 'Multi-channel digital marketing conversion funnel and Click-to-WhatsApp performance metrics',
     imagePlaceholderNote: 'Upload a 1200×675 WebP/PNG preview illustrating ad campaign funnels, Click-to-WhatsApp conversion flows, or ROAS attribution dashboards.',
     keyMetrics: [
@@ -595,6 +603,7 @@ export const SERVICES: ServiceItem[] = [
     description: 'B2B LinkedIn thought leadership, educational Instagram carousels, and strategic content cadence that builds commercial authority.',
     longDescription: 'Social media presence is a primary trust signal when prospective clients conduct due diligence. Research indicates that 82% of B2B decision-makers review a company\'s social media presence before signing vendor contracts. On LinkedIn, high-performing corporate pages achieve 2% to 4% engagement rates (with PDF carousels delivering top algorithmic reach), while on Instagram, multi-slide educational carousels achieve 2x higher saves and up to 3.0%–4.8% engagement via the platform\'s 24–48 hour algorithmic re-serve window. We manage your social presence with rigorous brand consistency, thought leadership content, and professional visual direction.',
     icon: 'M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z',
+    image: '/images/services/social-media.webp',
     imageAlt: 'B2B LinkedIn thought leadership strategy and Instagram educational carousel design showcase',
     imagePlaceholderNote: 'Upload a 1200×675 WebP/PNG preview showcasing monthly content editorial calendars, carousel slide layouts, or engagement analytics charts.',
     keyMetrics: [

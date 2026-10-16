@@ -34,3 +34,6 @@ desktop.ini
 *.tmp
 *.swp
 *~
+
+# Cloudflare & Wrangler local state
+.wrangler/

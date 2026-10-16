@@ -1,0 +1,575 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SITE } from '../config/site';
+import { SERVICES } from '../data/services';
+import { BLOG_POSTS } from '../data/blog';
+
+const title = 'HTML Sitemap & Navigation Directory | SKYON IT SOLUTIONS';
+const description = 'Complete visual directory and HTML sitemap of SKYON IT SOLUTIONS. Explore core company pages, 9 software and digital growth capabilities, engineering playbooks, and machine discovery files.';
+
+const canonicalURL = 'https://skyonitsolutions.com/sitemap';
+
+const totalPages = 5 + 1 + SERVICES.length + 1 + BLOG_POSTS.length + 4; // company + services hub + services + blog hub + posts + legal/machine
+
+// Structured Data
+const sitemapSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://skyonitsolutions.com/sitemap#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://skyonitsolutions.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sitemap",
+          "item": canonicalURL
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://skyonitsolutions.com/sitemap#webpage",
+      "url": canonicalURL,
+      "name": title,
+      "description": description,
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://skyonitsolutions.com/#website",
+        "name": "SKYON IT SOLUTIONS",
+        "url": "https://skyonitsolutions.com/"
+      }
+    }
+  ]
+};
+---
+
+<Layout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(sitemapSchema)} />
+
+  <main class="pt-24 sm:pt-32 pb-20 sm:pb-28 px-4 sm:px-6 md:px-8 max-w-[72rem] mx-auto">
+    <!-- Breadcrumbs -->
+    <nav aria-label="Breadcrumb" class="mb-6">
+      <ol class="flex items-center gap-2 text-xs sm:text-sm text-text-muted">
+        <li>
+          <a href="/" class="hover:text-brand-primary transition-colors">Home</a>
+        </li>
+        <li aria-hidden="true" class="text-text-disabled">/</li>
+        <li class="text-text-primary font-medium" aria-current="page">Sitemap</li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="mb-10 sm:mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/30 text-brand-primary text-xs font-semibold uppercase tracking-wider mb-4">
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+          <polyline points="2 17 12 22 22 17"></polyline>
+          <polyline points="2 12 12 17 22 12"></polyline>
+        </svg>
+        Site Architecture & Taxonomy
+      </div>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-text-primary tracking-tight mb-4">
+        HTML Sitemap & Directory
+      </h1>
+      <p class="text-text-body text-base sm:text-lg max-w-[48rem]">
+        A complete architectural index of SKYON IT SOLUTIONS. Browse all core pages, full-stack software and growth capabilities, engineering playbooks, and machine-readable crawlers.
+      </p>
+
+      <!-- Key Metrics & Fast Discovery Badges -->
+      <div class="flex flex-wrap items-center gap-3 mt-6 pt-6 border-t border-hairline text-xs sm:text-sm text-text-muted">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-1 border border-hairline font-medium text-text-primary">
+          <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
+          <span>{totalPages} Indexed Pages</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-1 border border-hairline font-medium text-text-primary">
+          <span>9 Core Services</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-1 border border-hairline font-medium text-text-primary">
+          <span>{BLOG_POSTS.length} Technical Playbooks</span>
+        </span>
+        <a
+          href="/sitemap-index.xml"
+          target="_blank"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-1 border border-hairline font-medium text-brand-primary hover:border-brand-primary/60 transition-colors"
+          title="Open XML Sitemap"
+        >
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 11a9 9 0 0 1 9 9"></path>
+            <path d="M4 4a16 16 0 0 1 16 16"></path>
+            <circle cx="5" cy="19" r="1"></circle>
+          </svg>
+          XML Sitemap
+        </a>
+        <a
+          href="/llms.txt"
+          target="_blank"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-1 border border-hairline font-medium text-brand-primary hover:border-brand-primary/60 transition-colors"
+          title="Open AI Discovery Graph"
+        >
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+          </svg>
+          LLMs.txt (AI Discovery)
+        </a>
+      </div>
+
+      <!-- Live Search & Filter Bar -->
+      <div class="mt-8 relative max-w-[48rem]">
+        <label for="sitemap-search" class="sr-only">Filter sitemap by keyword</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-muted">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <input
+            type="search"
+            id="sitemap-search"
+            placeholder="Search all pages, capabilities, or topics (e.g., SEO, Cloud, React, Estimator)..."
+            class="w-full bg-surface-1 border border-hairline rounded-lg pl-11 pr-10 py-3 text-sm sm:text-base text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary transition-all shadow-sm"
+          />
+          <button
+            type="button"
+            id="clear-search-btn"
+            class="hidden absolute inset-y-0 right-0 pr-3.5 flex items-center text-text-muted hover:text-text-primary transition-colors cursor-pointer"
+            aria-label="Clear search"
+          >
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <p id="search-feedback" class="text-xs text-text-muted mt-2 hidden" role="status" aria-live="polite"></p>
+      </div>
+    </header>
+
+    <!-- Sitemap Sections Container -->
+    <div id="sitemap-content" class="space-y-12 sm:space-y-16">
+      
+      <!-- SECTION 1: Company & Primary Pages -->
+      <section class="sitemap-group" data-group="company">
+        <div class="flex items-center gap-3 mb-6 pb-3 border-b border-hairline">
+          <span class="w-8 h-8 rounded-lg bg-brand-primary/10 border border-brand-primary/30 flex items-center justify-center text-brand-primary text-sm font-bold">
+            01
+          </span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
+              Company & Core Navigation
+            </h2>
+            <p class="text-xs sm:text-sm text-text-muted">Primary brand touchpoints, business credibility, and case studies</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="sitemap-card bg-surface-1 border border-hairline rounded-lg p-5 hover:border-brand-primary/60 transition-all group">
+            <a href="/" class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold uppercase tracking-wider text-brand-primary">Landing</span>
+                <span class="text-xs text-text-muted font-mono">/</span>
+              </div>
+              <h3 class="text-base font-bold text-text-primary group-hover:text-brand-primary transition-colors mb-1.5 flex items-center gap-1.5">
+                Home Portal
+                <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </h3>
+              <p class="text-xs sm:text-sm text-text-body line-clamp-2">
+                Engineering-first technology solutions, client testimonials, and interactive project scoping estimator.
+              </p>
+            </a>
+          </div>
+
+          <div class="sitemap-card bg-surface-1 border border-hairline rounded-lg p-5 hover:border-brand-primary/60 transition-all group">
+            <a href="/about" class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold uppercase tracking-wider text-brand-primary">Corporate</span>
+                <span class="text-xs text-text-muted font-mono">/about</span>
+              </div>
+              <h3 class="text-base font-bold text-text-primary group-hover:text-brand-primary transition-colors mb-1.5 flex items-center gap-1.5">
+                About Us
+                <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </h3>
+              <p class="text-xs sm:text-sm text-text-body line-clamp-2">
+                Our engineering philosophy, global delivery model, mission, and transparent pricing standards.
+              </p>
+            </a>
+          </div>
+
+          <div class="sitemap-card bg-surface-1 border border-hairline rounded-lg p-5 hover:border-brand-primary/60 transition-all group">
+            <a href="/why-choose-us" class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold uppercase tracking-wider text-brand-primary">Differentiators</span>
+                <span class="text-xs text-text-muted font-mono">/why-choose-us</span>
+              </div>
+              <h3 class="text-base font-bold text-text-primary group-hover:text-brand-primary transition-colors mb-1.5 flex items-center gap-1.5">
+                Why Choose Us
+                <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </h3>
+              <p class="text-xs sm:text-sm text-text-body line-clamp-2">
+                Direct engineer communication, clean handoffs, zero vendor lock-in, and guaranteed delivery milestones.
+              </p>
+            </a>
+          </div>
+
+          <div class="sitemap-card bg-surface-1 border border-hairline rounded-lg p-5 hover:border-brand-primary/60 transition-all group">
+            <a href="/work" class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold uppercase tracking-wider text-brand-primary">Portfolio</span>
+                <span class="text-xs text-text-muted font-mono">/work</span>
+              </div>
+              <h3 class="text-base font-bold text-text-primary group-hover:text-brand-primary transition-colors mb-1.5 flex items-center gap-1.5">
+                Our Work & Projects
+                <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </h3>
+              <p class="text-xs sm:text-sm text-text-body line-clamp-2">
+                Real-world software engineering case studies, web architectures, and quantifiable business outcomes.
+              </p>
+            </a>
+          </div>
+
+          <div class="sitemap-card bg-surface-1 border border-hairline rounded-lg p-5 hover:border-brand-primary/60 transition-all group sm:col-span-2 lg:col-span-1">
+            <a href="/contact" class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold uppercase tracking-wider text-brand-primary">Consultation</span>
+                <span class="text-xs text-text-muted font-mono">/contact</span>
+              </div>
+              <h3 class="text-base font-bold text-text-primary group-hover:text-brand-primary transition-colors mb-1.5 flex items-center gap-1.5">
+                Start a Project
+                <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </h3>
+              <p class="text-xs sm:text-sm text-text-body line-clamp-2">
+                Project scoping form, direct engineer WhatsApp routing, email inquiry, and telephone consultation.
+              </p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: Core Engineering & Growth Services -->
+      <section class="sitemap-group" data-group="services">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6 pb-3 border-b border-hairline">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-brand-primary/10 border border-brand-primary/30 flex items-center justify-center text-brand-primary text-sm font-bold">
+              02
+            </span>
+            <div>
+              <h2 class="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
+                Engineering & Digital Services
+              </h2>
+              <p class="text-xs sm:text-sm text-text-muted">9 specialized technology solutions engineered for growth</p>
+            </div>
+          </div>
+          <a
+            href="/services"
+            class="text-xs sm:text-sm font-medium text-brand-primary hover:text-brand-hover inline-flex items-center gap-1.5 self-start sm:self-auto"
+          >
+            <span>View Services Overview</span>
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {SERVICES.map((service) => (
+            <div class="sitemap-card bg-surface-1 border border-hairline rounded-lg p-5 hover:border-brand-primary/60 transition-all group">
+              <a href={`/services/${service.slug}`} class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-brand-primary/10 text-brand-primary">
+                    {service.badge}
+                  </span>
+                  <span class="text-xs text-text-muted font-mono">/services/{service.slug}</span>
+                </div>
+                <h3 class="text-base font-bold text-text-primary group-hover:text-brand-primary transition-colors mb-1.5 flex items-center gap-2">
+                  <span class="p-1 rounded bg-surface-2 border border-hairline text-brand-primary shrink-0">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d={service.icon}></path>
+                    </svg>
+                  </span>
+                  <span>{service.title}</span>
+                </h3>
+                <p class="text-xs sm:text-sm text-text-body line-clamp-2 mt-2">
+                  {service.description}
+                </p>
+              </a>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- SECTION 3: Technical Insights & Engineering Playbooks -->
+      <section class="sitemap-group" data-group="blog">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6 pb-3 border-b border-hairline">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-brand-primary/10 border border-brand-primary/30 flex items-center justify-center text-brand-primary text-sm font-bold">
+              03
+            </span>
+            <div>
+              <h2 class="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
+                Insights & Engineering Playbooks
+              </h2>
+              <p class="text-xs sm:text-sm text-text-muted">Grounded architectural advice and technical guides</p>
+            </div>
+          </div>
+          <a
+            href="/blog"
+            class="text-xs sm:text-sm font-medium text-brand-primary hover:text-brand-hover inline-flex items-center gap-1.5 self-start sm:self-auto"
+          >
+            <span>View All Guides (/blog)</span>
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {BLOG_POSTS.map((post) => (
+            <div class="sitemap-card bg-surface-1 border border-hairline rounded-lg p-5 hover:border-brand-primary/60 transition-all group">
+              <a href={`/blog/${post.slug}`} class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-[11px] font-semibold text-brand-primary">{post.category}</span>
+                  <span class="text-xs text-text-muted">{post.readTime}</span>
+                </div>
+                <h3 class="text-base font-bold text-text-primary group-hover:text-brand-primary transition-colors mb-1.5 line-clamp-2">
+                  {post.title}
+                </h3>
+                <p class="text-xs sm:text-sm text-text-body line-clamp-2">
+                  {post.summary}
+                </p>
+                <div class="mt-3 pt-3 border-t border-hairline flex items-center justify-between text-xs text-text-muted font-mono">
+                  <span>/blog/{post.slug}</span>
+                  <span class="text-brand-primary opacity-0 group-hover:opacity-100 transition-opacity">Read &rarr;</span>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- SECTION 4: Legal, Compliance & Machine Discovery -->
+      <section class="sitemap-group" data-group="legal">
+        <div class="flex items-center gap-3 mb-6 pb-3 border-b border-hairline">
+          <span class="w-8 h-8 rounded-lg bg-brand-primary/10 border border-brand-primary/30 flex items-center justify-center text-brand-primary text-sm font-bold">
+            04
+          </span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
+              Governance & Machine Discovery
+            </h2>
+            <p class="text-xs sm:text-sm text-text-muted">Legal compliance standards and automated search engine endpoints</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="sitemap-card bg-surface-1 border border-hairline rounded-lg p-5 hover:border-brand-primary/60 transition-all group">
+            <a href="/privacy" class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold uppercase tracking-wider text-brand-primary">Compliance</span>
+                <span class="text-xs text-text-muted font-mono">/privacy</span>
+              </div>
+              <h3 class="text-base font-bold text-text-primary group-hover:text-brand-primary transition-colors mb-1">
+                Privacy Policy
+              </h3>
+              <p class="text-xs text-text-body">Data processing, analytics transparency, and client privacy protection.</p>
+            </a>
+          </div>
+
+          <div class="sitemap-card bg-surface-1 border border-hairline rounded-lg p-5 hover:border-brand-primary/60 transition-all group">
+            <a href="/terms" class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold uppercase tracking-wider text-brand-primary">Contract</span>
+                <span class="text-xs text-text-muted font-mono">/terms</span>
+              </div>
+              <h3 class="text-base font-bold text-text-primary group-hover:text-brand-primary transition-colors mb-1">
+                Terms of Service
+              </h3>
+              <p class="text-xs text-text-body">Commercial terms, service level guidelines, and deliverables handoff.</p>
+            </a>
+          </div>
+
+          <div class="sitemap-card bg-surface-1 border border-hairline rounded-lg p-5 hover:border-brand-primary/60 transition-all group">
+            <a href="/sitemap-index.xml" target="_blank" class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold uppercase tracking-wider text-brand-primary">Bot Index</span>
+                <span class="text-xs text-text-muted font-mono">.xml</span>
+              </div>
+              <h3 class="text-base font-bold text-text-primary group-hover:text-brand-primary transition-colors mb-1">
+                XML Sitemap
+              </h3>
+              <p class="text-xs text-text-body">Standardized XML sitemap for automated Googlebot and Bingbot indexing.</p>
+            </a>
+          </div>
+
+          <div class="sitemap-card bg-surface-1 border border-hairline rounded-lg p-5 hover:border-brand-primary/60 transition-all group">
+            <a href="/llms.txt" target="_blank" class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold uppercase tracking-wider text-brand-primary">AI Graph</span>
+                <span class="text-xs text-text-muted font-mono">.txt</span>
+              </div>
+              <h3 class="text-base font-bold text-text-primary group-hover:text-brand-primary transition-colors mb-1">
+                LLMs.txt Discovery
+              </h3>
+              <p class="text-xs text-text-body">Machine-readable knowledge graph for ChatGPT, Perplexity, and Claude.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Empty State for Search -->
+      <div id="search-empty-state" class="hidden text-center py-12 px-4 bg-surface-1 border border-hairline rounded-lg">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-surface-2 border border-hairline flex items-center justify-center text-text-muted">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-text-primary mb-1">No matching pages found</h3>
+        <p class="text-sm text-text-muted mb-4 max-w-md mx-auto">
+          We couldn't find any URLs or capabilities matching your search. Try searching for "Software", "Cloud", "SEO", or "Design".
+        </p>
+        <button
+          type="button"
+          id="reset-search-btn"
+          class="px-4 py-2 rounded-lg bg-brand-primary text-text-inverted text-sm font-semibold hover:bg-brand-hover transition-colors cursor-pointer"
+        >
+          Reset Search Filter
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Quick Scoping CTA Card -->
+    <div class="mt-16 p-6 sm:p-10 rounded-xl bg-surface-1 border border-hairline shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div class="max-w-[36rem]">
+        <h3 class="text-xl sm:text-2xl font-bold text-text-primary tracking-tight mb-2">
+          Looking for a custom solution?
+        </h3>
+        <p class="text-sm sm:text-base text-text-body">
+          Discuss your project scope directly with our engineering team, or run an instant project budget estimate.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <a
+          href={SITE.whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="min-h-[44px] px-5 py-2.5 rounded-lg bg-whatsapp text-white font-semibold text-sm inline-flex items-center gap-2 hover:opacity-90 transition-opacity"
+        >
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z" />
+          </svg>
+          Chat on WhatsApp
+        </a>
+        <a
+          href="/contact"
+          class="min-h-[44px] px-5 py-2.5 rounded-lg border border-hairline bg-surface-2 text-text-primary font-semibold text-sm hover:border-brand-primary transition-colors inline-flex items-center"
+        >
+          Contact Form
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Client-side Fast Search Script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('sitemap-search');
+      const clearBtn = document.getElementById('clear-search-btn');
+      const resetBtn = document.getElementById('reset-search-btn');
+      const emptyState = document.getElementById('search-empty-state');
+      const feedback = document.getElementById('search-feedback');
+      const cards = document.querySelectorAll('.sitemap-card');
+      const groups = document.querySelectorAll('.sitemap-group');
+
+      if (!searchInput) return;
+
+      const performFilter = (query) => {
+        const q = query.trim().toLowerCase();
+
+        if (q.length > 0) {
+          clearBtn.classList.remove('hidden');
+        } else {
+          clearBtn.classList.add('hidden');
+        }
+
+        let visibleCardsCount = 0;
+
+        cards.forEach((card) => {
+          const text = card.textContent.toLowerCase();
+          const href = card.querySelector('a')?.getAttribute('href')?.toLowerCase() || '';
+          const match = text.includes(q) || href.includes(q);
+
+          if (match) {
+            card.classList.remove('hidden');
+            visibleCardsCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        // Hide empty groups
+        groups.forEach((group) => {
+          const visibleInGroup = group.querySelectorAll('.sitemap-card:not(.hidden)').length;
+          if (visibleInGroup === 0 && q.length > 0) {
+            group.classList.add('hidden');
+          } else {
+            group.classList.remove('hidden');
+          }
+        });
+
+        // Handle empty state
+        if (visibleCardsCount === 0 && q.length > 0) {
+          emptyState?.classList.remove('hidden');
+          if (feedback) {
+            feedback.classList.remove('hidden');
+            feedback.textContent = `No pages match "${query}"`;
+          }
+        } else {
+          emptyState?.classList.add('hidden');
+          if (feedback) {
+            if (q.length > 0) {
+              feedback.classList.remove('hidden');
+              feedback.textContent = `Showing ${visibleCardsCount} matching page${visibleCardsCount === 1 ? '' : 's'}`;
+            } else {
+              feedback.classList.add('hidden');
+              feedback.textContent = '';
+            }
+          }
+        }
+      };
+
+      searchInput.addEventListener('input', (e) => {
+        performFilter(e.target.value);
+      });
+
+      clearBtn?.addEventListener('click', () => {
+        searchInput.value = '';
+        performFilter('');
+        searchInput.focus();
+      });
+
+      resetBtn?.addEventListener('click', () => {
+        searchInput.value = '';
+        performFilter('');
+        searchInput.focus();
+      });
+    });
+  </script>
+</Layout>

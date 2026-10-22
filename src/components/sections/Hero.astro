@@ -1,8 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import skylineBackground from '../../../backgoundim/Futuristic Skyline with Neon Light Trails.png';
-import { SITE } from '../../config/site';
-import { SERVICES } from '../../data/services';
 ---
 
 <section id="top" class="hero-section backdrop-01-hero">
@@ -13,24 +11,37 @@ import { SERVICES } from '../../data/services';
     class="hero-background"
     loading="eager"
   />
+
   <div class="hero-layout">
     <div class="hero-copy">
-      <h1>Build your digital presence &amp; <br /><span class="hero-highlight">Grow online.</span></h1>
-      <p class="hero-description">
+      
+
+      <h1 class="hero-animate hero-animate-1">
+        Build your digital presence.<br />
+        <span class="hero-highlight">Grow your business.</span>
+      </h1>
+
+      <p class="hero-subline hero-animate hero-animate-2">
         Websites, SEO, digital marketing and social media to help your business build a stronger online presence.
       </p>
 
-      <div class="hero-actions">
-        <a href="/contact" class="hero-button hero-button-primary">Discuss a project</a>
+      <div class="hero-actions hero-animate hero-animate-3">
+        <a href="/contact" class="hero-button hero-button-primary">Start a Project</a>
         <a href="/services" class="hero-button hero-button-secondary">
           Explore services
           <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
-            <path d="M4 10h11M10 5l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+              d="M4 10h11M10 5l5 5-5 5"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </a>
       </div>
 
-      <dl class="hero-stats">
+      <dl class="hero-stats hero-animate hero-animate-4" aria-label="Company statistics">
         <div>
           <dt class="stat-counter" data-target="20" data-suffix="+">20+</dt>
           <dd>Projects delivered</dd>
@@ -49,40 +60,16 @@ import { SERVICES } from '../../data/services';
         </div>
       </dl>
     </div>
-
-    <div class="hero-enquiry-stage">
-      <div class="hero-enquiry-intro">
-        <p>Quick project enquiry</p>
-        <h2>What can we help you build?</h2>
-        <span>Choose a service to prepare a WhatsApp message you can review.</span>
-      </div>
-      <form id="hero-inquiry-form" class="hero-quick-form" action="/contact" method="get" aria-describedby="hero-inquiry-note">
-        <p class="hero-form-title">Quick enquiry</p>
-        <div class="hero-form-controls">
-          <label class="hero-form-label" for="hero-inquiry-service">Choose a service</label>
-          <select id="hero-inquiry-service" name="service" required>
-            <option value="" disabled selected>What do you need?</option>
-            {SERVICES.map((service) => <option value={service.title}>{service.shortTitle}</option>)}
-            <option value="Not sure yet">Not sure yet</option>
-          </select>
-          <button type="submit" aria-label="Continue this enquiry on WhatsApp">
-            Send
-            <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
-              <path d="M4 10h11M10 5l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
-        </div>
-        <p id="hero-inquiry-note" class="hero-form-note">Opens WhatsApp with your selection for you to review.</p>
-      </form>
-    </div>
   </div>
 
   <div class="hero-audiences" aria-label="Customer segments">
     <span>Working with</span>
     <ul>
-      <li>Clinics</li>
+      
       <li>Real estate</li>
-      <li>Jewellery</li>
+      <li>Hospitality</li>
+      <li>Jewellers</li>
+      <li>Clinics</li>
       <li>SMEs &amp; startups</li>
       <li>International teams</li>
     </ul>
@@ -90,6 +77,7 @@ import { SERVICES } from '../../data/services';
 </section>
 
 <style>
+  /* ── Section shell ─────────────────────────────── */
   .hero-section {
     position: relative;
     isolation: isolate;
@@ -107,11 +95,7 @@ import { SERVICES } from '../../data/services';
     pointer-events: none;
   }
 
-  .hero-highlight {
-    color: var(--color-brand-primary);
-  }
-
-
+  /* ── Background image ──────────────────────────── */
   .hero-background {
     position: absolute;
     z-index: -2;
@@ -124,48 +108,68 @@ import { SERVICES } from '../../data/services';
     pointer-events: none;
   }
 
+  /* ── Layout ────────────────────────────────────── */
   .hero-layout {
     position: relative;
     z-index: 1;
-    display: grid;
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-    align-items: center;
-    gap: 3.5rem;
-    max-width: 72rem;
+    max-width: 64rem;
     margin-inline: auto;
     padding: 4.25rem 2rem 3.5rem;
   }
 
   .hero-copy {
-    min-width: 0;
+    max-width: 64rem;
   }
 
+  /* ── Eyebrow ───────────────────────────────────── */
+  .hero-eyebrow {
+    margin: 0 0 1.25rem;
+    color: var(--color-brand-primary);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── Headline ──────────────────────────────────── */
   .hero-copy h1 {
-    font-size: 2.25rem;
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin: 0 0 24px;
+    font-size: clamp(3rem, 7.5vw, 6.25rem);
+    font-weight: 900;
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    margin: 0 0 1.5rem;
+    color: var(--color-text-primary);
   }
 
-  .hero-description {
-    margin: 0 0 32px;
+  .hero-highlight {
+    color: var(--color-brand-primary);
+  }
+
+  /* ── Subline ───────────────────────────────────── */
+  .hero-subline {
+    max-width: 40rem;
+    margin: 0 0 2rem;
+    color: var(--color-text-body);
+    font-size: 1.05rem;
     line-height: 1.6;
   }
 
+  /* ── Actions ───────────────────────────────────── */
   .hero-actions {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
     margin-bottom: 2.25rem;
   }
 
   .hero-button {
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 1.5rem;
+    gap: 0.65rem;
+    padding: 0.85rem 1.75rem;
     border-radius: 8px;
     font-weight: 700;
+    font-size: 0.95rem;
     text-decoration: none;
     transition: all 0.2s;
   }
@@ -177,6 +181,8 @@ import { SERVICES } from '../../data/services';
 
   .hero-button-primary:hover {
     background: var(--color-button-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(184, 240, 77, 0.22);
   }
 
   .hero-button-secondary {
@@ -191,141 +197,35 @@ import { SERVICES } from '../../data/services';
   }
 
   .hero-button svg {
-    width: 1.1rem;
-    height: 1.1rem;
+    width: 1rem;
+    height: 1rem;
   }
 
+  /* ── Stats strip ───────────────────────────────── */
   .hero-stats {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1rem;
-    margin: 2.25rem 0 0;
-    padding-top: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem 2.75rem;
+    margin: 0;
+    padding-top: 1.5rem;
     border-top: 1px solid var(--color-hairline);
   }
 
   .hero-stats dt {
     color: var(--color-text-primary);
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 800;
-    line-height: 1.25;
+    line-height: 1.2;
   }
 
   .hero-stats dd {
-    margin: 0.25rem 0 0;
+    margin: 0.2rem 0 0;
     color: var(--color-text-muted);
     font-size: 0.72rem;
     line-height: 1.4;
   }
 
-  .hero-enquiry-stage {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 34rem;
-    padding: 2rem;
-    background: transparent;
-    border-radius: 12px;
-  }
-
-  .hero-enquiry-intro {
-    margin-bottom: 1rem;
-  }
-
-  .hero-enquiry-intro p {
-    margin: 0 0 0.45rem;
-    color: var(--color-brand-primary);
-    font-size: 0.75rem;
-    font-weight: 800;
-    text-transform: uppercase;
-  }
-
-  .hero-enquiry-intro h2 {
-    margin: 0;
-    color: var(--color-text-primary);
-    font-size: 1.45rem;
-    font-weight: 800;
-    line-height: 1.2;
-  }
-
-  .hero-enquiry-intro span {
-    display: block;
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
-    line-height: 1.5;
-  }
-
-  .hero-form-title {
-    margin: 0 0 0.5rem;
-    color: var(--color-text-primary);
-    font-size: 0.8rem;
-    font-weight: 800;
-  }
-
-  .hero-form-controls {
-    display: flex;
-    align-items: stretch;
-    gap: 0.45rem;
-  }
-
-  .hero-form-label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    clip-path: inset(50%);
-  }
-
-  .hero-form-controls select {
-    width: 100%;
-    min-width: 0;
-    min-height: 2.65rem;
-    padding: 0.55rem 1.8rem 0.55rem 0.65rem;
-    border: 1px solid var(--color-border-strong);
-    border-radius: 5px;
-    background: var(--color-surface-2);
-    backdrop-filter: blur(5px);
-    color: var(--color-text-primary);
-    font: inherit;
-    font-size: 0.75rem;
-  }
-
-  .hero-form-controls button {
-    display: inline-flex;
-    min-width: 4.4rem;
-    min-height: 2.65rem;
-    align-items: center;
-    justify-content: center;
-    gap: 0.25rem;
-    padding: 0.5rem 0.6rem;
-    border: 0;
-    border-radius: 5px;
-    background: var(--color-button-fill);
-    color: var(--color-button-text);
-    font: inherit;
-    font-size: 0.75rem;
-    font-weight: 700;
-    cursor: pointer;
-  }
-
-  .hero-form-controls button:hover {
-    background: var(--color-button-hover);
-  }
-
-  .hero-form-controls button svg {
-    width: 0.95rem;
-    height: 0.95rem;
-  }
-
-  .hero-form-note {
-    margin: 0.45rem 0 0;
-    color: var(--color-text-muted);
-    font-size: 0.65rem;
-    line-height: 1.35;
-  }
-
+  /* ── Audiences ─────────────────────────────────── */
   .hero-audiences {
     position: relative;
     z-index: 1;
@@ -334,7 +234,7 @@ import { SERVICES } from '../../data/services';
     align-items: center;
     gap: 1.25rem;
     margin: 0 auto;
-    padding: 1.15rem 2rem;
+    padding: 1.1rem 2rem;
     border-top: 1px solid var(--color-hairline);
     color: var(--color-text-muted);
     font-size: 0.8rem;
@@ -348,7 +248,7 @@ import { SERVICES } from '../../data/services';
   .hero-audiences ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.55rem 1.4rem;
+    gap: 0.5rem 1.35rem;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -357,103 +257,84 @@ import { SERVICES } from '../../data/services';
   .hero-audiences li::before {
     content: '';
     display: inline-block;
-    width: 0.35rem;
-    height: 0.35rem;
-    margin: 0 0.5rem 0.08rem 0;
+    width: 0.32rem;
+    height: 0.32rem;
+    margin: 0 0.45rem 0.08rem 0;
     border-radius: 50%;
     background: var(--color-brand-primary);
   }
 
-  @media (min-width: 64rem) {
-    .hero-copy h1 {
-      font-size: 3.65rem;
+  /* ── Entrance animations ───────────────────────── */
+  @keyframes fadeUpIn {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
+  .hero-animate {
+    animation: fadeUpIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .hero-animate-1 { animation-delay: 0.05s; }
+  .hero-animate-2 { animation-delay: 0.2s;  }
+  .hero-animate-3 { animation-delay: 0.35s; }
+  .hero-animate-4 { animation-delay: 0.5s;  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-animate {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
+  /* ── Responsive ────────────────────────────────── */
   @media (max-width: 63.99rem) {
     .hero-layout {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 2.25rem;
-      padding-top: 3.25rem;
-    }
-
-    .hero-copy h1,
-    .hero-description {
-      max-width: 42rem;
+      padding: 3.25rem 2rem 2.5rem;
     }
   }
 
   @media (max-width: 39.99rem) {
     .hero-layout {
-      gap: 1.5rem;
       padding: 1.75rem 1rem 1.25rem;
     }
 
     .hero-copy h1 {
-      font-size: clamp(1.85rem, 6.5vw, 2.25rem);
+      font-size: clamp(2.15rem, 8.5vw, 3.25rem);
+      line-height: 1.02;
+      margin-bottom: 1.25rem;
     }
 
-    .hero-description {
+    .hero-subline {
       font-size: 0.95rem;
-      margin-bottom: 24px;
+      margin-bottom: 1.5rem;
     }
 
     .hero-actions {
-      flex-wrap: wrap;
       gap: 0.65rem;
       margin-bottom: 1.75rem;
     }
 
     .hero-button {
-      min-width: 0;
       flex: 1 1 130px;
-      padding-inline: 0.75rem;
-      font-size: 0.82rem;
-      min-height: 44px;
+      min-height: 48px;
+      padding-inline: 1rem;
+      font-size: 0.875rem;
       justify-content: center;
     }
 
     .hero-stats {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.85rem 0.75rem;
-      margin-top: 1.25rem;
-      padding-top: 1rem;
+      gap: 1rem 1.75rem;
+      padding-top: 1.15rem;
     }
 
     .hero-stats dt {
       font-size: 1.1rem;
-    }
-
-    .hero-stats dd {
-      font-size: 0.72rem;
-    }
-
-    .hero-enquiry-stage {
-      padding: 1.25rem 1rem;
-      max-width: 100%;
-    }
-
-    .hero-form-title {
-      display: none;
-    }
-
-    .hero-form-note {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      clip-path: inset(50%);
-    }
-
-    .hero-form-controls select,
-    .hero-form-controls button {
-      min-height: 2.75rem;
-    }
-
-    .hero-form-controls select {
-      font-size: 1rem;
     }
 
     .hero-background {
@@ -466,9 +347,6 @@ import { SERVICES } from '../../data/services';
   }
 
   @media (max-width: 22rem) {
-    .hero-enquiry-stage {
-      padding: 1rem 0.75rem;
-    }
     .hero-actions {
       flex-direction: column;
     }
@@ -478,59 +356,54 @@ import { SERVICES } from '../../data/services';
   }
 </style>
 
-<script define:vars={{ whatsappUrl: SITE.whatsappUrl }}>
-  const form = document.getElementById('hero-inquiry-form');
-
-  if (form instanceof HTMLFormElement) {
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const service = new FormData(form).get('service');
-      const whatsappLink = new URL(whatsappUrl);
-      whatsappLink.searchParams.set('text', `Hi SKYON IT SOLUTIONS, I would like to discuss ${service}.`);
-      window.open(whatsappLink.toString(), '_blank', 'noopener,noreferrer');
-    });
-  }
-
-  // Interactive Counter Animation on Scroll
+<script>
+  // Stat counter animation — fires when stats scroll into view
   function initCounters() {
     const counters = document.querySelectorAll('.stat-counter');
     if (!counters.length) return;
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return; // Respect reduced motion
+      return; // Respect reduced motion preference
     }
 
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        obs.unobserve(entry.target);
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          obs.unobserve(entry.target);
 
-        const el = entry.target;
-        const target = parseFloat(el.getAttribute('data-target') || '0');
-        const suffix = el.getAttribute('data-suffix') || '';
-        const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
-        const duration = 1400; // ms
-        const startTime = performance.now();
+          const el = entry.target as HTMLElement;
+          const target = parseFloat(el.getAttribute('data-target') || '0');
+          const suffix = el.getAttribute('data-suffix') || '';
+          const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+          const duration = 1400;
+          const startTime = performance.now();
 
-        function step(now) {
-          const elapsed = now - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          // Ease out expo
-          const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-          const current = (target * ease);
+          function step(now: number) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+            const current = target * ease;
 
-          el.textContent = (decimals > 0 ? current.toFixed(decimals) : Math.round(current).toString()) + suffix;
+            el.textContent =
+              (decimals > 0
+                ? current.toFixed(decimals)
+                : Math.round(current).toString()) + suffix;
 
-          if (progress < 1) {
-            requestAnimationFrame(step);
-          } else {
-            el.textContent = (decimals > 0 ? target.toFixed(decimals) : target.toString()) + suffix;
+            if (progress < 1) {
+              requestAnimationFrame(step);
+            } else {
+              el.textContent =
+                (decimals > 0 ? target.toFixed(decimals) : target.toString()) +
+                suffix;
+            }
           }
-        }
 
-        requestAnimationFrame(step);
-      });
-    }, { threshold: 0.2 });
+          requestAnimationFrame(step);
+        });
+      },
+      { threshold: 0.2 }
+    );
 
     counters.forEach((c) => observer.observe(c));
   }

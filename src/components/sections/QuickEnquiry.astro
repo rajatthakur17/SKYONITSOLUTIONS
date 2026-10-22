@@ -1,0 +1,187 @@
+---
+import { SITE } from '../../config/site';
+import { SERVICES } from '../../data/services';
+---
+
+<section id="enquiry" class="quick-enquiry" aria-label="Quick project enquiry">
+  <div class="enquiry-inner">
+    <p class="enquiry-label" aria-hidden="true">Quick project enquiry</p>
+    <form
+      id="quick-enquiry-form"
+      class="enquiry-form"
+      action="/contact"
+      method="get"
+      aria-describedby="quick-enquiry-note"
+    >
+      <label class="enquiry-sr-only" for="quick-enquiry-service">Choose a service</label>
+      <select id="quick-enquiry-service" name="service" required>
+        <option value="" disabled selected>What do you need?</option>
+        {SERVICES.map((service) => <option value={service.title}>{service.shortTitle}</option>)}
+        <option value="Not sure yet">Not sure yet</option>
+      </select>
+      <button type="submit" aria-label="Continue this enquiry on WhatsApp">
+        Send
+        <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
+          <path
+            d="M4 10h11M10 5l5 5-5 5"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+    </form>
+    <p id="quick-enquiry-note" class="enquiry-note">
+      Opens WhatsApp with your selection for you to review.
+    </p>
+  </div>
+</section>
+
+<style>
+  .quick-enquiry {
+    border-bottom: 1px solid var(--color-hairline);
+    background: var(--color-surface-1);
+  }
+
+  .enquiry-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding: 1rem 2rem;
+    flex-wrap: wrap;
+  }
+
+  .enquiry-label {
+    margin: 0;
+    color: var(--color-brand-primary);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    flex: none;
+  }
+
+  .enquiry-form {
+    display: flex;
+    align-items: stretch;
+    gap: 0.45rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .enquiry-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
+
+  .enquiry-form select {
+    flex: 1;
+    min-width: 0;
+    min-height: 2.6rem;
+    padding: 0.5rem 1.75rem 0.5rem 0.7rem;
+    border: 1px solid var(--color-border-strong);
+    border-radius: 6px;
+    background: var(--color-surface-2);
+    color: var(--color-text-primary);
+    font: inherit;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+  .enquiry-form button {
+    display: inline-flex;
+    min-width: 5rem;
+    min-height: 2.6rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    padding: 0.5rem 0.9rem;
+    border: 0;
+    border-radius: 6px;
+    background: var(--color-button-fill);
+    color: var(--color-button-text);
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+
+  .enquiry-form button:hover {
+    background: var(--color-button-hover);
+  }
+
+  .enquiry-form button svg {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+
+  .enquiry-note {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.68rem;
+    line-height: 1.35;
+    flex: none;
+  }
+
+  @media (max-width: 39.99rem) {
+    .enquiry-inner {
+      padding: 0.875rem 1rem;
+      gap: 0.65rem;
+    }
+
+    .enquiry-form {
+      width: 100%;
+    }
+
+    .enquiry-note {
+      width: 100%;
+    }
+
+    .enquiry-form select {
+      font-size: 1rem; /* legible on mobile without zoom */
+      min-height: 2.75rem;
+    }
+
+    .enquiry-form button {
+      min-height: 2.75rem;
+    }
+  }
+
+  @media (max-width: 22rem) {
+    .enquiry-form {
+      flex-direction: column;
+    }
+    .enquiry-form select,
+    .enquiry-form button {
+      width: 100%;
+    }
+  }
+</style>
+
+<script define:vars={{ whatsappUrl: SITE.whatsappUrl }}>
+  const form = document.getElementById('quick-enquiry-form');
+
+  if (form instanceof HTMLFormElement) {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const service = new FormData(form).get('service');
+      const whatsappLink = new URL(whatsappUrl);
+      whatsappLink.searchParams.set(
+        'text',
+        `Hi SKYON IT SOLUTIONS, I would like to discuss ${service}.`
+      );
+      window.open(whatsappLink.toString(), '_blank', 'noopener,noreferrer');
+    });
+  }
+</script>

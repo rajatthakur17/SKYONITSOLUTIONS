@@ -8,8 +8,25 @@ interface Props {
 }
 
 const { isPage = false } = Astro.props;
+
+// Concise high-impact descriptions for homepage cards
+const SHORT_DESCRIPTIONS: Record<string, string> = {
+  'website-development': 'High-performance static & SSR web platforms with Core Web Vitals optimization.',
+  'custom-software': 'Modular web applications, custom portals, and automated operations software.',
+  'cloud-solutions': 'Edge CDN routing, zero-downtime CI/CD pipelines, and cloud cost optimization.',
+  'ai-automation': 'Instant WhatsApp lead pipelines, AI assistants, and automated workflows.',
+  'ui-ux-design': 'Conversion-focused interface systems, Figma prototypes, and WCAG 2.2 accessibility.',
+  'it-consulting': 'Codebase architecture audits, legacy refactoring roadmaps, and build-vs-buy advisory.',
+  'seo': 'Technical SEO, rich JSON-LD schema graphs, and Google Local 3-Pack authority.',
+  'digital-marketing': 'High-ROI Google Ads, Click-to-WhatsApp acquisition funnels, and analytics.',
+  'social-media': 'Brand storytelling, audience growth systems, and performance content distribution.',
+};
 ---
-<section id="services" class={`services-section backdrop-02-services border-b border-hairline px-4 md:px-8 ${isPage ? 'pt-28 md:pt-36 pb-16 md:pb-24' : 'py-12 md:py-24'}`}>
+
+<section
+  id="services"
+  class={`services-section backdrop-02-services border-b border-hairline px-4 md:px-8 ${isPage ? 'pt-28 md:pt-36 pb-16 md:pb-24' : 'py-12 md:py-24'}`}
+>
   <Image
     src={earthNetworkBackground}
     alt=""
@@ -17,54 +34,88 @@ const { isPage = false } = Astro.props;
     class="services-background"
     loading={isPage ? 'eager' : 'lazy'}
   />
+
   <div class="services-content max-w-[72rem] mx-auto">
-    <div class="mb-8 md:mb-16">
+    <!-- Section header -->
+    <div class="mb-8 md:mb-16 max-w-[48rem]">
+      <p class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-3">Capabilities</p>
       {isPage ? (
-        <h1 class="text-3xl md:text-5xl font-bold text-text-primary mb-4 tracking-tight">IT Services &amp; Capabilities</h1>
+        <h1 class="services-headline">IT Services &amp; Capabilities</h1>
       ) : (
-        <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-4 tracking-tight">IT Services &amp; Capabilities</h2>
+        <h2 class="services-headline">IT Services &amp; Capabilities</h2>
       )}
-      <p class="text-lg text-text-body max-w-[42rem]">
-        Software and web development, UI/UX, cloud, AI and automation, consulting, SEO, and digital growth for Indian and international businesses.
-      </p>
-      <p class="mt-3 max-w-[42rem] text-sm text-text-muted md:hidden">
-        Supporting clinics, real estate, jewellery makers, SMEs/MSMEs, startups, enterprises, and international teams.
+      <p class="services-subline">
+        Nine specialized disciplines. One accountable technology partner.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {SERVICES.map((service) => (
-        <a href={`/services/${service.slug}`} class="motion-click group block bg-surface-1/95 backdrop-blur-xs border border-hairline rounded-lg p-6 hover:border-brand-primary hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-2.5 py-0.5 bg-brand-primary/10 text-brand-primary text-[11px] font-bold tracking-widest uppercase rounded">{service.badge}</span>
-              <div class="w-8 h-8 rounded-full bg-canvas border border-hairline flex items-center justify-center text-text-primary group-hover:text-brand-primary transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d={service.icon} />
-                </svg>
-              </div>
-            </div>
-            <h3 class="text-lg font-bold text-text-primary mb-2 group-hover:text-brand-primary transition-colors">{service.title}</h3>
-            <p class="text-text-body text-sm leading-relaxed mb-4">{service.description}</p>
-            {service.keyMetrics && service.keyMetrics.length > 0 && (
-              <div class="mb-4">
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-canvas border border-hairline font-mono text-xs text-text-primary">
-                  <span class="text-brand-primary font-extrabold">{service.keyMetrics[0].value}</span>
-                  <span class="text-text-muted text-[11px] font-sans">{service.keyMetrics[0].label}</span>
+    <!-- Service cards grid -->
+    <div class="services-grid">
+      {SERVICES.map((service, idx) => {
+        const desc = SHORT_DESCRIPTIONS[service.slug] || service.description;
+        return (
+          <a
+            href={`/services/${service.slug}`}
+            class="motion-click service-card group block bg-surface-1/90 backdrop-blur-md border border-hairline hover:border-brand-primary/80 rounded-2xl p-7 sm:p-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary flex flex-col justify-between"
+            style={`--card-index: ${idx};`}
+          >
+            <div>
+              <!-- Badge + prominent Icon row -->
+              <div class="flex items-center justify-between mb-6">
+                <span class="px-3 py-1 bg-brand-primary/10 text-brand-primary text-[11px] font-extrabold tracking-widest uppercase rounded-full border border-brand-primary/20">
+                  {service.badge}
                 </span>
+                <div class="w-12 h-12 rounded-xl bg-canvas border border-hairline flex items-center justify-center text-brand-primary group-hover:scale-110 group-hover:border-brand-primary/60 group-hover:shadow-[0_0_18px_rgba(92,194,255,0.25)] transition-all duration-300">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d={service.icon} />
+                  </svg>
+                </div>
               </div>
-            )}
-          </div>
-          <div class="text-xs font-semibold text-brand-primary group-hover:text-brand-hover flex items-center gap-1 pt-3 border-t border-hairline">
-            View Service Scope &rarr;
-          </div>
-        </a>
-      ))}
+
+              <!-- Title -->
+              <h3 class="text-xl sm:text-2xl font-black text-text-primary mb-3 tracking-tight group-hover:text-brand-primary transition-colors">
+                {service.title}
+              </h3>
+
+              <!-- Description — concise and scannable -->
+              <p class="service-desc text-text-body text-sm leading-relaxed mb-4">
+                {desc}
+              </p>
+
+              <!-- Prominent Stat / Key Metric -->
+              {service.keyMetrics && service.keyMetrics.length > 0 && (
+                <div class="mb-4 pt-4 border-t border-hairline/60 flex items-center justify-between">
+                  <span class="font-mono text-lg font-black text-brand-primary tracking-tight">
+                    {service.keyMetrics[0].value}
+                  </span>
+                  <span class="text-text-muted text-[11px] uppercase tracking-wider font-semibold">
+                    {service.keyMetrics[0].label}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            <!-- Footer link -->
+            <div class="text-xs font-bold text-brand-primary group-hover:text-brand-hover flex items-center justify-between pt-3 border-t border-hairline mt-2">
+              <span>View Service Scope</span>
+              <span class="text-base group-hover:translate-x-1 transition-transform">&rarr;</span>
+            </div>
+          </a>
+        );
+      })}
     </div>
   </div>
 </section>
 
 <style>
+  /* ── Section shell ─────────────────────────────── */
   .services-section {
     position: relative;
     isolation: isolate;
@@ -102,4 +153,144 @@ const { isPage = false } = Astro.props;
       object-position: 65% center;
     }
   }
+
+  /* ── Section header ────────────────────────────── */
+  .services-headline {
+    font-size: clamp(2.25rem, 5vw, 4.25rem);
+    font-weight: 900;
+    color: var(--color-text-primary);
+    margin: 0 0 0.75rem;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .services-subline {
+    color: var(--color-text-body);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    max-width: 42rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ── Grid ──────────────────────────────────────── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 48rem) {
+    .services-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .services-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+  }
+
+  /* ── Service card ──────────────────────────────── */
+  .service-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
+    transition-delay: calc(var(--card-index, 0) * 55ms);
+  }
+
+  .service-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .service-card:hover {
+    border-color: var(--color-brand-primary);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35), 0 0 24px rgba(92, 194, 255, 0.12);
+    transform: translateY(-4px);
+  }
+
+  /* ── Description reveal ────────────────────────── */
+  .service-desc {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin-bottom: 0;
+    transition:
+      max-height 0.3s ease,
+      opacity 0.3s ease,
+      margin-bottom 0.3s ease;
+  }
+
+  .service-card:hover .service-desc,
+  .service-card:focus-within .service-desc {
+    max-height: 8rem;
+    opacity: 1;
+    margin-bottom: 1rem;
+  }
+
+  @media (hover: none) {
+    .service-desc {
+      max-height: none;
+      opacity: 1;
+      margin-bottom: 1rem;
+      overflow: visible;
+    }
+  }
+
+  @media (max-width: 39.99rem) {
+    .service-desc {
+      max-height: none;
+      opacity: 1;
+      margin-bottom: 1rem;
+      overflow: visible;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .service-card {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+      transition: border-color 0.2s, box-shadow 0.2s !important;
+    }
+    .service-desc {
+      transition: none !important;
+    }
+  }
 </style>
+
+<script>
+  function initServiceCards() {
+    const cards = document.querySelectorAll<HTMLElement>('.service-card');
+    if (!cards.length) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      cards.forEach((c) => c.classList.add('is-visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    cards.forEach((card) => observer.observe(card));
+  }
+
+  initServiceCards();
+  document.addEventListener('astro:page-load', initServiceCards);
+</script>

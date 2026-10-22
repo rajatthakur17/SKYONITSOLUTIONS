@@ -3,14 +3,38 @@ import { Image } from 'astro:assets';
 import particleWaveBackground from '../../../backgoundim/Neon Particle Wave Landscape.png';
 
 const steps = [
-  { num: '01', title: 'Understand', desc: 'We start by learning about your business, your target audience, and your specific goals.' },
-  { num: '02', title: 'Strategize', desc: 'We map out a clear, actionable plan covering architecture, design, and marketing channels.' },
-  { num: '03', title: 'Build', desc: 'We execute the plan, building accessible and maintainable web experiences and structuring campaigns.' },
-  { num: '04', title: 'Launch', desc: 'We deploy your project to production with strict quality assurance and SEO checks.' },
-  { num: '05', title: 'Grow', desc: 'We monitor performance, manage your social presence, and prepare the foundation for ongoing marketing and optimization.' }
+  {
+    num: '01',
+    title: 'Understand',
+    desc: 'We learn your business, audience, and specific goals.',
+  },
+  {
+    num: '02',
+    title: 'Strategize',
+    desc: 'We map a clear, actionable plan covering all channels.',
+  },
+  {
+    num: '03',
+    title: 'Build',
+    desc: 'We craft accessible, high-performance web experiences.',
+  },
+  {
+    num: '04',
+    title: 'Launch',
+    desc: 'We deploy with full quality assurance and SEO checks.',
+  },
+  {
+    num: '05',
+    title: 'Grow',
+    desc: 'We monitor performance and scale your digital presence.',
+  },
 ];
 ---
-<section id="process" class="process-section backdrop-05-process py-16 md:py-24 px-4 md:px-8 border-b border-hairline">
+
+<section
+  id="process"
+  class="process-section backdrop-05-process py-16 md:py-24 px-4 md:px-8 border-b border-hairline"
+>
   <Image
     src={particleWaveBackground}
     alt=""
@@ -18,23 +42,25 @@ const steps = [
     class="process-background"
     loading="lazy"
   />
+
   <div class="process-content max-w-[72rem] mx-auto">
-    <div class="mb-12 md:mb-16">
-      <p class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-3">How We Work</p>
-      <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-4 tracking-tight">Our Process</h2>
-      <p class="text-lg text-text-body max-w-[42rem]">
-        A structured, transparent approach to delivering digital solutions that work.
+    <div class="mb-12 md:mb-16 max-w-[48rem]">
+      <p class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-3">Delivery Model</p>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-text-primary mb-4 tracking-tight leading-tight">Our Process</h2>
+      <p class="text-lg md:text-xl text-text-body max-w-[42rem] leading-relaxed">
+        A structured, transparent engineering lifecycle designed for precision.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 sm:gap-6">
+    <div class="process-grid">
       {steps.map((step, idx) => (
-        <div class={`p-5 sm:p-6 bg-surface-1/85 backdrop-blur-xs border border-hairline rounded-xl hover:border-brand-primary/50 hover:shadow-md transition-all flex flex-col justify-between ${idx === 4 ? 'sm:col-span-2 lg:col-span-1' : ''}`}>
-          <div>
-            <div class="text-3xl font-black text-brand-primary mb-3">{step.num}</div>
-            <h3 class="text-lg font-bold text-text-primary mb-2">{step.title}</h3>
-            <p class="text-text-body text-sm leading-relaxed">{step.desc}</p>
-          </div>
+        <div
+          class={`process-step ${idx === 4 ? 'sm:col-span-2 lg:col-span-1' : ''}`}
+          style={`--step-index: ${idx};`}
+        >
+          <div class="process-num-fg">{step.num}</div>
+          <h3 class="text-lg font-bold text-text-primary mb-2">{step.title}</h3>
+          <p class="text-text-body text-sm leading-relaxed">{step.desc}</p>
         </div>
       ))}
     </div>
@@ -42,6 +68,7 @@ const steps = [
 </section>
 
 <style>
+  /* ── Section shell ─────────────────────────────── */
   .process-section {
     position: relative;
     isolation: isolate;
@@ -79,4 +106,102 @@ const steps = [
       object-position: center 65%;
     }
   }
+
+  /* ── Grid ──────────────────────────────────────── */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 40rem) {
+    .process-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .process-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+  }
+
+  /* ── Step card ─────────────────────────────────── */
+  .process-step {
+    position: relative;
+    overflow: hidden;
+    padding: 1.5rem;
+    background: rgba(13, 29, 45, 0.85);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid var(--color-hairline);
+    border-radius: 0.75rem;
+    transition:
+      border-color 0.25s,
+      box-shadow 0.25s,
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--step-index, 0) * 70ms);
+    /* Scroll-reveal start state */
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  .process-step.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .process-step:hover {
+    border-color: rgba(92, 194, 255, 0.6);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 16px rgba(92, 194, 255, 0.1);
+    transform: translateY(-3px);
+  }
+
+  /* Foreground step number */
+  .process-num-fg {
+    font-size: 1.9rem;
+    font-weight: 900;
+    color: var(--color-brand-primary);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .process-step {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: border-color 0.2s, box-shadow 0.2s !important;
+    }
+  }
 </style>
+
+<script>
+  // Staggered scroll-reveal for process steps
+  function initProcessSteps() {
+    const steps = document.querySelectorAll<HTMLElement>('.process-step');
+    if (!steps.length) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      steps.forEach((s) => s.classList.add('is-visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
+    );
+
+    steps.forEach((s) => observer.observe(s));
+  }
+
+  initProcessSteps();
+  document.addEventListener('astro:page-load', initProcessSteps);
+</script>
